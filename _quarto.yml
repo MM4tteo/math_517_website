@@ -1,0 +1,98 @@
+project:
+  type: website
+
+website:
+  page-navigation: true
+  title: "MATH 517 - F23"
+  description: "Homepage for MATH 517- Computational statistics and visualisation at EPFL, Fall 2023."
+  site-url: https://github.com/MATH-517/MATH_517_website.github.io"
+
+  repo-url: https://github.com/MATH-517/MATH_517_website
+  repo-actions: [edit, issue]
+
+  open-graph: true
+
+  sidebar:
+    background: "#798b93"
+    logo: "images/logo.png"
+    pinned: true
+    align: center
+
+    tools:
+      - icon: github
+        href: https://github.com/MATH-517/MATH_517_website
+        text: "GitHub"
+
+    style: docked
+    search: true
+    collapse-level: 1
+
+    contents:
+      - section: "Course information"
+        contents:
+          - href: course-overview.qmd
+            text: Overview
+          - href: course-syllabus.qmd
+            text: Syllabus
+          - href: course-support.qmd
+            text: Support
+          - href: index.qmd
+            text: Schedule
+          - href: course-links.qmd
+            text: Useful links
+          - href: course-faq.qmd
+            text: FAQ
+      - section: "Labs"
+        contents:
+          - href: labs/lab-1.qmd
+            text: Lab 1
+          - href: labs/lab-2.qmd
+            text: Lab 2
+          - href: labs/lab-3.qmd
+            text: Lab 3  
+          - href: labs/lab-4.qmd
+            text: Lab 4
+          - href: labs/lab-5.qmd
+            text: Lab 5
+          - href: labs/lab-6.qmd
+            text: Lab 6
+          - href: labs/lab-7.qmd
+            text: Lab 7
+          - href: labs/lab-8.qmd
+            text: Lab 8
+      - section: "Projects"
+        contents:
+          - href: project/project-1.qmd
+          - href: project/project-2.qmd
+          - href: project/project-tips-resources.qmd
+            text: Tips + resources
+      - section: "Computing"
+        contents:
+          - href: computing/computing-access.qmd
+            text: Access
+          - href: computing/computing-troubleshooting.qmd
+            text: Troubleshooting
+          - href: computing/computing-cheatsheets.qmd
+            text: Cheatsheets
+
+  page-footer:
+    right: "This page is built with 🤍 and [Quarto](https://quarto.org/)."
+    left: "Inspired from [ Dr. Mine Çetinkaya-Rundel STA 101 website ](https://sta101-f23.github.io/course-overview.html)"
+    background: "#5d6d74"
+
+
+format:
+  html:
+    theme:
+      light: [cosmo, style/sta101.scss]
+      dark: [cosmo, style/sta101.scss, style/dark.scss]
+    linkcolor: "#798b93"
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    mainfont: "Atkinson Hyperlegible"
+
+execute:
+  freeze: auto
+
+editor: visual
