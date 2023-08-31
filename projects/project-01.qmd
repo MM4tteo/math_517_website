@@ -1,5 +1,6 @@
 ---
 title: "Small project"
+subtitle: "Data visualization and exploration"
 ---
 
 
@@ -11,7 +12,7 @@ The goal of this project is *data exploration*. Find an interesting (in the sens
 * lay out some questions about the data based on your exploration
 * use more detailed visualization techniques to hint answers
 
-The first step should be done individually. Then you can form groups of 2-3 and pick up the most interesting data set and do the rest.
+[Here](../ressources/week-02/mini-project-example.qmd) is an example of what your report could look like. The first step should be done individually. Then you can form groups of 2-3 and pick up the most interesting data set and do the rest. 
 
 
 

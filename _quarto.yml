@@ -47,8 +47,8 @@ website:
             text: Assignment 1
       - section: "Projects"
         contents:
-          - href: projects/project-1.qmd
-          - href: projects/project-2.qmd
+          - href: projects/project-01.qmd
+          - href: projects/project-02.qmd
           - href: projects/project-tips-resources.qmd
             text: Tips + resources
       - section: "Ressources"
