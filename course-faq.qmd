@@ -2,11 +2,19 @@
 title: "Help & FAQ"
 ---
 
+::: callout-tip
+If you do not find the answer to your question here, you can use the search bar on the top left to search the entire site.
+:::
+
 ## FAQ
+
+### Organizational
 
 #### Which language will we be using?
 
 You can use either Python,R, or Julia. We will be providing code examples and suppport in all three languages.
+
+
 
 #### What software do I need to install?
 
@@ -17,7 +25,20 @@ You can use any kind of text editor or IDE you like. We recomment using [VS Code
 We will be using Github-classroom to distribute and collect assignments. You will need to create a Github account if you don't already have one.
 
 
+### Technical issues
+
+#### I am lost with Github, what should I do?
+
+GitHub has possibly the best tutorials and documentation of any software out there. You can find the [Hello world](https://docs.github.com/en/get-started/quickstart/hello-world) there. Most of the time googling your issue will lead you to the right place.
+
+
+#### I have bugs in my code/ something doesn't work/ I don't know how to do something, what should I do?
+
+First google your issue. 90 times out of 100 this will solve your issues. Another 9% can be resolved by reading the documentation of 
+the software you are using. For the very last percent you can ask your question during the exercises hours. 
+
+
 ## Github Classroom
 
 
-How does it work
+[Integration with VSCODE](https://marketplace.visualstudio.com/items?itemName=GitHub.classroom&ssr=false#overview)

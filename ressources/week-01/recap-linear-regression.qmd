@@ -150,7 +150,7 @@ E[(\hat{\boldsymbol{\beta}} - \boldsymbol{\beta})(\hat{\boldsymbol{\beta}} - \bo
 \end{aligned}
 $$ {#eq-var-cov}
 
-::: callout-note
+::: {.callout-note icon=false appearance="minimal"}
 ## Attribution
 
 The following supplemental notes were created by [Dr. Maria Tackett](https://www.mariatackett.net/) for STA 210.

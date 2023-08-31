@@ -1,27 +1,35 @@
 ---
 title: "Assignment 1"
 subtitle: "Introduction to Github and programming"
+date: 09-22-2023
 format: html
 editor: visual
 ---
 
 ::: callout-important
-**Due date:** 11:59pm on Sunday, 1 October 2023.
-
-The submission is done via [github classroom](https://classroom.github.com/a/pWe9OpR6).
+**Due date: 11:59pm on Sunday, 1 October 2023.**
 :::
+
+::: callout-note
+Go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-1-YOUR_GITHUB_USERNAME` to get started. If you cannot find the repository, clik on [this link](https://classroom.github.com/a/pWe9OpR6) to accept the assignment.
+:::
+
 
 ## Today
 
 By the end of today you will...
 
--   create a github account, accept the first assignment and submit your work
--   read the introduction to the language of your choice: [R](ressources/computing/intro_to_r/index.qmd), [Julia](ressources)
--   use the function `glimpse()`
+- create a github account and familiarise yourself with git and GitHub
+- accept the first assignment and submit your work
+- make sure GitHub Classroom works as expected and you can submit your work.
 
-## Getting started
 
-Download this application exercise by pasting the code below into your **console** (bottom left of screen)
+## Assignment 
 
-    download.file("https://sta101-fa22.netlify.app/static/appex/ae1.qmd",
-    destfile = "ae1.qmd")
+The goal of this assignment is for you to fit a linear model. For a refresher on linear models, see [the ressource for this week](../ressources/week-01/recap-linear-regression.qmd). Your task will be to code a function that fits a linear model to a given dataset. You will need to fill in the blacks in the code located in your personal repository `ae-1-YOUR_GITHUB_USERNAME`.
+
+Here is how to proceed: 
+
+1. We expect you to know the basis of progamming in either R, Julia or Python. Please read the introduction to the language of your choice ([R](ressources/computing/intro_to_r/index.qmd), [Julia](ressources/computing/intro_to_julia/index.qmd), or [Python](ressources/computing/intro_to_python/index.qmd)) if it is not the case.
+-  Read the `README.md` file in your assignment repository and follow the instructions there.
+

@@ -63,6 +63,10 @@ website:
                 text: Julia
           - href: ressources/computing/computing-cheatsheets.qmd
             text: Cheatsheets
+          - section: "Tutorials"
+            contents:
+              - href: ressources/tutorials/github.qmd
+                text: GitHub
           - href: ressources/ressources.qmd
             text: All ressources
           
