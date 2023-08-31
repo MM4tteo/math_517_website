@@ -1,0 +1,74 @@
+---
+title:  "Good practices in `R`"
+subtitle: "Tutorial on writing clean and readable cod"
+description: "Tips and tricks for writing better code"
+---
+
+
+:::{.callout-important}
+**🏗 Under construction**
+:::
+
+## Writing Clean and Readable Code
+
+**Example in R:**
+```r
+# Good: Use meaningful variable names and comments
+population_size <- 1000  # Number of individuals in the population
+sample_size <- 100       # Number of individuals in the sample
+
+# Avoid: Using unclear or abbreviated variable names
+ps <- 1000
+ss <- 100
+```
+
+## Using Comments and Documentation
+
+
+```r
+# Good: Add comments to explain complex operations or logic
+calculate_mean <- function(data) {
+    # Calculate the sum of elements in the data
+    total <- sum(data)
+    
+    # Calculate the mean by dividing the total by the number of elements
+    mean_value <- total / length(data)
+    
+    return(mean_value)
+}
+
+# Avoid: Lack of comments and explanation
+calc_mean <- function(d) {
+    t <- sum(d)
+    m <- t / length(d)
+    return(m)
+}
+```
+
+
+## Avoiding Global Variables and Code Dependencies
+
+```r
+# Good: Use local variables within functions to avoid global scope pollution
+calculate_variance <- function(data) {
+    n <- length(data)
+    mean_value <- sum(data) / n
+    
+    # Calculate the variance using local variables
+    variance <- sum((data - mean_value)^2) / (n - 1)
+    
+    return(variance)
+}
+
+# Avoid: Using global variables in functions
+mean_value <- 0
+calc_variance <- function(data) {
+    n <- length(data)
+    mean_value <<- sum(data) / n
+    
+    # Calculate the variance using global variables
+    variance <- sum((data - mean_value)^2) / (n - 1)
+    
+    return(variance)
+}
+```

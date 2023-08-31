@@ -1,0 +1,46 @@
+---
+title: "Small project"
+---
+
+
+The goal of this project is *data exploration*. Find an interesting (in the sense it interests you!) data set and
+
+* explore the data
+* describe the data
+* visualize the data
+* lay out some questions about the data based on your exploration
+* use more detailed visualization techniques to hint answers
+
+The first step should be done individually. Then you can form groups of 2-3 and pick up the most interesting data set and do the rest.
+
+
+
+## Some Links to Open Data
+
+[fivethirtyeight](https://data.fivethirtyeight.com/): article data of Nate Silver's data journalism platform freely available (see also R package [fivethirtyeight](https://cran.r-project.org/web/packages/fivethirtyeight/index.html))
+
+[data-is-plural](https://www.data-is-plural.com/): weekly newsletter of datasets by Jeremy Singer-Vine
+
+[re3data](https://www.re3data.org/): Registry of research data repositories
+
+[openml datasets](https://www.openml.org/): many uniformly formatted datasets for training machine learning models -- however, not always good descriptions available
+
+[Worldbank Datacatalog](https://datacatalog.worldbank.org/): the World Bank data catalogue
+
+[UK Data Service](https://beta.ukdataservice.ac.uk/datacatalogue/studies#!?Search=&Rows=10&Sort=0&DateFrom=1753&DateTo=2018&AccessFacet=Open&Page=1): UK’s largest collection of social, economic and population data resources (filter for open data) or also [data.gov.uk](https://www.data.gov.uk/)
+
+[ICPSR](https://www.icpsr.umich.edu): unit within the Institute for Social Research at the University of Michigan, social and behavioral research. In particular including [replication datasets](https://www.openicpsr.org/openicpsr/) for published studies.
+
+[govdata](https://www.govdata.de/): Open Government - German administrative data freely accessible
+
+[gapminder](https://www.gapminder.org/): "an independent educational non-proﬁt ﬁghting global misconceptions"; collection and vizualisation of datasets concerning gobal developement
+
+[nature.com](https://www.nature.com/sdata/): peer-reviewed, open-access journal for descriptions of datasets (broad range of natural science disciplines)
+
+[NIH (National Institute of Health) Data Sharing Repositories](https://www.nlm.nih.gov/NIHbmic/domain_specific_repositories.html): overview on different thematically sorted medical databases
+
+[UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets.php) or the new [beta version](https://archive-beta.ics.uci.edu/): containing various datasets -- however, sometimes with a little few description
+
+[data.bris Research Data Repository](https://data.bris.ac.uk/data/): Data repository of the University of Bristol
+
+_... no systematic selection. Much more out there_

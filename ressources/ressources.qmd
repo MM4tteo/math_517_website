@@ -1,0 +1,28 @@
+---
+title: "All the additional ressources"
+listing: 
+    - id: classes
+      contents:
+        - "*.qmd"
+      type: table
+      fields: [title, description]
+      field-display-names:
+        title: "Subject"
+        description: "Description"
+      sort: [subtitle]
+      sort-ui: false
+      filter-ui: false
+editor: visual
+---
+
+
+::: {#classes}
+:::
+
+
+### Additional ressources 
+
+ - [R for Data Science (2e)](https://r4ds.hadley.nz/)
+ - [Data Analysis and Visualisation in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/instructor/aio.html)
+ - [Introduction to R for Geospatial Data](https://datacarpentry.org/r-intro-geospatial/index.html)
+

@@ -47,14 +47,25 @@ website:
             text: Assignment 1
       - section: "Projects"
         contents:
-          - href: project/project-1.qmd
-          - href: project/project-2.qmd
-          - href: project/project-tips-resources.qmd
+          - href: projects/project-1.qmd
+          - href: projects/project-2.qmd
+          - href: projects/project-tips-resources.qmd
             text: Tips + resources
       - section: "Ressources"
         contents:
+          - section: "Coding introduction"
+            contents:
+              - href: ressources/computing/intro_to_r/index.qmd
+                text: R
+              - href: ressources/computing/intro_to_python/index.qmd
+                text: Python
+              - href: ressources/computing/intro_to_julia/index.qmd
+                text: Julia
           - href: ressources/computing/computing-cheatsheets.qmd
             text: Cheatsheets
+          - href: ressources/ressources.qmd
+            text: All ressources
+          
 
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)"

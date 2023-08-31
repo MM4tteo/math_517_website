@@ -1,0 +1,30 @@
+---
+title:  "Introduction to Python"
+subtitle: "A collection of resources for learning `Python`"
+author: "Charles Dufour"
+date: ""
+bibliography: references.bib
+listing: 
+    - id: classes
+      contents:
+        - "*.qmd"
+      type: table
+      fields: [title, description]
+      field-display-names:
+        title: "Subject"
+        description: "Description"
+      sort: [subtitle]
+      sort-ui: false
+      filter-ui: false
+editor: visual
+---
+
+:::{.callout-important}
+**🏗 Under construction**
+:::
+
+See [@duchesnay2020statistics]
+
+::: {#classes}
+:::
+

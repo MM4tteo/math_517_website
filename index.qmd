@@ -4,7 +4,7 @@ execute:
   freeze: false
 ---
 
-This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.
+This page contains an outline of the topics, exercises (ex.), and assignments (ae.) for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.
 
 ```{r}
 #| echo: false
@@ -28,14 +28,18 @@ d |>
   ) |>
   gt() |>
   fmt_date(date, date_style = 31) |>
-  sub_missing(columns = c(week, topic, ressources, assignments, exercises, due), missing_text = "") |>
+  sub_missing(columns = c(week, topic, ressources, ae., ex., due), missing_text = "") |>
   cols_align(
     align = "center", 
-    columns = c(week,date)
+    columns = c(week)
     ) |>
   cols_align(
+    align = "right",
+    columns = c(date)
+  ) |>
+  cols_align(
     align = "left", 
-    columns = c(topic, ressources, exercises, assignments, due)
+    columns = c(topic, ressources, ex., ae., due)
     ) |>
   tab_style(
     style = cell_borders(
@@ -44,20 +48,20 @@ d |>
       style = "solid"
     ),
     locations = cells_body(
-      columns = c(date, topic, ressources, exercises, assignments)
+      columns = c(date, topic, ressources, ex., ae.)
     )
   ) |>
   fmt_markdown(
-    columns = c(topic, ressources, exercises, assignments, due)
+    columns = c(topic, ressources, ex., ae., due)
   ) |>
   cols_width(
     week ~ px(45),
     date ~ px(100), 
-    topic ~ px(150),
+    topic ~ px(300),
     ressources ~ px(150),
-    exercises ~ px(150),
-    assignments ~ px(150),
-    due ~ px(100)
+    ex. ~ px(90),
+    ae. ~ px(100),
+    due ~ px(120)
   ) |>
   cols_label_with(fn = function(x) {
       janitor::make_clean_names(x, case = "title") |>

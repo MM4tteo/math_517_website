@@ -1,5 +1,0 @@
----
-title: "Mini project"
----
-
-More info to be posted.
