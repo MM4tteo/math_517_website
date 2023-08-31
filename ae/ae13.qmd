@@ -1,6 +1,6 @@
 ---
 title: "The Normal Distribution"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 ---
 

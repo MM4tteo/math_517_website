@@ -3,7 +3,7 @@
 
 ## Attribution
 
-Much of the content is based on [STA 101 - Fall 2023](https://sta101-f23.github.io/course-overview.html) by Dr. Mine Çetinkaya-Rundel. 
+Much of the content is based on [MATH 517 - Fall 2023](https://sta101-f23.github.io/course-overview.html) by Dr. Mine Çetinkaya-Rundel. 
 
 
 

@@ -1,15 +1,23 @@
 ---
-title: "FAQ"
+title: "Help & FAQ"
 ---
 
-## Can I use a local install of Posit Cloud?
+## FAQ
 
-The short answer is, I'd rather you didn't, to save yourself some headache. But, the long answer is, sure! But you will need to install a specific versions of R and RStudio for everything to work as expected. You will also need to install the R packages we're using as well as have Git installed on your computer. These are not extremely challenging things to get right, but they are not trivial either, particularly on certain operating systems. Myself and the TAs are always happy to provide help with any computational questions when you're working in the containers we have provided for you. If you're working on your local setup, we can't guarantee being able to resolve your issues, though we're happy to try.
+#### Which language will we be using?
 
-If you want to take this path, here is what you need to do:
+You can use either Python,R, or Julia. We will be providing code examples and suppport in all three languages.
 
--   Download and install R 4.3.1: [https://cran.r-project.org](https://cran.r-project.org/){.uri}
--   Download and install the preview build of RStudio: [https://posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/)
--   Install any necessary packages with `install.packages("___")`
+#### What software do I need to install?
 
-And I'd like to reiterate again that successful installation of these software is **not** a learning goal of this course. So if any of this seems tedious or intimidating in any way, just use the computing environment we have set up for you. More on that [here](/computing-access.html).
+You can use any kind of text editor or IDE you like. We recomment using [VS Code](https://code.visualstudio.com/) with the extension corresponding to your language of choice. You can also use [Rstudio](https://rstudio.com/products/rstudio/download/) for R.
+
+#### How do I submit an assignment?
+
+We will be using Github-classroom to distribute and collect assignments. You will need to create a Github account if you don't already have one.
+
+
+## Github Classroom
+
+
+How does it work

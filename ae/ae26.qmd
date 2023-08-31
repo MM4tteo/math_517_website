@@ -1,6 +1,6 @@
 ---
 title: "Correlation and Covariance"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 ---
 

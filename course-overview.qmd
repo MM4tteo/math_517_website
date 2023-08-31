@@ -2,19 +2,17 @@
 title: "Course overview"
 ---
 
-This is the homepage for STA 101 - Data Analysis and Statistical Inference taught by [Dr. Mine Çetinkaya-Rundel](http://mine-cr.com/) in Fall 2023 at Duke University. All course materials will be posted on this site.
+This is the homepage for MATH-517 Statistical computation and visualisation in Fall 2023 at EPFL. All course materials will be posted on this site.
 
-You can find the course syllabus [here](/syllabus) and the course schedule [here](/).
+You can find the course syllabus [here](/course-syllabus.qmd) and the course schedule [here](/).
 
 ## Class meetings
 
-| Meeting  | Location                       | Time                     |
-|----------|--------------------------------|--------------------------|
-| Lectures | Gross Hall 103                 | Mon & Wed 1:25 - 2:40 pm |
-| Lab 1    | Perkins LINK 087 (Classroom 3) | Fri 8:30 - 9:45 am       |
-| Lab 2    | Perkins LINK 087 (Classroom 3) | Fri 10:05 - 11:20 am     |
-| Lab 3    | Perkins LINK 087 (Classroom 3) | Fri 11:45 am - 1:00 pm   |
-| Lab 4    | Perkins LINK 087 (Classroom 3) | Fri 1:25 - 2:40 pm       |
+| Meeting   | Location                       | Time                     |
+|-----------|--------------------------------|--------------------------|
+| Lectures  | GCD 03 86                      | Fri 10:15 - 12:00        |
+| Exercises | GCD 03 86                      | Fri 13:15 - 15:00        |
+
 
 <br>
 
@@ -22,3 +20,8 @@ You can find the course syllabus [here](/syllabus) and the course schedule [here
 
 [![Creative Commons License](https://licensebuttons.net/l/by-sa/4.0/88x31.png){alt="Creative Commons License"}](https://creativecommons.org/licenses/by-sa/4.0/)\
 This online work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/). Visit [here](https://github.com/dukestatsciintrods/blob/master/LICENSE.md) for more information about the license.
+
+This website and part of the course materials where adapted from different sources:
+
+- [Dr. Mine Çetinkaya-Rundel MATH 517 website](https://sta101-f23.github.io/course-overview.html)
+- [fredhutch.io](https://fredhutchio.github.io/r_intro/) and [R for data analysis and visualization of Ecological Data](https://datacarpentry.org/R-ecology-lesson/instructor/aio.html)

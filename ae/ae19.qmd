@@ -1,6 +1,6 @@
 ---
 title: "Tidy hypotheses"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 ---
 

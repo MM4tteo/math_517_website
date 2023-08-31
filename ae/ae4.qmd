@@ -1,6 +1,6 @@
 ---
 title: "Exploratory Data Analysis II"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "STA 101: Data Analysis and Statistical Inference"
+title: "MATH 517: Statistical computation and visualisation"
 execute: 
   freeze: false
 ---
@@ -15,7 +15,7 @@ library(googlesheets4)
 library(gt)
 library(tidyverse)
 gs4_deauth()
-d <- read_sheet("https://docs.google.com/spreadsheets/d/1VvyWuppOFLLJHHhoA1vTf7kuehWZ0nTaXI10fPsrzSk/edit?usp=sharing")
+d <- read_sheet("https://docs.google.com/spreadsheets/d/15xihQGSMeEWCW4XcORd6zCul0xbjfslgsNs2lEifGJg/edit?usp=sharing")
 ```
 
 ```{r}
@@ -28,18 +28,14 @@ d |>
   ) |>
   gt() |>
   fmt_date(date, date_style = 31) |>
-  sub_missing(columns = c(week, topic, prepare, materials, due), missing_text = "") |>
+  sub_missing(columns = c(week, topic, ressources, assignments, exercises, due), missing_text = "") |>
   cols_align(
     align = "center", 
-    columns = c(week)
-    ) |>
-  cols_align(
-    align = "right", 
-    columns = c(date)
+    columns = c(week,date)
     ) |>
   cols_align(
     align = "left", 
-    columns = c(topic, prepare, materials, due)
+    columns = c(topic, ressources, exercises, assignments, due)
     ) |>
   tab_style(
     style = cell_borders(
@@ -48,19 +44,20 @@ d |>
       style = "solid"
     ),
     locations = cells_body(
-      columns = c(date, topic, prepare, materials)
+      columns = c(date, topic, ressources, exercises, assignments)
     )
   ) |>
   fmt_markdown(
-    columns = c(topic, prepare, materials, due)
+    columns = c(topic, ressources, exercises, assignments, due)
   ) |>
   cols_width(
     week ~ px(45),
     date ~ px(100), 
-    topic ~ px(300),
-    prepare ~ px(220),
-    materials ~ px(90),
-    due ~ px(190)
+    topic ~ px(150),
+    ressources ~ px(150),
+    exercises ~ px(150),
+    assignments ~ px(150),
+    due ~ px(100)
   ) |>
   cols_label_with(fn = function(x) {
       janitor::make_clean_names(x, case = "title") |>

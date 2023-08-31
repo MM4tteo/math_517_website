@@ -1,6 +1,6 @@
 ---
 title: "Welcome to R"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 editor: visual
 ---

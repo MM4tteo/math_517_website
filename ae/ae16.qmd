@@ -1,6 +1,6 @@
 ---
 title: "Central limit theorem"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 ---
 

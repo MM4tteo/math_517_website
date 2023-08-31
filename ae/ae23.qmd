@@ -1,6 +1,6 @@
 ---
 title: "Project Tips"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 execute:
   echo: true
   warning: true

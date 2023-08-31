@@ -1,6 +1,6 @@
 ---
 title: "Hypothesis tests and confidence intervals"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 ---
 

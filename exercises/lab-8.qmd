@@ -1,0 +1,7 @@
+---
+title: "Lab 8"
+subtitle: "MATH 517 - Fall 2023"
+editor: visual
+---
+
+To be posted...

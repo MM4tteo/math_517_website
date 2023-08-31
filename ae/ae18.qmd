@@ -1,6 +1,6 @@
 ---
 title: "Intro to hypothesis tests"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 ---
 

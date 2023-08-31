@@ -1,6 +1,6 @@
 ---
 title: "Ethics in Statistics and Data Science"
-subtitle: "STA 101"
+subtitle: "MATH 517"
 format: html
 ---
 
