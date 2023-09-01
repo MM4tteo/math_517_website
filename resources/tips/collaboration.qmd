@@ -1,0 +1,121 @@
+---
+title:  "Best practices for collaborative work"
+subtitle: "How code together without killing each other"
+description: "Using code style guidelines, sharing code and collaborating."
+format: 
+  html:
+    code-overflow: wrap
+    white-space: pre-wrap
+---
+
+In the world of statistics and data analysis, collaboration plays a vital role in advancing scientific knowledge and solving complex problems. When working in a team or contributing to open-source projects, it is crucial to follow best practices for collaborative work. In this section, we will explore key strategies to enhance collaboration, maintain code quality, and ensure seamless cooperation with peers.
+
+## Code Style Guidelines
+
+Consistency in coding style is essential for making the code more readable and understandable by others. Adopting a standard coding style across your team helps avoid confusion and reduces the time spent on code reviews. For each language (Julia, R, and Python), there are widely accepted coding style guidelines:
+
+:::: {.columns}
+
+::: {.column width="40%"}
+`Julia`
+
+- [Julia official style guide](https://docs.julialang.org/en/v1/manual/style-guide/)
+- more opinionated [SciML Style Guide](https://github.com/SciML/SciMLStyle#sciml-style-guide-for-julia)
+:::
+
+::: {.column width="6%"}
+:::
+
+
+::: {.column width="20%"}
+`Python`
+
+- [PEP 8](https://www.python.org/dev/peps/pep-0008/)
+:::
+
+::: {.column width="6%"}
+:::
+
+::: {.column width="20%"}
+`R`
+
+- [tidyverse style guide](https://style.tidyverse.org/)
+:::
+
+::: {.column width="6%"}
+:::
+:::
+
+
+:::{.callout-tip}
+There exists tools to help you check your code style and correct the basic mistakes. They are called linters. For example, in Julia, you can use [JuliaFormatter.jl](https://github.com/domluna/JuliaFormatter.jl), in Python [black](https://black.readthedocs.io/en/stable/) and in R [styler](https://styler.r-lib.org/).
+:::
+
+
+## Documentation
+
+Writing clear and comprehensive documentation for your code is crucial for effective collaboration. Documenting your functions, classes, and important code blocks with comments ensures that others can understand the purpose and functionality of each component. Additionally, provide explanations for any complex algorithms or statistical methods used in your analysis.
+
+## Using Version Control Effectively
+
+When collaborating with others, version control becomes even more critical. Follow these best practices:
+
+### Commit often
+
+Make small, logical commits with descriptive commit messages. Good commit messages are clear, concise, and informative. They provide context and explain the purpose of the commit in a way that anyone reading them, whether it's your collaborators or your future self, can understand. A well-written commit message describes why the change was made, how it affects the codebase, and any relevant issues it addresses. By adhering to this practice, you make it easier to track changes, collaborate effectively, and maintain a clean and understandable version history for your projects.
+
+**Bad Commit Message:**
+
+```bash
+Made changes
+```
+
+This commit message is too generic and doesn't provide any insight into what changes were made or why.
+
+**Corrected Commit Message:**
+
+
+```bash
+Add median calculation function for dataset variance
+
+In response to user feedback and to enhance the statistical capabilities of our library, this commit introduces a new function, `calculate_median()`, which accurately calculates the median value for datasets. The function has been rigorously tested against various data sets to ensure its reliability and accuracy in statistical computations.
+```
+
+The corrected commit message provides specific information about the change made, mentions its purpose in improving the library's statistical capabilities, and briefly explains the testing process to ensure the quality of the new feature. This level of detail is essential for collaboration and helps others understand the changes made to the codebase. If you are working on your own, you might not need to be so verbose in the body of the commit, but it is still a good practice to write good commit messages.
+See [this article](https://www.gitkraken.com/learn/git/best-practices/git-commit-message) for some tips on how to write good commit messages, and why it could be useful.
+
+
+### Branching
+
+Use branches for different features or tasks to keep the main development branch clean and stable.
+
+### Pull Requests (PRs)
+
+When contributing to shared repositories, submit pull requests for review before merging changes into the main branch.
+
+## Code Reviews
+
+Code reviews are an integral part of the collaborative process. Reviewing each other's code helps identify potential issues, provides valuable feedback, and improves the overall quality of the project. During code reviews, be respectful, specific, and constructive in your comments.
+
+## Issue Tracking
+
+Utilize issue tracking systems like GitHub Issues to keep track of tasks, bugs, and enhancements. When collaborating on larger projects, this helps organize and prioritize work effectively.
+
+## Continuous Integration (CI)
+
+Consider integrating continuous integration into your workflow. CI systems automatically build and test your code whenever changes are pushed to the repository. This ensures that the project remains in a working state and prevents introducing new bugs unintentionally.
+
+## Collaborative Decision-Making
+
+When making significant decisions about the project, involve all relevant team members. Encourage open discussions and consider different perspectives to arrive at the best solutions collectively.
+
+## Communication and Feedback
+
+Maintain effective communication channels with your team. Use tools like Slack or Discord to discuss ideas, share progress, and address any challenges. Offer and receive feedback graciously to create a positive and productive working environment.
+
+## Licensing and Copyright
+
+Ensure that all code and resources used in the project comply with appropriate licenses and copyright laws. Respect intellectual property rights and provide proper attribution when using external libraries or resources.
+
+
+In conclusion, effective collaboration is crucial for success in statistical research and data analysis projects. By adhering to code style guidelines, providing thorough documentation, using version control effectively, conducting code reviews, and maintaining open communication, you and your team can work together seamlessly, produce high-quality code, and contribute to the advancement of statistical knowledge. Collaborative work is not only about sharing ideas but also about learning from others and growing as a team. By adopting these best practices, you will become an effective collaborator and contribute to the success of your statistical projects.

@@ -1,0 +1,33 @@
+---
+title:  "Introduction to Julia"
+description: "A collection of resources for learning `Julia`"
+author: "Charles Dufour"
+date: ""
+listing: 
+    - id: classes
+      contents:
+        - "*.qmd"
+      type: table
+      fields: [title, description]
+      field-display-names:
+        title: "Subject"
+        description: "Description"
+      sort: [subtitle]
+      sort-ui: false
+      filter-ui: false
+editor: visual
+---
+
+:::{.callout-important}
+**🏗 Under construction**
+
+Please check [this tutorial](https://crsl4.github.io/julia-workshop/) for now.
+:::
+
+
+
+::: {#classes}
+:::
+
+
+

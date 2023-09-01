@@ -3,7 +3,7 @@ title: "Help & FAQ"
 ---
 
 ::: callout-tip
-If you do not find the answer to your question here, you can use the search bar on the top left to search the entire site.
+If you do not find the answer to your question here, you can use the search bar on the top left to search the entire site. If you are still unable to find the answer, you can ask your question during the exercise hours. If you found the solution and think it would be useful to other students, you can  report an issue (see on the right) with the questions and the solution, and we will add it to the FAQ.
 :::
 
 ## FAQ
@@ -12,13 +12,17 @@ If you do not find the answer to your question here, you can use the search bar 
 
 #### Which language will we be using?
 
-You can use either Python,R, or Julia. We will be providing code examples and suppport in all three languages.
+You can use either Python,R, or Julia. We will be providing code examples and suppport in all three languages. 
 
 
 
 #### What software do I need to install?
 
-You can use any kind of text editor or IDE you like. We recomment using [VS Code](https://code.visualstudio.com/) with the extension corresponding to your language of choice. You can also use [Rstudio](https://rstudio.com/products/rstudio/download/) for R.
+You will need to use git, and a text editor or IDE.
+
+For git, please see [here](resources/tutorials/github.qmd) for instructions on how to install it.
+
+You can use any kind of text editor or IDE you like. We recomment using [VS Code](https://code.visualstudio.com/) with the extension corresponding to your language of choice. You can also use [Rstudio](https://rstudio.com/products/rstudio/download/) for R. See [here](resources/tutorials/installing_software.qmd) for instructions on how to install the software and IDEs.
 
 #### How do I submit an assignment?
 
@@ -38,7 +42,6 @@ First google your issue. 90 times out of 100 this will solve your issues. Anothe
 the software you are using. For the very last percent you can ask your question during the exercises hours. 
 
 
-## Github Classroom
+#### I cannot find the repository linked to the assignment, what should I do?
 
-
-[Integration with VSCODE](https://marketplace.visualstudio.com/items?itemName=GitHub.classroom&ssr=false#overview)
+At the top of each assignment there should be a link you can manually click to accept the assignment. If this happens *after* the first assignment, please let us know.

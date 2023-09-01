@@ -4,7 +4,14 @@ execute:
   freeze: false
 ---
 
-This page contains an outline of the topics, exercises (ex.), and assignments (ae.) for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.
+This page contains an outline of the topics, exercises (ex.), and assignments (ae.) for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester. See the [overview](/course-overview.qmd) page for more information about the course.
+
+
+::: callout-tip
+It can be useful to check the available tutorials to get ready for the assignments quickly. You can find them under the resources section on your left.
+Please check the [FAQ](/course-faq.qmd) page for common questions and answers.
+:::
+
 
 ```{r}
 #| echo: false
@@ -28,7 +35,7 @@ d |>
   ) |>
   gt() |>
   fmt_date(date, date_style = 31) |>
-  sub_missing(columns = c(week, topic, ressources, ae., ex., due), missing_text = "") |>
+  sub_missing(columns = c(week, topic, resources, ae., ex., due), missing_text = "") |>
   cols_align(
     align = "center", 
     columns = c(week)
@@ -39,7 +46,7 @@ d |>
   ) |>
   cols_align(
     align = "left", 
-    columns = c(topic, ressources, ex., ae., due)
+    columns = c(topic, resources, ex., ae., due)
     ) |>
   tab_style(
     style = cell_borders(
@@ -48,17 +55,17 @@ d |>
       style = "solid"
     ),
     locations = cells_body(
-      columns = c(date, topic, ressources, ex., ae.)
+      columns = c(date, topic, resources, ex., ae.)
     )
   ) |>
   fmt_markdown(
-    columns = c(topic, ressources, ex., ae., due)
+    columns = c(topic, resources, ex., ae., due)
   ) |>
   cols_width(
     week ~ px(45),
     date ~ px(100), 
     topic ~ px(300),
-    ressources ~ px(150),
+    resources ~ px(150),
     ex. ~ px(90),
     ae. ~ px(100),
     due ~ px(120)

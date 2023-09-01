@@ -11,7 +11,7 @@ editor: visual
 :::
 
 ::: callout-note
-Go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-1-YOUR_GITHUB_USERNAME` to get started. If you cannot find the repository, clik on [this link](https://classroom.github.com/a/pWe9OpR6) to accept the assignment.
+Go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-1-YOUR_GITHUB_USERNAME` to get started. If you cannot find the repository, clik on the link you received by email.
 :::
 
 
@@ -26,10 +26,10 @@ By the end of today you will...
 
 ## Assignment 
 
-The goal of this assignment is for you to fit a linear model. For a refresher on linear models, see [the ressource for this week](../ressources/week-01/recap-linear-regression.qmd). Your task will be to code a function that fits a linear model to a given dataset. You will need to fill in the blacks in the code located in your personal repository `ae-1-YOUR_GITHUB_USERNAME`.
+The goal of this assignment is for you to fit a linear model. For a refresher on linear models, see [the ressource for this week](../resources/week-01/recap-linear-regression.qmd). Your task will be to code a function that fits a linear model to a given dataset. You will need to fill in the blacks in the code located in your personal repository `ae-1-YOUR_GITHUB_USERNAME`.
 
 Here is how to proceed: 
 
-1. We expect you to know the basis of progamming in either R, Julia or Python. Please read the introduction to the language of your choice ([R](ressources/computing/intro_to_r/index.qmd), [Julia](ressources/computing/intro_to_julia/index.qmd), or [Python](ressources/computing/intro_to_python/index.qmd)) if it is not the case.
+1. We expect you to know the basis of progamming in either R, Julia or Python. Please read the introduction to the language of your choice ([R](resources/computing/intro_to_r/index.qmd), [Julia](resources/computing/intro_to_julia/index.qmd), or [Python](resources/computing/intro_to_python/index.qmd)) if it is not the case.
 -  Read the `README.md` file in your assignment repository and follow the instructions there.
 

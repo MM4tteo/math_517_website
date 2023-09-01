@@ -1,0 +1,72 @@
+---
+title:  "Good practices for coding"
+description: "A collection of tips and tricks to write better code"
+author: "Charles Dufour"
+date: ""
+---
+
+
+## Why should you care?
+
+<div style="text-align:center">
+  <img src="images/code_quality.png" alt="Xkcd: code quality" style="width:90%;">
+  <p>What will happen when you show your work to someone else if you don't follow a guide style. (From Xkcd: code quality)</p>
+</div>
+
+
+## Clear naming of variables and functions
+
+- **Be explicit** in your naming. If you name a variable `my_variable`, don't name another one `my_var` or `my_var_`. If you name a function `my_function`, don't name another one `my_func` or `my_func_`.
+- Names should be **self-explanatory**. If you need to add a comment to explain what a variable or a function does, it means that you should change its name. For example, `my_variable` is a bad name, but `number_of_samples` is a good name. `df`, `df2`, ... are bad names, but `raw_data`, `ìmputed_data`, ... are good names.
+
+
+## Consistency
+
+- **Be consistent** in your **style**. If you start a project, try to follow the style of the project. If you join a project, try to follow the style of the project.
+- **Be consistent** in your **naming**. If you name a variable `my_variable`, don't name another one `myVariable` or `myVariable_`. If you name a function `my_function`, don't name another one `myFunction` or `myFunction_`.
+- **Be consistent** in your **formatting**. If you use 2 spaces for indentation, don't use 4 spaces for indentation. If you use 2 spaces for indentation, don't use tabs for indentation.
+
+All of this will make your code easier to read and understand.
+
+
+## Code Style Guidelines
+
+Consistency in coding style is essential for making the code more readable and understandable by others. Adopting a standard coding style across your team helps avoid confusion and reduces the time spent on code reviews. For each language (Julia, R, and Python), there are widely accepted coding style guidelines:
+
+:::: {.columns}
+
+::: {.column width="40%"}
+`Julia`
+
+- [Julia official style guide](https://docs.julialang.org/en/v1/manual/style-guide/)
+- more opinionated [SciML Style Guide](https://github.com/SciML/SciMLStyle#sciml-style-guide-for-julia)
+:::
+
+::: {.column width="6%"}
+:::
+
+
+::: {.column width="20%"}
+`Python`
+
+- [PEP 8](https://www.python.org/dev/peps/pep-0008/)
+:::
+
+::: {.column width="6%"}
+:::
+
+::: {.column width="20%"}
+`R`
+
+- [tidyverse style guide](https://style.tidyverse.org/)
+:::
+
+::: {.column width="6%"}
+:::
+:::
+
+
+:::{.callout-tip}
+There exists tools to help you check your code style and correct the basic mistakes. They are called linters. For example, in Julia, you can use [JuliaFormatter.jl](https://github.com/domluna/JuliaFormatter.jl), in Python [black](https://black.readthedocs.io/en/stable/) and in R [styler](https://styler.r-lib.org/).
+:::
+

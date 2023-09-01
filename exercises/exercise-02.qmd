@@ -1,0 +1,16 @@
+---
+title: "Exercise 2: mutlivariate KDE"
+format: 
+  html:
+    theme: labs.scss
+editor: visual
+date: 10-06-2023
+---
+
+Consider bivariate kernel density estimator. Simulate data from bivariate normak distribution $\mathcal{N}((0,0), (1, 0.3; 0.3, 1))$.
+
+1. Try different bandwidths and different kernels (use the bivariate normal kernel as well as the product kernel with the univariate Epanechnikov kernel)
+
+2. Find ways to visually compare your estimates with the real density (3d plots of the density or density contour plots)
+
+3. R functions such as `kde2d` of package MASS, `contour` and `persp` might be helpful

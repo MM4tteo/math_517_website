@@ -1,0 +1,88 @@
+---
+title: "All the additional resources"
+listing: 
+    - id: introprog
+      contents:
+        - "computing/*.qmd"
+        - "computing/intro_to_r/index.qmd"
+        - "computing/intro_to_julia/index.qmd"
+        - "computing/intro_to_python/index.qmd"
+      type: table
+      fields: [title, description]
+      field-display-names:
+        title: "Subject"
+        description: "Description"
+      sort: [subtitle]
+      sort-ui: false
+      filter-ui: false
+    - id: supp
+      contents:
+        - "week-01/recap-linear-regression.qmd"
+        - "week-02/mini-project-example.qmd"
+      type: table
+      fields: [title, description]
+      field-display-names:
+        title: "Subject"
+        description: "Description"
+      sort: [subtitle]
+      sort-ui: false
+      filter-ui: false
+    - id: tips
+      contents:
+        - "tips/*.qmd"
+      type: table
+      fields: [title, description]
+      field-display-names:
+            title: "Subject"
+            description: "Description"
+      sort: [title]
+      sort-ui: false
+      filter-ui: false
+    - id: tutorials
+      contents:
+        - "tutorials/*.qmd"
+      type: table
+      fields: [title, description]
+      field-display-names:
+            title: "Subject"
+            description: "Description"
+      sort: [subtitle]
+      sort-ui: false
+      filter-ui: false
+editor: visual
+---
+
+
+# Supplementary material for the course
+
+::: {#supp}
+:::
+
+# Tips and tricks
+
+::: {#tips}
+:::
+
+# Tutorials
+
+::: {#tutorials}
+:::
+
+
+# Introduction to Programming
+
+::: {.callout-note}
+You might want to choose from other tutorials as they might suit your learning style better. See the additional ressources for each language.
+:::
+
+::: {#introprog}
+:::
+
+
+
+### Additional resources 
+
+ - [R for Data Science (2e)](https://r4ds.hadley.nz/)
+ - [Data Analysis and Visualisation in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/instructor/aio.html)
+ - [Introduction to R for Geospatial Data](https://datacarpentry.org/r-intro-geospatial/index.html)
+

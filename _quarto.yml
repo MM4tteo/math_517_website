@@ -41,34 +41,42 @@ website:
         contents:
           - href: exercises/exercise-01.qmd
             text: Exercise 1
+          - href: exercises/exercise-02.qmd
+            text: Exercise 2
       - section: "Assignments"
         contents:
           - href: assignments/assignment-01.qmd
             text: Assignment 1
+          - href: assignments/assignment-02.qmd
+            text: Assignment 2
       - section: "Projects"
         contents:
           - href: projects/project-01.qmd
           - href: projects/project-02.qmd
           - href: projects/project-tips-resources.qmd
             text: Tips + resources
-      - section: "Ressources"
+      - section: "Resources"
         contents:
           - section: "Coding introduction"
             contents:
-              - href: ressources/computing/intro_to_r/index.qmd
+              - href: resources/computing/intro_to_r/index.qmd
                 text: R
-              - href: ressources/computing/intro_to_python/index.qmd
+              - href: resources/computing/intro_to_python/index.qmd
                 text: Python
-              - href: ressources/computing/intro_to_julia/index.qmd
+              - href: resources/computing/intro_to_julia/index.qmd
                 text: Julia
-          - href: ressources/computing/computing-cheatsheets.qmd
-            text: Cheatsheets
           - section: "Tutorials"
             contents:
-              - href: ressources/tutorials/github.qmd
+              - href: resources/tutorials/github.qmd
                 text: GitHub
-          - href: ressources/ressources.qmd
-            text: All ressources
+              - href: resources/tutorials/github_classroom.qmd
+                text: GitHub classroom
+              - href: resources/tutorials/installing_software.qmd
+                text: Installing software
+          - href: resources/computing/computing-cheatsheets.qmd
+            text: Cheatsheets
+          - href: resources/resources.qmd
+            text: All resources
           
 
   page-footer:

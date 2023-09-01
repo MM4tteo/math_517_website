@@ -4,7 +4,7 @@ title: "Course overview"
 
 This is the homepage for MATH-517 Statistical computation and visualisation in Fall 2023 at EPFL. All course materials will be posted on this site.
 
-You can find the course syllabus [here](/course-syllabus.qmd) and the course schedule [here](/).
+You can find the course syllabus [here](/course-syllabus.qmd) and the course schedule [here](/). All the additional ressources can be found either on [this page](resources/resources.qmd) or by using the search bar on the top left corner of the website. These ressources include supplementary material, tutorials, tips and tricks, etc...
 
 ## Class meetings
 
@@ -16,7 +16,7 @@ You can find the course syllabus [here](/course-syllabus.qmd) and the course sch
 
 ## Assignments
 
-We will use GitHub Classroom to handle the assignments for this course.
+We will use GitHub Classroom to handle the assignments for this course. See [this page](resources/tutorials/github_classroom.qmd) for more information on how to use GitHub Classroom.
 
 <br>
 

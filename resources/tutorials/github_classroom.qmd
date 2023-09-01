@@ -1,0 +1,97 @@
+---
+title: "Github Classroom"
+description:  "How to use Github Classroom to submit assignments"
+output:
+  html_document:
+    toc: true
+---
+
+We will use Github Classroom for the assignments in this course. This document will give you a brief introduction to Github Classroom and how to use it.
+
+::: callout-important
+Following the email you received, you should have created a Github account and joined the [course organization MATH-517](https://github.com/MATH-517). If you have not done so, please do it now. If you have any problems, please send an email to  the teaching assistant (aka me) ASAP with the subject line "Github Classroom" and in the body of the email, please include your Github username.
+:::
+
+
+## Introduction
+
+This guide is here to help you get started. GitHub Classroom is a platform that we will use to manage and distribute assignments, making it easier for you to collaborate on coursework.
+
+## What is GitHub Classroom?
+
+GitHub Classroom is a tool that simplifies the process of creating, distributing, and submitting assignments on GitHub. It leverages the power of Git, a version control system, and GitHub, a web-based platform for code hosting and collaboration. With GitHub Classroom, you'll be able to access your assignments, work on them, and submit your work -- all in one place.
+
+## Prerequisites
+
+Before we dive into using GitHub Classroom, make sure you have the following:
+
+1. **GitHub Account:** If you don't already have a GitHub account, you can sign up for free at [GitHub](https://github.com/). This account will be essential for participating in assignments.
+
+2. **Git Installed:** Git is a tool that helps you manage your code changes. You can download and install Git from the official website: [Git Downloads](https://git-scm.com/downloads). See [this tutorial](github.qmd) if you need help installing Git.
+
+
+## Getting Started
+
+Let's begin by taking the first steps with GitHub Classroom:
+
+### 1. Accept the Classroom Invitation
+
+Your instructor will provide you with a link to the GitHub Classroom assignment. Click on the link, and it will guide you to accept the invitation. This action will create a private repository for your assignment within your GitHub account.
+
+### 2. Clone the Repository
+
+Next, you'll want to bring the assignment to your computer so you can work on it. To do this, you need to clone the assignment repository. Don't worry; cloning simply means making a copy of the assignment on your computer.
+
+- Open a terminal or Git Bash (if you installed Git).
+- Navigate to the directory where you want to store your assignment (e.g., `Documents`).
+- Use the following command, replacing `<repository_url>` with the URL of your assignment repository (you can find it on the GitHub page of your assignment):
+
+```bash
+git clone <repository_url>
+```
+
+### 3. Work on the Assignment
+
+Now that you have the assignment on your computer, explore the repository. Inside, you'll find instructions and possibly some starter code or files. These will guide you on what to do. You can use any code editor or development environment you're comfortable with.
+
+### 4. Save Your Work
+
+While working on your assignment, be sure to save your progress regularly. In the Git world, this is called "committing." It helps you keep track of your changes and lets you go back to previous versions if needed.
+
+- To commit your changes, open the terminal in the project folder and run these commands:
+
+```bash
+git add .
+git commit -m "Your commit message here"
+```
+
+:::callout-note
+Your commit message should be short and descriptive. It should explain what changes you made in this commit. See for example [this article](https://www.gitkraken.com/learn/git/best-practices/git-commit-message) for some tips on how to write good commit messages.
+:::
+
+### 5. Share Your Progress
+
+To collaborate with classmates or ask for help from your instructor, you need to share your work with them on GitHub. You do this by "pushing" your changes to GitHub. This action will update your assignment repository on GitHub with your latest changes. You don't have to do it everytime you make a change, but keep in mind that you'll need to push your changes before submitting your assignment, and that pushing helps you keep your work safe in case something happens to your computer. When working in group, don't forget to pull the changes from your teammates before pushing your own changes.
+
+- To push your changes to GitHub, use this command:
+
+```bash
+git push
+```
+
+### 6. Submit Your Assignment
+
+When you're satisfied with your work and ready to turn it in, you'll need to submit your assignment through GitHub. This is typically done through a "Pull Request" on GitHub. Your instructor will provide instructions on how to submit. (If nothing is mentioned, you can assume that you only need to push your work on the `main` branch.)
+
+### 7. Review Feedback
+
+After the submission deadline, your instructor will review your assignment and may provide feedback or grades through GitHub. You can see this feedback by checking the pull request in your assignment repository on GitHub.
+
+## Conclusion
+
+GitHub Classroom is a valuable tool that can make your Master's program coursework more manageable and collaborative. While it might seem intimidating at first, remember that it's a skill worth learning, and you can always reach out to your instructor or classmates for assistance. With this guide, you're well on your way to successfully using GitHub Classroom for your assignments. Happy learning and coding!
+
+
+## Tips and tricks
+
+There exists an [integration with VSCode](https://marketplace.visualstudio.com/items?itemName=GitHub.classroom&ssr=false#overview) that can make your life easier when working with Github Classroom if you are using VSCode.

@@ -1,0 +1,320 @@
+---
+title:  "Virtual environments"
+description: "How to make it possible for others to run your code with the same dependencies as you"
+author: "Charles Dufour"
+execute:
+  eval: false
+---
+
+
+Package managers typically maintain a database of software dependencies and version information to prevent software mismatches and missing prerequisites. When package versions collide, this can lead to problems ranging from error messages and frustration to silent bugs and unexpected code behavior !
+
+<div style="text-align:center">
+  <img src="images/python_environment.png" alt="Xkcd: virtual environment" style="width:50%;">
+  <p>What can happen with badly managed packages. You will want to burn your computer at some point... (From Xkcd: virtual environment)</p>
+</div>
+
+## Why can't I just install the packages I need ?
+
+Instead of installing everything globally and risking conflicts, virtual environments give you separate spaces for each project. This means no more worrying about messing up your setup! Plus, package managers make installing, updating, and removing packages a breeze, saving you time and hassle. You can easily share your projects with classmates and reproduce your work on any machine. 
+
+
+:::{.callout-note}
+This is a very brief introduction to virtual environments and package managers. For more details, please see the documentation of the package manager you use.
+
+- [`Python` virtual environment tutorial](https://realpython.com/python-virtual-environments-a-primer/)
+- [`Julia` package manager documentation](https://pkgdocs.julialang.org/v1/environments/)
+- [`R` renv documentation](https://rstudio.github.io/renv/articles/renv.html)
+:::
+
+## Benefits
+
+Here are some examples of why using virtual environments and package managers can be incredibly useful for scientific computing:
+
+1. **Project Isolation**: Let's say you're working on two different projects—one in R and another in Python. Each project requires different versions of certain packages. By using virtual environments, you can create separate environments for each project, ensuring that the specific package versions needed for each don't interfere with one another.
+
+2. **Reproducibility**: With virtual environments, you can easily share your projects with classmates or professors, ensuring that they can replicate your exact setup without any compatibility issues. This enhances the reproducibility of your work and allows others to verify your results.
+
+3. **Dependency Management**: Sometimes, a package may rely on a specific version of another package to work correctly. Package managers handle these dependencies automatically, saving you the headache of figuring out and managing dependencies manually.
+
+4. **Experimentation**: Working on a new statistical model and want to test different libraries or versions? With virtual environments, you can create a sandbox to experiment freely without worrying about affecting your main setup.
+
+5. **Collaboration**: When collaborating with classmates or researchers, having consistent environments through virtual environments ensures that everyone is on the same page. It prevents conflicts arising from different package versions and improves overall productivity.
+
+6. **System Cleanliness**: Installing packages globally can clutter your system, making it difficult to manage and potentially leading to conflicts between different software. Virtual environments keep your system clean and organized.
+
+7. **Version Control**: Using virtual environments makes it easier to integrate your projects with version control systems like Git. You can include the configuration files for your virtual environment in the repository, making it simpler for others to work on the project.
+
+8. **Efficient Updates**: Package managers allow you to update packages quickly and efficiently. You can easily check for updates, install the latest versions, and keep your project up-to-date with the latest features and bug fixes.
+
+By embracing virtual environments and package managers, you'll have a smoother, more organized, and productive workflow, making your research and analysis process much more enjoyable and effective.
+
+## Downsides
+
+You will have to run a few commands everytime you start a new project. This is a small price to pay for the benefits you get. (You may also need to activate the virtual environment everytime you start a new shell session, but this can be automated).
+
+## How ?
+[`renv`](https://rstudio.github.io/renv/articles/renv.html) for `R` package management, [`venv`](https://docs.python.org/3/library/venv.html), [`conda`](https://docs.conda.io/en/latest/) or others for `Python` package management. `Julia` has this feature built in using `Pkg`.
+
+
+
+- Creating a virtual environment
+
+:::: {.columns}
+
+::: {.column width="33%"}
+In terminal
+
+```bash
+python3.6 -m venv my_env 
+source my_env/bin/activate
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::: {.column width="33%"}
+
+In `Julia` repl
+
+```julia
+using Pkg
+Pkg.activate("my_env")
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::: {.column width="33%"}
+In `R` console
+
+```R
+renv::init()
+
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::::
+
+
+
+- Adding packages to the virtual environment (already activated)
+
+:::: {.columns}
+
+::: {.column width="33%"}
+In terminal
+
+```bash
+pip install numpy
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::: {.column width="33%"}
+
+In `Julia` repl
+
+```julia
+Pkg.add(Plots)
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::: {.column width="33%"}
+In `R` console
+
+```R
+renv::install("tidyverse")
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::::
+
+
+- Recreating the virtual environment from a file (after creating the environment)
+
+:::: {.columns}
+
+::: {.column width="33%"}
+In terminal
+
+```bash
+pip install -r requirements.txt
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::: {.column width="33%"}
+
+In `Julia` repl
+
+```julia
+Pkg.instantiate()
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::: {.column width="33%"}
+In `R` console
+
+```R
+renv::restore()
+```
+:::
+
+::: {.column width="0.3%"}
+:::
+
+::::
+
+:::{.callout-note}
+`Python` is the only one that has a specific command to create a file with the list of packages. 
+
+```bash
+pip freeze > requirements.txt
+```
+
+For `R` and `Julia`, the file is created automatically when you add a package to the environment and updates automatically when you add or remove packages. (For `Renv` you may need to run `renv::snapshot()` to update the file sometimes).
+:::
+
+For more details on the commands or the OS specificity please see the documentation of the package manager you are using:
+
+- `renv` [`renv` wignet](https://rstudio.github.io/renv/articles/renv.html)
+- `Julia` [Julia pkg](https://pkgdocs.julialang.org/v1/environments/)
+- `Python` [Python venv](https://docs.python.org/3/library/venv.html) and [pip](https://pip.pypa.io/en/stable/user_guide/#requirements-files), [conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment)
+
+
+
+
+### Step by step tutorial
+
+[Python](#python-virtual-environments-venv) | [Julia](#julia-package-manager-pkg) | [R](#r-package-manager-renv)
+
+#### Python Virtual Environments (venv):
+Virtual environments in Python enable you to create isolated environments for each project. Here's how to use venv:
+
+1. Open your terminal or command prompt.
+
+2. Navigate to your project's directory.
+
+3. Create a new virtual environment:
+   ```bash
+   python -m venv my_project_env
+   ```
+
+4. Activate the virtual environment:
+
+    - On Windows:
+    ```bash
+    my_project_env\Scripts\activate
+    ```
+    - On macOS/Linux:
+    ```bash
+    source my_project_env/bin/activate
+    ```
+
+5. Install packages within the virtual environment:
+   ```bash
+   pip install package_name
+   ```
+
+6. Deactivate the virtual environment when you're done:
+   ```bash
+   deactivate
+   ```
+
+#### Julia Package Manager (Pkg):
+Julia's Pkg allows you to manage and install packages effortlessly. Here's how to use Pkg:
+
+1. Open the Julia REPL (Read-Eval-Print Loop).
+
+2. To enter package management mode, type `]`.
+
+3. Create a new environment and activate it:
+   ```julia
+   activate my_project_env
+   ```
+
+4. Install packages within the environment:
+   ```julia
+   add package_name
+   ```
+
+5. Update packages:
+   ```julia
+   update
+   ```
+
+6. To exit package management mode, press `Ctrl + C` or type `exit()`.
+
+#### R Package Manager (renv):
+In R, renv provides a similar functionality to Python's venv and Julia's Pkg. Here's how to use renv:
+
+1. Open your R console or RStudio.
+
+2. Install the renv package (if not already installed):
+   ```r
+   install.packages("renv")
+   ```
+
+3. Initialize renv for your project:
+   ```r
+   renv::init()
+   ```
+
+4. Install packages within the renv environment:
+   ```r
+   install.packages("package_name")
+   ```
+
+5. Restore the project's environment to remove any packages that aren't listed in the lockfile:
+   ```r
+   renv::restore()
+   ```
+
+   or update the lockfile to include any new packages:
+   ```r
+   renv::snapshot()
+   ```
+
+6. Deactivate the renv environment (optional):
+   ```r
+   renv::deactivate()
+   ```
+
+### Summary
+
+
+
+
+|                     	| initialization              	| activate                         	| deactivate           	| add package        	|
+|---------------------	|-----------------------------	|----------------------------------	|----------------------	|--------------------	|
+| `renv`      	        | `renv::init()`              	| `renv:activate()`                	| `renv::deactivate()` 	| `renv::install()`  	|
+| `venv` 	            | `python -m venv {name}` 	    | `source {name}/bin/activate` 	    | `deactivate`         	| `pip install ...`  	|
+| `Julia`             	| `] activate {name}`       	| `] activate {name}`               | `] activate`         	| `] add ...`        	|
+
+
+|                     	| files to share     	| to recreate                       	|
+|---------------------	|--------------------	|-----------------------------------	|
+| `R` and `renv`      	| `renv.lock`        	| `renv::restore()`                 	|
+| `Python` and `venv` 	| `requirements.txt` 	| `pip install -r requirements.txt` 	|
+| `Julia`             	|  `Project.toml`    	| `] instantiate`                   	|
+
+

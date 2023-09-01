@@ -1,7 +1,0 @@
----
-title: "Lab 4"
-subtitle: "MATH 517 - Fall 2023"
-editor: visual
----
-
-To be posted...

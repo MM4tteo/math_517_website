@@ -1,9 +1,10 @@
 ---
-title: "Lab 1: Hello R!"
+title: "Exercise 1: Peeking"
 format: 
   html:
     theme: labs.scss
 editor: visual
+date: 09-22-2023
 ---
 
 The severity depends on the number of peeks the researcher takes at the data and on the number of observations added between peeks.

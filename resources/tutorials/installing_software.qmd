@@ -1,0 +1,51 @@
+---
+title: "Software installation"
+description: "How to have everything ready for the course"
+output:
+  html_document:
+    toc: true
+---
+
+# Programming languages
+
+## R
+
+- Mac 
+```
+brew install r
+```
+- Linux & Windows
+
+Go to [https://cran.r-project.org/](https://cran.r-project.org/) and select the appropriate link for your operating system. Install R from the downloaded executable.
+
+
+## Python
+
+Go to [https://www.python.org/downloads/](https://www.python.org/downloads/) and follow the instructions to install Python.
+
+## Julia
+
+Go to [https://github.com/JuliaLang/juliaup](https://github.com/JuliaLang/juliaup) and follow the instructions to install Julia.
+
+# Code editors (IDEs)
+
+This is the tool you use to write, run and debug your code. There are many options available. I would recommend using one of the following:
+
+## Visual Studio Code
+
+Go to [https://code.visualstudio.com/](https://code.visualstudio.com/) and follow the instruction. You can choose the nightly or stable build. I am personally using the nightly build, but would not recommend it if you are not comfortable with debugging random issues that might arise.
+
+It is a good idea to install extension from the visual studio marketplace. You can do that by clicking on the extension icon on the left side of the screen. I would recommend the following extensions:
+
+- for Julia: [https://www.julia-vscode.org/](https://www.julia-vscode.org/)
+- for Python: follow this [https://code.visualstudio.com/docs/python/editing](https://code.visualstudio.com/docs/python/editing)
+- for R : [https://code.visualstudio.com/docs/languages/r](https://code.visualstudio.com/docs/languages/r)
+
+## RStudio
+
+Go to [posit.co](https://posit.co) and download the RStudio IDE. Choose RStudio Desktop free version and make sure the correct operating system was selected. Install RStudio from the downloaded executable. Open RStudio.
+
+
+::: callout-note
+For help with git and GitHub, please check [this tutorial](github.md)
+:::

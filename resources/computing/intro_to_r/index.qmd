@@ -1,0 +1,40 @@
+---
+title: "Introduction to R"
+description: "A collection of resources for learning `R`"
+listing: 
+    - id: classes
+      contents:
+        - "*.qmd"
+      type: table
+      fields: [title, description]
+      field-display-names:
+        title: "Subject"
+        description: "Description"
+      sort: [subtitle]
+      sort-ui: false
+      filter-ui: false
+editor: visual
+number-sections: true
+---
+
+::: {.callout-info}
+You might want to choose from other tutorials as they might suit your learning style better. See @sec-additional-resources for a list of other tutorials.
+:::
+
+::: {#classes}
+:::
+
+
+
+### Additional resources {#sec-additional-resources}
+
+ - [R for Data Science (2e)](https://r4ds.hadley.nz/)
+ - [Data Analysis and Visualisation in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/instructor/aio.html)
+ - [Introduction to R for Geospatial Data](https://datacarpentry.org/r-intro-geospatial/index.html)
+ - [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)
+
+
+::: {.callout-note icon=false appearance="minimal"}
+## Attributions
+All these classes are taken almost verbatim from [fredhutch.io](https://fredhutchio.github.io/r_intro/), the data and computational analysis training program at [Fred Hutch](https://sciwiki.fredhutch.org/), which was adapted from content originally appearing in [R for data analysis and visualization of Ecological Data](https://datacarpentry.org/R-ecology-lesson/instructor/aio.html), Copyright (c) Data Carpentry.
+:::
