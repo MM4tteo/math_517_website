@@ -36,12 +36,9 @@ jobs:
         with:
           cache-version: 2
 
-      - name: Render Quarto Project
-        uses: quarto-dev/quarto-actions/render@v2
-
-      - name: Deploy 🚀
-        if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Render and Publish 🚀
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: _site # The folder the action should deploy.
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
