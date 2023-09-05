@@ -24,11 +24,26 @@ Remember  that the Kernel Density Estimation (KDE) of $f$ based on $X_1,\ldots,X
 $$\widehat{f}(x) = \frac{1}{n h_n} \sum_{i=1}^n K\left(\frac{X_i - x}{h_n} \right),$$
 where the \textbf{kernel} $K(\cdot)$ satisfies:
 
+:::: {.columns}
+
+::: {.column width="40%"}
 1. $K(x) \geq 0$ for all $x \in \mathbb{R}$
 2. $K(- x) = K(x)$ for all $x \in \mathbb{R}$
 3. $\int_\mathbb{R} K(x) d x = 1$
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+
 4. $\lim_{|x| \to \infty} |x| K(x) = 0$
 5. $\sup_x |K(x)| < \infty.$
+:::
+
+::::
+
 
 ```{r, fig.dim=c(10,2.5)}
 #| fig-cap: "Impact of the bandwidth on KDE, where the Gaussian kernel is in black, the Epanechnikov kernel in blue and the rectangular kernel in red."
@@ -42,13 +57,20 @@ par(mfrow=c(1,4), mar = c(3.2, 3, 1.6, 0.2))
 plot_kdes(1); plot_kdes(0.5); plot_kdes(0.25); plot_kdes(0.1)
 ```
 
+where the kernels are defined as:
+
+| Kernel Name                | Formula                                               |
+|----------------------------|-------------------------------------------------------|
+| Epanechnikov               | $K(x) \propto (1-x^2) \mathbb{1}_{[|x| \leq 1]}$      |
+| Gaussian                   | $K(x) \propto \exp(-x^2/2)$                           |
+| Rectangular                | $K(x)=\frac{1}{2} 1_{\{-1<x<1\}}$              |
 
 ## Task
 
 We saw in the lecture that the choice of the bandwidth $h$ is crucial for the performance of the KDE. In this assignment we will explore this in more detail with a simulation study. Specifically:
 
-* generate data from a Gaussian mixture $f$ (see @sec-GaussianMixture)
-* repeat the following 200 times:
+* generate data from a Gaussian mixture with density function $f$ (see @sec-GaussianMixture)
+* repeat the following $200$ times:
   - generate $N=100$ samples from the Gaussian mixture
   - perform density estimation, i.e. obtain $\widehat{f}$, for
     - Gaussian, Epanechnikov, and rectangular kernels
@@ -66,7 +88,7 @@ $$f(x) = (1-\tau) \varphi_{\mu_1,\sigma_1^2}(x) + \tau\varphi_{\mu_2,\sigma_2^2}
 ```{r}
 #| code-fold: show
 
-# random generation for a mixture of two normal distribution
+# random generation for a mixture of two normal distributions
 rmixnorm <- function(N, mu1, mu2, sigma1, sigma2, tau){
   ind <- I(runif(N) > tau)
   X <- rep(0,N)
@@ -75,7 +97,7 @@ rmixnorm <- function(N, mu1, mu2, sigma1, sigma2, tau){
   return(X)
 }
 
-# density evaluation for a mixture of two normal distribution
+# density evaluation for a mixture of two normal distributions
 dmixnorm <- function(x, mu1, mu2, sigma1, sigma2, tau){
   y <- (1-tau)*dnorm(x,mu1,sigma1) + tau*dnorm(x,mu2,sigma2)
   return(y)
@@ -110,3 +132,4 @@ ggplot() +
 ```
 
 Similar functions will be provided for Python and Julia in the assignment repository.
+
