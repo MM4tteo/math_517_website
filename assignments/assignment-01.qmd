@@ -30,6 +30,6 @@ The goal of this assignment is for you to fit a linear model. For a refresher on
 
 Here is how to proceed: 
 
-1. We expect you to know the basis of progamming in either R, Julia or Python. Please read the introduction to the language of your choice ([R](resources/computing/intro_to_r/index.qmd), [Julia](resources/computing/intro_to_julia/index.qmd), or [Python](resources/computing/intro_to_python/index.qmd)) if it is not the case.
+1. We expect you to know the basis of progamming in either R, Julia or Python. Please read the introduction to the language of your choice ([R](../resources/computing/intro_to_r/index.qmd), [Julia](../resources/computing/intro_to_julia/index.qmd), or [Python](../resources/computing/intro_to_python/index.qmd)) if it is not the case.
 -  Read the `README.md` file in your assignment repository and follow the instructions there.
 

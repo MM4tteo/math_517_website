@@ -47,5 +47,5 @@ Go to [posit.co](https://posit.co) and download the RStudio IDE. Choose RStudio 
 
 
 ::: callout-note
-For help with git and GitHub, please check [this tutorial](github.md)
+For help with git and GitHub, please check [this tutorial](github.qmd)
 :::
