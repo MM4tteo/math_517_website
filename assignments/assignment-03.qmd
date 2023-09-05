@@ -1,0 +1,30 @@
+---
+title: "Assignment 3"
+subtitle: "Optimal Bandwidth Selection in KDE"
+date: 10-13-2023
+format: html
+editor: visual
+---
+
+::: callout-important
+**Due date: 11:59pm on Sunday, 29 October 2023.**
+:::
+
+::: callout-note
+Go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-3-YOUR_GITHUB_USERNAME` to get started.
+:::
+
+
+Create a [Shiny App](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/) or (alternatively) an R Markdown report exploring the (global, asymptotically optimal) bandwidth choice $h_{AMISE}$ on slides 19 and 20 on a simulated data example:
+
+-   covariate $X$ from beta distribution `rbeta(n,shape1,shape2)`
+-   response values $Y = m(X) + \epsilon$ where
+    -   the regression function $m$ is given by `sin(1/(x/3+0.1))`
+    -   $\epsilon \sim \mathcal{N}(0,\sigma^2)$
+-   fix $\sigma^2$ at some visually appealing value (e.g. $\sigma^2=1$ should be fine)
+-   explore how $h_{AMISE}$ behaves depending on the following parameters (in case of a Shiny App, these will be sliders for the user to tweak):
+    -   sample size `n`
+    -   block size `N`
+    -   density of the covariate: beta parameters `shape1` and `shape2`
+-   visualize (global, asymptotically optimal) bandwidth
+    -   also find a way to visually incorporate the beta density

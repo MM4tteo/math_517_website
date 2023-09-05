@@ -49,6 +49,8 @@ website:
             text: Assignment 1
           - href: assignments/assignment-02.qmd
             text: Assignment 2
+          - href: assignments/assignment-03.qmd
+            text: Assignment 3
       - section: "Projects"
         contents:
           - href: projects/project-01.qmd
