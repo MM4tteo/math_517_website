@@ -52,5 +52,5 @@ In this section, we have introduced the concept of reproducible research and its
 :::
 
 :::{.callout-important}
-Please see this [page](intro_programming/good_practice.qmd) for good practices in programming.
+Please see this [page](tips_coding.qmd) for good practices in programming.
 :::
