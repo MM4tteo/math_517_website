@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Data manipulation with dplyr">
+
+<title>MATH 517 - Data manipulation with tidyverse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="MATH 517 - Data manipulation with tidyverse">
+<meta property="og:description" content="Data manipulation with dplyr">
+<meta property="og:site_name" content="MATH 517">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      MATH 517
+      </li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">MATH 517</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MATH-517/MATH_517_website" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../course-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Help &amp; FAQ</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../exercises/exercise-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../exercises/exercise-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/assignment-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/assignment-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../projects/project-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Small project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../projects/project-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Main project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../projects/project-tips-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips + resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">Coding introduction</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../resources/computing/intro_to_r/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../resources/computing/intro_to_python/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../resources/computing/intro_to_julia/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Julia</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../resources/tutorials/github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../resources/tutorials/github_classroom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub classroom</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../resources/tutorials/installing_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing software</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../resources/computing/computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../resources/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">All resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#installing-and-loading-packages" id="toc-installing-and-loading-packages" class="nav-link" data-scroll-target="#installing-and-loading-packages">Installing and loading packages</a></li>
+  <li><a href="#selecting-columns-and-rows" id="toc-selecting-columns-and-rows" class="nav-link" data-scroll-target="#selecting-columns-and-rows">Selecting columns and rows</a></li>
+  <li><a href="#combining-commands" id="toc-combining-commands" class="nav-link" data-scroll-target="#combining-commands">Combining commands</a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate">Mutate</a></li>
+  <li><a href="#split-apply-combine" id="toc-split-apply-combine" class="nav-link" data-scroll-target="#split-apply-combine">Split-apply-combine</a></li>
+  <li><a href="#filtering-data-based-on-number-of-cases-of-each-type" id="toc-filtering-data-based-on-number-of-cases-of-each-type" class="nav-link" data-scroll-target="#filtering-data-based-on-number-of-cases-of-each-type">Filtering data based on number of cases of each type</a></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up">Wrapping up</a></li>
+  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra exercises</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/resources/computing/intro_to_r/3_tidyverse.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data manipulation with tidyverse</h1>
+<p class="subtitle lead">Introduction to R: Class 3</p>
+</div>
+
+<div>
+  <div class="description">
+    Data manipulation with <code>dplyr</code>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>In the last section, we imported a clinical cancer dataset and learned to manipulate it using base R (tools included in every R installation).</p>
+<p>In this session, we’ll continue to work with the same dataset, but will introduce a set of tools specifically designed for data science in R. By the end of this session, you should be able to:</p>
+<ul>
+<li>install and load packages</li>
+<li>use tidyverse tools to import data and access rows/columns</li>
+<li>combine commands using pipes</li>
+<li>transform and summarize data</li>
+</ul>
+</section>
+<section id="installing-and-loading-packages" class="level2">
+<h2 class="anchored" data-anchor-id="installing-and-loading-packages">Installing and loading packages</h2>
+<p>Please ensure RStudio is open with your project directory path (e.g., <code>~/Desktop/intro_r</code>) listed at the top of your Console. If you do not see the path to your project directory, go to <code>File -&gt; Open Project</code> and navigate to the location of your project directory. Alternatively, using your operating system’s file browser, double click on the <code>r_intro.Rrpoj</code> file.</p>
+<p>Create a new R script called <code>class3.R</code>, and add <code># Introduction to R: Class 3</code> as a title.</p>
+<p>For this lesson, we’ll be working with a group of R packages called <code>tidyverse</code>. A package is a group of related functions that help you accomplish particular tasks. <a href="https://www.tidyverse.org"><code>tidyverse</code></a> packages have been designed specifically to support tasks related to data science, such as data manipulation, filtering, and visualization.</p>
+<p>The first thing we need to do is install the software:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>The following package(s) will be installed:
+- tidyverse [2.0.0]
+These packages will be installed into "~/Documents/Teaching/computational_statistics/2023/new_website/renv/library/R-4.3/aarch64-apple-darwin20".
+
+# Installing packages --------------------------------------------------------
+- Installing tidyverse ...                      OK [linked from cache]
+Successfully installed 1 package in 6 milliseconds.</code></pre>
+</div>
+</div>
+<p>A few notes about installing packages:</p>
+<ul>
+<li>You only need to perform this installation once per computer, or when updating R or the package.</li>
+<li>If you see red text output in the Console during this installation, don’t be alarmed: this doens’t necessarily indicate a problem. You are seeing a report of the various pieces of software being downloaded and installed.</li>
+<li>If prompted, you should install all packages (say yes or all), as well as yes to compiling any packages</li>
+<li>When the installation is complete (this may take several minutes), you’ll see the command prompt (<code>&gt;</code>) in your Console.</li>
+</ul>
+<p>Once you have the software installed, you’ll need to load it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load library/package</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>Loading packages is similar to opening a software application on your computer; it makes a previously installed set of software available for use. A few notes about loading packages:</p>
+<ul>
+<li>You’ll need to load packages every time you open RStudio (or R restarts)</li>
+<li>Loading <code>tidyverse</code> loads a collection of packages; these are listed under “Attaching packages”</li>
+<li>There are many other packages included as dependencies. If some of them did not install successfully, you will receive an error at this step. For this lesson, you can try <code>library(dplyr)</code>, and ask your instructor for help later.</li>
+<li>The section in the output above referencing “Conflicts” shows you which functions you just loaded have names identical to packages you already have loaded (in base R). This shouldn’t affect the code we write in this lesson, though it’s useful to know the double colon syntax (::) allows you to reference functions in a different package with same name.</li>
+</ul>
+<p>You can check to make sure the new package we’ll be using is available by executing <code>?select</code> in the Console, or by searching for that function in the help panel. You can also look in the “Packages” tab in the same panel. If the package (in this case, either <code>tidyverse</code> or <code>dplyr</code>) is present in the list, it’s installed. If the box next to the package name is checked, it’s loaded. In this lesson, if you receive an error saying a function isn’t available or recognized, check to make sure the package is loaded.</p>
+</section>
+<section id="selecting-columns-and-rows" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-columns-and-rows">Selecting columns and rows</h2>
+<p>The first task we’ll undertake with our newly installed <code>tidyverse</code> tools is importing our data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/clinical.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 6832 Columns: 20
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (12): primary_diagnosis, tumor_stage, vital_status, morphology, state, t...
+dbl  (8): age_at_diagnosis, days_to_death, days_to_birth, days_to_last_follo...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Note that this function looks similar to what we used in the last lesson (<code>read.csv</code>), but the underscore replacing the dot means it’s actually a different function. In fact, this is the data import function from <code>tidyverse</code>. The output provided by this function indicates a few key differences with our import yesterday.</p>
+<p>The data import execution includes a description of how each variable (column) is interpreted. In our data’s case, the numeric data are <code>col_double</code> and the character data are <code>col_character</code> (not factors!).</p>
+<p>We can explore these differences further:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect object</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(clinical)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [6,832 × 20] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ primary_diagnosis          : chr [1:6832] "C34.1" "C34.1" "C34.3" "C34.1" ...
+ $ tumor_stage                : chr [1:6832] "stage ia" "stage ib" "stage ib" "stage ia" ...
+ $ age_at_diagnosis           : num [1:6832] 24477 26615 28171 27154 29827 ...
+ $ vital_status               : chr [1:6832] "dead" "dead" "dead" "alive" ...
+ $ morphology                 : chr [1:6832] "8070/3" "8070/3" "8070/3" "8083/3" ...
+ $ days_to_death              : num [1:6832] 371 136 2304 NA 146 ...
+ $ state                      : chr [1:6832] "live" "live" "live" "live" ...
+ $ tissue_or_organ_of_origin  : chr [1:6832] "C34.1" "C34.1" "C34.3" "C34.1" ...
+ $ days_to_birth              : num [1:6832] -24477 -26615 -28171 -27154 -29827 ...
+ $ site_of_resection_or_biopsy: chr [1:6832] "C34.1" "C34.1" "C34.3" "C34.1" ...
+ $ days_to_last_follow_up     : num [1:6832] NA NA 2099 3747 NA ...
+ $ cigarettes_per_day         : num [1:6832] 10.96 2.19 1.64 1.1 NA ...
+ $ years_smoked               : num [1:6832] NA NA NA NA NA NA NA NA NA NA ...
+ $ gender                     : chr [1:6832] "male" "male" "female" "male" ...
+ $ year_of_birth              : num [1:6832] 1936 1931 1927 1930 1923 ...
+ $ race                       : chr [1:6832] "white" "asian" "white" "white" ...
+ $ ethnicity                  : chr [1:6832] "not hispanic or latino" "not hispanic or latino" "not hispanic or latino" "not hispanic or latino" ...
+ $ year_of_death              : num [1:6832] 2004 2003 NA NA 2004 ...
+ $ bcr_patient_barcode        : chr [1:6832] "TCGA-18-3406" "TCGA-18-3407" "TCGA-18-3408" "TCGA-18-3409" ...
+ $ disease                    : chr [1:6832] "LUSC" "LUSC" "LUSC" "LUSC" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   primary_diagnosis = col_character(),
+  ..   tumor_stage = col_character(),
+  ..   age_at_diagnosis = col_double(),
+  ..   vital_status = col_character(),
+  ..   morphology = col_character(),
+  ..   days_to_death = col_double(),
+  ..   state = col_character(),
+  ..   tissue_or_organ_of_origin = col_character(),
+  ..   days_to_birth = col_double(),
+  ..   site_of_resection_or_biopsy = col_character(),
+  ..   days_to_last_follow_up = col_double(),
+  ..   cigarettes_per_day = col_double(),
+  ..   years_smoked = col_double(),
+  ..   gender = col_character(),
+  ..   year_of_birth = col_double(),
+  ..   race = col_character(),
+  ..   ethnicity = col_character(),
+  ..   year_of_death = col_double(),
+  ..   bcr_patient_barcode = col_character(),
+  ..   disease = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+<p>You may notice the presence of <code>tbl</code> and related labels in the classes for this object. <code>tbl</code> stands for <a href="https://tibble.tidyverse.org">tibble</a>, which is a type of data frame with specific constraints to ensure better data handling.</p>
+<p>If you preview the dataset, it will look the same, and we can interact with the data in the same way. These assumptions about the data mesh nicely with the other tools in the <code>tidyverse</code>.</p>
+<p>Now that our data are imported, we can explore the <code>tidyverse</code> functions for extracting parts of the dataset.</p>
+<p>First, we can explore selecting certain columns by name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting columns with tidyverse (dplyr)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sel_columns <span class="ot">&lt;-</span> <span class="fu">select</span>(clinical, tumor_stage, ethnicity, disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The syntax for the <code>select</code> function is to specify the dataset first, then the names of each of the columns you would like to retain in the output object. If we look at the object, we’ll see it has only three columns but all rows.</p>
+<p>You’ll note that the column headers don’t require quotation marks; this is a shortcut programmed into <code>tidyverse</code> functions.</p>
+<p>As with base R functions, we can also select a range of columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select range of columns</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sel_columns2 <span class="ot">&lt;-</span> <span class="fu">select</span>(clinical, tumor_stage<span class="sc">:</span>vital_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In addition to these approaches, we can also use other helper functions for selecting columns: <code>starts_with()</code>, <code>ends_with()</code>, and <code>contains()</code> are examples that assist in extracting columns with headers that meet certain conditions. For example, using <code>starts_with(tumor)</code> in place of the column names will give you all columns that start with the word tumor.</p>
+<p>We can use a separate function to extract rows that meet particular conditions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select rows conditionally: keep only lung cancer cases</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>filtered_rows <span class="ot">&lt;-</span> <span class="fu">filter</span>(clinical, disease <span class="sc">==</span> <span class="st">"LUSC"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The syntax here is similar to <code>select</code>, and the conditional filters can be applied in similarly to base R functions.</p>
+<blockquote class="blockquote">
+<h4 id="challenge-columns" class="anchored">Challenge-columns</h4>
+<p>Create a new object from clinical called race_disease that includes only the race, &gt; ethnicity, and disease columns.</p>
+</blockquote>
+<blockquote class="blockquote">
+<h4 id="challenge-rows" class="anchored">Challenge-rows</h4>
+<p>Create a new object from race_disease called race_BRCA that includes only BRCA (from <code>disease</code>).</p>
+</blockquote>
+</section>
+<section id="combining-commands" class="level2">
+<h2 class="anchored" data-anchor-id="combining-commands">Combining commands</h2>
+<p>The last challenges used an intermediate object to obtain an object with two subsetting methods applied. It’s common in data science to apply more than one requirement for extracting data. If you want to avoid creating an intermediate object, you could nest one command inside the other:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same task as challenges, but nested commands </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>race_BRCA2 <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(clinical, disease <span class="sc">==</span> <span class="st">"BRCA"</span>), race, ethnicity, disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this case, <code>filter(clinical, disease == "BRCA")</code> becomes the input for <code>select</code>.</p>
+<p>While this is a common approach, especially in base R, it can be difficult for us as coders to read and interpret the code.</p>
+<p>One of the most useful features of <code>tidyverse</code> is its inclusion of a programming method called pipes. This approach can be found in many programming languages, in part because of its utility: a pipe sends the output from the lefthand side of the symbol as the input for the righthand side. In R, pipes are represented as <code>%&gt;%</code>.</p>
+<p>We can use pipes to connect the same two data extraction tasks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same task as above, but with pipes</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>piped <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(race, ethnicity, disease) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(disease <span class="sc">==</span> <span class="st">"BRCA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The command above starts by naming the object that will result from this assignment. The dataset is named as the first input. Because executing the name of an object sends the object contents as output, this means the second line receives the object as input. The output from the <code>select</code> line is sent as input to the <code>filter</code> line. This effectively demonstrates how pipes can be used to connect multiple commands together.</p>
+<blockquote class="blockquote">
+<p>Now that we are running code in chunks that span multiple lines, you can see one of the other nice features of RStudio: your cursor can be placed on any line of the multi-line chunk when you execute, and the entire set of code will run together.</p>
+</blockquote>
+<p>These examples also help highlight the importance of style and convention in code formatting. After the first line, the code is indented. While this isn’t necessary for the code to work, it does make it a lot easier to read and understand the code.</p>
+<p>Let’s take a look at another example of piped commands:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract race, ethinicity, and disease from cases born prior to 1930</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>piped2 <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year_of_birth <span class="sc">&lt;</span> <span class="dv">1930</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(race, ethnicity, disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the code above, we’re applying a mathematical condition to find specific rows, and the selecting certain columns. Does the order of commands differ? We can switch the order of the <code>filter</code> and <code>select</code> lines to see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>piped3 <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(race, ethnicity, disease) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year_of_birth <span class="sc">&lt;</span> <span class="dv">1930</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The code above should give you an error, because in this case, the order does matter! The output from the second line does not include the <code>year_of_birth</code> column, so R is unable to apply the filter in the third line.</p>
+<blockquote class="blockquote">
+<h4 id="challenge-pipes" class="anchored">Challenge-pipes</h4>
+<p>Use pipes to extract the columns <code>gender</code>, <code>years_smoked</code>, and <code>year_of_birth</code> from the object <code>clinical</code> for only living patients (vital_status) who have smoked fewer than 1 <code>cigarettes_per_day</code>.</p>
+</blockquote>
+</section>
+<section id="mutate" class="level2">
+<h2 class="anchored" data-anchor-id="mutate">Mutate</h2>
+<p>This lesson so far has mostly shown new ways of accomplishing the same tasks we learned in the last lesson. <code>tidyverse</code> includes much more functionality, however, including the ability to <code>mutate</code> columns. Common tasks for which <code>mutate</code> is useful include unit conversions, transformation, and creating ratios from among existing columns.</p>
+<p>We can use this function to convert the <code>days_to_death</code> column to years:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert days to years</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>clinical_years <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">years_to_death =</span> days_to_death <span class="sc">/</span> <span class="dv">365</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The actual conversion works by providing a formula (<code>days_to_death / 365</code>) and the name of the new column (<code>years_to_death</code>). If you inspect the resulting object, you’ll see <code>years_to_death</code> added as a new column at the end of the table.</p>
+<blockquote class="blockquote">
+<p><code>mutate</code> works by retaining all previous columns and creating new columns as per the formula specified. <code>tidyverse</code> also includes <code>transmute</code>, which drops the existing columns used to calculcate the new columns.</p>
+</blockquote>
+<p>We can use <code>mutate</code> to perform multiple conversions at once:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert days to year and months at same time, and we don't always need to assign to object</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>clinical <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">years_to_death =</span> days_to_death <span class="sc">/</span> <span class="dv">365</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">months_to_death =</span> days_to_death <span class="sc">/</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>() <span class="co"># preview data output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 6,832
+Columns: 22
+$ primary_diagnosis           &lt;chr&gt; "C34.1", "C34.1", "C34.3", "C34.1", "C34.3…
+$ tumor_stage                 &lt;chr&gt; "stage ia", "stage ib", "stage ib", "stage…
+$ age_at_diagnosis            &lt;dbl&gt; 24477, 26615, 28171, 27154, 29827, 23370, …
+$ vital_status                &lt;chr&gt; "dead", "dead", "dead", "alive", "dead", "…
+$ morphology                  &lt;chr&gt; "8070/3", "8070/3", "8070/3", "8083/3", "8…
+$ days_to_death               &lt;dbl&gt; 371, 136, 2304, NA, 146, NA, 345, 716, 280…
+$ state                       &lt;chr&gt; "live", "live", "live", "live", "live", "l…
+$ tissue_or_organ_of_origin   &lt;chr&gt; "C34.1", "C34.1", "C34.3", "C34.1", "C34.3…
+$ days_to_birth               &lt;dbl&gt; -24477, -26615, -28171, -27154, -29827, -2…
+$ site_of_resection_or_biopsy &lt;chr&gt; "C34.1", "C34.1", "C34.3", "C34.1", "C34.3…
+$ days_to_last_follow_up      &lt;dbl&gt; NA, NA, 2099, 3747, NA, 3576, NA, NA, 1810…
+$ cigarettes_per_day          &lt;dbl&gt; 10.9589041, 2.1917808, 1.6438356, 1.095890…
+$ years_smoked                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 26…
+$ gender                      &lt;chr&gt; "male", "male", "female", "male", "male", …
+$ year_of_birth               &lt;dbl&gt; 1936, 1931, 1927, 1930, 1923, 1942, 1953, …
+$ race                        &lt;chr&gt; "white", "asian", "white", "white", "not r…
+$ ethnicity                   &lt;chr&gt; "not hispanic or latino", "not hispanic or…
+$ year_of_death               &lt;dbl&gt; 2004, 2003, NA, NA, 2004, NA, 2005, 2006, …
+$ bcr_patient_barcode         &lt;chr&gt; "TCGA-18-3406", "TCGA-18-3407", "TCGA-18-3…
+$ disease                     &lt;chr&gt; "LUSC", "LUSC", "LUSC", "LUSC", "LUSC", "L…
+$ years_to_death              &lt;dbl&gt; 1.0164384, 0.3726027, 6.3123288, NA, 0.400…
+$ months_to_death             &lt;dbl&gt; 12.366667, 4.533333, 76.800000, NA, 4.8666…</code></pre>
+</div>
+</div>
+<p>The code above also features a new function, <code>glimpse</code>, that can be useful when developing new piped code. Note that we did not assign the output above to a new object; we allowed it to be printed to the Console. Because this is a large dataset, that type of output can be unweildy. <code>glimpse</code> allows us to see a preview of the data, including the two new columns created.</p>
+<blockquote class="blockquote">
+<h4 id="challenge-lung" class="anchored">Challenge-lung</h4>
+<p>Extract only lung cancer patients (LUSC, from disease) and create a new column called <code>total_cig</code> representing an estimate of the total number of cigarettes smoked (use columns <code>years_smoked</code> and <code>cigarettes_per_day</code>).</p>
+</blockquote>
+</section>
+<section id="split-apply-combine" class="level2">
+<h2 class="anchored" data-anchor-id="split-apply-combine">Split-apply-combine</h2>
+<p>Our <code>clinical</code> dataset includes categorical (character) data. One example is the <code>gender</code> column. We can assess the different categories available using a base R function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show categories in gender</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(clinical<span class="sc">$</span>gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "male"   "female" NA      </code></pre>
+</div>
+</div>
+<p><code>tidyverse</code> includes an approach called split-apply-combine that allows us to:</p>
+<ul>
+<li>split data into groups,</li>
+<li>apply a task for each group,</li>
+<li>combine the results back together into a single table.</li>
+</ul>
+<p>We can try out this approach by counting the number of each gender in our dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count number of individuals of each gender</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>clinical <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  gender     n
+  &lt;chr&gt;  &lt;int&gt;
+1 female  3535
+2 male    3258
+3 &lt;NA&gt;      39</code></pre>
+</div>
+</div>
+<p><code>group_by</code> is not particularly useful by itself, but powerful together with a second function like <code>tally</code>. The two columns in the resulting tibble represent the categories from <code>group_by</code> and the number of cases for each gender (n).</p>
+<p>An additional function for use with <code>group_by</code> is <code>summarize</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize average days to death by gender</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>clinical <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_days_to_death =</span> <span class="fu">mean</span>(days_to_death, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  gender mean_days_to_death
+  &lt;chr&gt;               &lt;dbl&gt;
+1 female               947.
+2 male                 826.
+3 &lt;NA&gt;                 NaN </code></pre>
+</div>
+</div>
+<p>Similar to <code>mutate</code>, we provide <code>summarize</code> with a formula indicating how we would like the groups to be handled.</p>
+<p>In the command above, we use <code>na.rm = TRUE</code> to exclude missing data from the calculation of mean from <code>days_to_death</code>. We still have <code>NA</code> reported in the output table, though, because of the <code>NA</code> category in <code>gender</code>.</p>
+<p>We can apply an additional filter to remove this missing data, prior to grouping:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NA</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>clinical <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gender)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_days_to_death =</span> <span class="fu">mean</span>(days_to_death))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  gender mean_days_to_death
+  &lt;chr&gt;               &lt;dbl&gt;
+1 female                 NA
+2 male                   NA</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<h4 id="challenge-smoke-complete" class="anchored">Challenge-smoke-complete</h4>
+<p>Create object called smoke_complete from clinical that contains no missing data for cigarettes per day or age at diagnosis.</p>
+</blockquote>
+<blockquote class="blockquote">
+<h4 id="challenge-save" class="anchored">Challenge-save</h4>
+<p>How do you save resulting table to file? How would you find this answer?</p>
+</blockquote>
+<p>The solution to the challenges above represent the first of two datasets we’ll be using for data visualization in our next class. Make sure you’ve executed this code to save the filtered data file for use next time:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>smoke_complete <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age_at_diagnosis)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(cigarettes_per_day))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(smoke_complete, <span class="st">"data/smoke_complete.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The command above uses <code>write_csv</code>, which is the <code>tidyverse</code> method of saving a csv file. Base R possesses a function, <code>write.csv</code>, that performs a similar task, but by default includes quotation marks around cells with character data as well as row names (sequential numbers, unless otherwise specified).</p>
+<blockquote class="blockquote">
+<h4 id="challenge-birth-complete" class="anchored">Challenge-birth-complete</h4>
+<p>Create a new object called birth_complete that contains no missing data for year of birth or vital status.</p>
+</blockquote>
+<p>This challenge begins filtering the second of our two datasets for next time. Make sure you include the filter to remove missing data that’s been encoded as “not reported”!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure ALL missing data is removed!</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>birth_complete <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(year_of_birth)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(vital_status)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(vital_status <span class="sc">!=</span> <span class="st">"not reported"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="filtering-data-based-on-number-of-cases-of-each-type" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-data-based-on-number-of-cases-of-each-type">Filtering data based on number of cases of each type</h2>
+<p>We’re going to perform one last manipulation on this second dataset for next time, which will allow us to reduce the total number of cancer types present in this dataset.</p>
+<p>First, we’ll need to count how many cases for each cancer type exist in the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># counting number of records in each cancer</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>cancer_counts <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(disease) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(n) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>count</code> function is similar to <code>tally</code>, but doesn’t need to have <code>group_by</code> applied first. The <code>arrange</code> function added at the end sorts the table using the column specified. Although this isn’t necessary for the analysis to proceed, it makes it easier for us to interpret the results.</p>
+<p>Next, we’ll identify which cancer types are represented by at least 500 cases in this dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get names of frequently occurring cancers</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>frequent_cancers <span class="ot">&lt;-</span> cancer_counts <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">500</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can then use this object to filter based on the number of cases:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract data from cancers to keep</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>birth_reduced <span class="ot">&lt;-</span> birth_complete <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(disease <span class="sc">%in%</span> frequent_cancers<span class="sc">$</span>disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The new syntax here is <code>%in%</code>, which allows you to compare each entry in <code>disease</code> from <code>birth_complete</code> to the disease column in <code>frequent_cancers</code> (remember that <code>frequent_cancers$disease</code> means the <code>disease</code> column from <code>frequent_cancers</code>). This keeps only cases from the <code>birth_complete</code> dataset that are from cancers that are frequently occurring.</p>
+<p>Finally, we’ll write the final output to a file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save results to file in data/ named birth_reduced</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(birth_reduced, <span class="st">"data/birth_reduced.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<h4 id="challenge-tumor" class="anchored">Challenge-tumor</h4>
+<p>Extract all tumor stages with more than 200 cases (Hint: also check to see if there are any other missing/ambiguous data!)</p>
+</blockquote>
+</section>
+<section id="wrapping-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrapping-up">Wrapping up</h2>
+<p>In this session, we acquainted ourselves with <code>tidyverse</code>, and learned some tools for data filtering and manipulation. We covered examples from many of the main categories of data manipulation tasks; if you’d like more information on these functions and others available (including methods of joining multiple tables together), please check out the <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf"><code>dplyr</code> cheatsheet</a>.</p>
+<p>In the next session, we’ll wrap up the course by creating publication-quality images using <code>ggplot2</code>, a data visualization package in <code>tidyverse</code>, and the two datasets we filtered in the sections above.</p>
+</section>
+<section id="extra-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="extra-exercises">Extra exercises</h2>
+<p>The following exercises all use the same <code>clinical</code> data from this class.</p>
+<section id="challenge-ethnicity" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-ethnicity">Challenge-ethnicity</h4>
+<p>How many hispanic or latino individuals in clinical are not also white? What are their races?</p>
+</section>
+<section id="challenge-years" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-years">Challenge-years</h4>
+<p>Create a new column for clinical called <code>age_at_death</code> that calculates this statistic (in years) from <code>year_of_birth</code> and <code>year_of_death</code>.</p>
+</section>
+<section id="challenge-helpers" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-helpers">Challenge-helpers</h4>
+<p><code>dplyr</code> includes several “helpers” that allows selection of columns meeting particular criteria (described on the first page of the dplyr cheatsheet near the top of the right hand column: https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf). Using one of these tools, extract all columns that include “diagnosis”.</p>
+</section>
+<section id="challenge-combine" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-combine">Challenge-combine</h4>
+<p>How many patients are hispanic or latino patients (column ethnicity), died after the year 2000 (year_of_death), and possess no missing data for cigarettes per day?</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2023, Charles Dufour</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
