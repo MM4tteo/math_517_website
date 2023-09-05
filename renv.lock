@@ -1184,14 +1184,9 @@
     },
     "gt": {
       "Package": "gt",
-      "Version": "0.9.0.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "gt",
-      "RemoteUsername": "rstudio",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "01df55f14215d350c06578a152db276529182120",
+      "Version": "0.9.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "base64enc",
@@ -1215,7 +1210,7 @@
         "tidyselect",
         "xml2"
       ],
-      "Hash": "1460f5dade983dd284a6b8a8d265d0e5"
+      "Hash": "d55233a737e43e44987724e57dfec302"
     },
     "gtable": {
       "Package": "gtable",
