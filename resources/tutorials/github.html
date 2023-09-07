@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -359,23 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#github-and-rstudio" id="toc-github-and-rstudio" class="nav-link active" data-scroll-target="#github-and-rstudio">GitHub and Rstudio</a>
-  <ul class="collapse">
-  <li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git">Installing Git</a></li>
-  <li><a href="#creating-a-github-account" id="toc-creating-a-github-account" class="nav-link" data-scroll-target="#creating-a-github-account">Creating a GitHub account</a></li>
-  <li><a href="#creating-a-new-project-in-rstudio" id="toc-creating-a-new-project-in-rstudio" class="nav-link" data-scroll-target="#creating-a-new-project-in-rstudio">Creating a new project in RStudio</a></li>
-  <li><a href="#linking-the-project-to-github" id="toc-linking-the-project-to-github" class="nav-link" data-scroll-target="#linking-the-project-to-github">Linking the project to GitHub</a></li>
-  <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow">Basic Workflow</a></li>
-  <li><a href="#sharing-your-repo" id="toc-sharing-your-repo" class="nav-link" data-scroll-target="#sharing-your-repo">Sharing your Repo</a></li>
-  <li><a href="#accessing-and-downloading-the-course-content" id="toc-accessing-and-downloading-the-course-content" class="nav-link" data-scroll-target="#accessing-and-downloading-the-course-content">Accessing and Downloading the Course Content</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/resources/tutorials/github.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -417,155 +367,8 @@ Important
 </div>
 </div>
 <p>First follow this <a href="https://docs.github.com/en/get-started/quickstart/set-up-git">set up Git tutorial</a> and then follow <a href="https://docs.github.com/en/get-started/quickstart/hello-world">this tutorial</a> to get a gentle introduction to Git and GitHub.</p>
-<section id="github-and-rstudio" class="level1">
-<h1>GitHub and Rstudio</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I do not recommend using the Rstudio interface for git as it will be only useful when using Rstudio and does not allow very good git practices. Instead, I recommend using the terminal (accessible in the Rstudio visual editor) to interact with git.</p>
-</div>
-</div>
-<section id="installing-git" class="level2">
-<h2 class="anchored" data-anchor-id="installing-git">Installing Git</h2>
-<p>Download an appropriate installer from <a href="git-scm.org">git-scm.org</a> and go through the installation process. If you are not sure how useful Git will be to you, it is advisable to uncheck Windows Explorer Integration (or similar for other operating system) on the second screen. Otherwise use the default setup, but make sure that you allow to use “Git from the command line and also from 3rd-party software”.</p>
-</section>
-<section id="creating-a-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-github-account">Creating a GitHub account</h2>
-<section id="sign-in" class="level4">
-<h4 class="anchored" data-anchor-id="sign-in">Sign in</h4>
-<p>Go to <a href="github.org">github.org</a> and sign up. After providing your e-mail, choosing a password and your GitHub name, and verifying your e-mail, choose that you will be working with 2-5 people and that you are a student. Skip the next option, and then just choose a free account.</p>
-<p>Now you are on GitHub and your account is empty (there is no repo yet). That is alright, keep the tab open, we will return to it in a bit.</p>
-</section>
-<section id="ssh-keys" class="level4">
-<h4 class="anchored" data-anchor-id="ssh-keys">SSH keys</h4>
-<p>In order to interact with the git repository, we need to link a SSH key that will identify you (see it as a complicated password that you won’t have to type). In the past it was possible to not use a SSH key but github does not allow it anymore.</p>
-<p>We present 2 options to create/add a SSH key to your github account. If it does not work out of the box, please refer to <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">this link</a> before panicking.</p>
-<p><strong>CLI</strong>:</p>
-<p>This will require you to use the terminal (recommended). You can access the terminal in RStudio by going to Tools → Terminal → Move focus to terminal.</p>
-<p>Check <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">this github tutorial</a> and follow the steps. Make sure to pick the correct option for your operating system (Mac, Windows, Linux).</p>
-<p><strong>GUI with RStudio</strong></p>
-<p>Firstly, check whether you already have an SSH key by running</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(<span class="st">"~/.ssh/id_rsa.pub"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>in RStudio console.</p>
-<p>If that returns FALSE, go to Tools -&gt; Global Options -&gt; Git/SVN. (Maybe there is already an SSH key address, just in a different location, so try running <code>file.exists</code> with the correct location, if you see one. If you don’t see any SSH key location…) Make sure the Git executable is available. Click “Create RSA Key” and click “Create” again. If you get “Access Denied” error, restart RStudio, this time as as an administrator. Close the pop-up, click “Apply”. Still in the Git/SVN tab in Global Options, click “View public key”. A pop-up with a long string will appear. Keep this open.</p>
-<p>Go to https://github.com/settings/ssh and click “New SSH Key”. Put e.g.&nbsp;“Rstudio” in the Title box, and copy the long string (from the tab opened in RStudio in the previous section) into Key box. Now you have an SSH key specific to RStudio.</p>
-</section>
-</section>
-<section id="creating-a-new-project-in-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-new-project-in-rstudio">Creating a new project in RStudio</h2>
-<p>In RStudio, select File -&gt; New Project -&gt; New Directory -&gt; New Project.</p>
-<p>Choose a directory name (let’s use the same as the name of your project, e.g.&nbsp;“StatComp-[your SCIPER]”) and choose the folder in which this new directory will be created. Make sure to check “Create a git repository”. Click “Create Project”. A fresh RStudio without the top-left pane but with an additional Git tab in the top-right pane will open. Now you can copy-files into the new directory and open them (in the top-left pane, which will appear), or create new files and save them to the directory.</p>
-<p>For the purposes of the next section, create a new a R Script and write some sample code in it, for example</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and save the script in your project folder.</p>
-</section>
-<section id="linking-the-project-to-github" class="level2">
-<h2 class="anchored" data-anchor-id="linking-the-project-to-github">Linking the project to GitHub</h2>
-<p>Now go back to the GitHub tab (to your account on GitHub) and create a new repository of the same name as the project (e.g.&nbsp;“StatComp-[your SCIPER]”). Choose the private option.</p>
-<p>After clicking “Create repository”, you will see the following:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/NewGitHubRepo.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">new github repository</figcaption>
-</figure>
-</div>
-<p>Instead of using the HTTPS link, click on the SSH and copy the text, which will be of the form <code>git@github.com:TMasak/StatComp.git</code>. Open the Terminal tab in the bottom-left pane of RStudio and begin by providing your name and your e-mail to Git:</p>
-<pre><code>git config --global user.name [your github name]
-git config --global user.email [your email address]</code></pre>
-<p>You can check whether it worked by typing <code>git config --global --list</code>.</p>
-<p>Now to finally link your local project folder to the GitHub repo, type the following commands in the terminal:</p>
-<pre><code>ssh -T git@github.com
-git remote add origin [your SSH link of the form git@github.com:your_github_name/repo_name.git goes here]
-git push -u origin master</code></pre>
-<p><em>Note</em>: If you receive an error:</p>
-<ul>
-<li>try <code>git push -u origin main</code> instead of <code>master</code>, and if still an error:</li>
-<li>try <code>git add --all</code> and <code>git commit -m "blahblah"</code> before <code>git push -u origin master</code> or <code>main</code>.</li>
-</ul>
-<p>But if that still doesn’t work, go to the sub-section below.</p>
-<p>Now the content of the project folder should be up on GitHub. Return to the webpage, and click on your repo name in the top-left to see the repository.</p>
-<section id="in-case-of-catastrophic-errors" class="level4">
-<h4 class="anchored" data-anchor-id="in-case-of-catastrophic-errors">In case of catastrophic errors</h4>
-<p>If you have too many issues in these past two steps, try removing everything you created in these steps (github repository and RStudio project: don’t worry you will be able to recreate them). Then</p>
-<ol type="1">
-<li><p>Create a private repository, with nothing in it (in the <code>Initialize this repository</code>, let everything not ticked or set as <code>None</code>)</p></li>
-<li><p>Follow the <code>…or create a new repository on the command line</code>. You first need to open the terminal in the directory where you want to save your project (e.g., <code>cd ~/Desktop/</code>), and then copy-paste the instructions. This should look like</p>
-<pre><code>    echo "## test" &gt;&gt; README.md
-    git init
-    git add README.md
-    git commit -m "first commit"
-    git branch -M main
-    git remote add origin git@github.com:dufourc1/test.git
-    git push -u origin main</code></pre></li>
-<li><p>Create a new RStudio project with an existing directory (pick the directory that was created by the above actions. In this example it will be <code>~/Desktop/test/</code>. You can fetch the correct path by typing <code>pwd</code> in the terminal after the above steps).</p></li>
-<li><p>add, commit and push. You’re all set !</p></li>
-</ol>
-</section>
-<section id="error-when-pushing-from-rstudio" class="level4">
-<h4 class="anchored" data-anchor-id="error-when-pushing-from-rstudio">Error when pushing from RStudio</h4>
-<p>Skip this section if the procedure above has been successful.</p>
-<p>Sometimes there can be problems with the initial commit and the procedure above may fail. Instead of trying to debug it, let’s go the other way: create a repo on GitHub, and pull it from there to a local directory.</p>
-<p>Before doing this, check that</p>
-<ul>
-<li>you are logged in to GitHub with the account name being the same as the one provided to Git</li>
-<li>your user directory and thus your SSH key as well as your working directory contain no non-English symbols (it might be also good to avoid spaces in your paths)</li>
-</ul>
-<p>Close your RStudio, and delete the local directory (and the RStudio project with it). Go to your repo in GitHub and click on “creating a new file” (like in the picture above). Name it e.g.&nbsp;“demo.R” and type <code>x &lt;- runif(100)</code> in it. Scroll down and click “Commit new file”.</p>
-<p>Open RStudio again, and go to File -&gt; New Project -&gt; Version Control -&gt; Git. Here type the repository URL (like in the picture above) of the form <code>https://github.com/your_github_name/repo_name.git</code>. Click “Create Project”. RStudio will restart and a local folder in your system will appear, containing whatever is there in the GitHub plus an R project file of the appropriate name.</p>
-<p>Immediately, open the Git tab in the top-right pane of the RStudio, and click on Push. If GitHub is not connected to the local Git client, a pop-up window will appear and you can simply choose to verify the access in your browser. Then the push will hopefully go through, even though “Everything up-to-date” line will be returned. (This is not true, but any changes has to be committed first before they can be pushed, which we learn to do in the following section.)</p>
-</section>
-</section>
-<section id="basic-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="basic-workflow">Basic Workflow</h2>
-<p>Now when you make a change locally in your project folder, such as changing the R code to</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sin</span>(<span class="fu">runif</span>(<span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and you would like to push your changes to GitHub, run the following R commands first:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ## install.packages("devtools")</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## library(devtools)</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">use_git</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Function <code>use_git()</code> from the <code>devtools</code> package will commit changes.</p>
-<p><em>Note</em>: The hashtag denotes a comment in R (whatever that should NOT be evaluated). It is a common practice to include commented lines into manuals such as this one to help the reader (you) deal with a problem he might encounter. For example, here, if running <code>use_git()</code> returns an error, it is likely due to the fact that the <code>use_git()</code> function belongs to the <code>devtools</code> package, which has to be loaded each time a new session of R is started (usually whenever you open RStudio). Hence uncomment the middle line and try to run it again. In case loading the package probably also returns an error, likely due to the fact the package that is being loaded has not been installed, which can be done using the <code>install.packages()</code> function in the first line of the code. Installing a package is something you only need to do once on your system.</p>
-<p>Then open ‘Git’ bar in the top-right pane of Rstudio and click “Push”. Your changes are now propagated to GitHub.</p>
-<p>View your script on Github. Make some changes locally in RStudio, push those changes, and observe them on GitHub. Or the other way around, edit the script on GitHub</p>
-</section>
-<section id="sharing-your-repo" class="level2">
-<h2 class="anchored" data-anchor-id="sharing-your-repo">Sharing your Repo</h2>
-<p>You now have your own repo on GitHub, wich looks similarly to the <a href="https://github.com/TMasak/StatComp">course repo</a>.</p>
-<ul>
-<li><p>Make sure that the repo is private. Go to Settings -&gt; General and scroll all the way down. If you see “This repository is currently private”, skip to the next point. On the other hand, if the repo is public, click on “Change visibility” and make the repo private.</p></li>
-<li><p>Go to Settings -&gt; Collaborators and add me (TMasak) and Almond (Almond-S) as collaborators by clicking on “Add people”.</p></li>
-</ul>
-<p>You may also share your repo with your friends this way, though there is a little point in doing it now.</p>
-</section>
-<section id="accessing-and-downloading-the-course-content" class="level2">
-<h2 class="anchored" data-anchor-id="accessing-and-downloading-the-course-content">Accessing and Downloading the Course Content</h2>
-<p>Now, when the GitHub + RStudio connection is established, it can also be used to access the course materials easily. In RStudio, select File -&gt; New Project -&gt; Version Control -&gt; Git and type the url of the repository you want to clone.</p>
-<p>Whenever you want to update your local repository, you can just click “Pull” in the Git tab in the top-right pane of RStudio.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><a href="https://happygitwithr.com/">Happy Git with R</a> – how to use Git, GitHub and RStudio together, mostly for data science purposes</li>
-</ul>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -932,7 +735,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/resources/tutorials/github.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
