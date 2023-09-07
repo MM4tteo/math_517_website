@@ -9,7 +9,7 @@ output:
 We will use Github Classroom for the assignments in this course. This document will give you a brief introduction to Github Classroom and how to use it.
 
 ::: callout-important
-Following the email you received, you should have created a Github account and joined the [course organization MATH-517](https://github.com/MATH-517). If you have not done so, please do it now. If you have any problems, please send an email to  the teaching assistant (aka me) ASAP with the subject line "Github Classroom" and in the body of the email, please include your Github username.
+Following the email you received, you should have created a Github account and sent us your username. You should have been invited to the [course organization MATH-517](https://github.com/MATH-517) during the first week of the semester. If you have not accepted, please do it now. If you have any problems (or haven't received the invitation), please send an email to  the teaching assistant (aka me) ASAP with the subject line "Github Classroom" and in the body of the email, please include your Github username.
 :::
 
 

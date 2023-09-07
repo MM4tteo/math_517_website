@@ -1,5 +1,6 @@
 ---
 title: "Course overview"
+number-sections: true
 ---
 
 This is the homepage for MATH-517 Statistical computation and visualisation in Fall 2023 at EPFL. All course materials will be posted on this site.
@@ -18,13 +19,13 @@ You can find the course syllabus [here](/course-syllabus.qmd) and the course sch
 
 
 
-# 1. Course Content
+# Course Content
 
 As far as the lecture topics go, the first 2 weeks will be less mathematical, while the remaining weeks will be somehow more classical. However, the focus of this course is on methods and algorithms, *not* on inference and theory, hence we will rarely, if ever, prove theorems. We may however do (blackboard) calculations from time to time.
 
 Apart from the topics mentioned [in the schedule](index.qmd), mastering this course requires scripting (simulation studies and data exploration & visualization tasks), as well as sharing your code via **GitHub**. You will be required to do a small project a final project, and various assignments fostering these skills. **Exercise classes should be attended** and used to pick up the required skills, and work on these projects and assignments! Additional exercises can be found in the Exercices tab on this website.
 
-# 2. Evaluation
+# Evaluation
 
 The assessment method for this course is "controle continue", meaning that the course and all the work required from the students effectively ends before Christmas. This also means that the **work needed to pass this course starts immediately on Week 1**.
 
@@ -40,12 +41,12 @@ The final grade will consist of
 
 **Deadlines** will always be set at the end of the week (the midnight between Sunday and Monday), hence e.g. "deadline on Week 2" simply means the assignment can be handed-in by 23:59 on October 1. An assignment from Week $k$ (given at the end of slides to the $k$-th lecture) will always have their deadline on Week $k+1$ (i.e. the midnight between Sunday and Monday following the $(k+1)$-th lecture, see [the schedule](index.qmd)).
 
-## 2.1 Assignments
+## Assignments
 
 There will be 8 assignments during the semester, graded as described above. Assignments can be in the `Assignments` tab on this website (or equivalently in [the schedule](index.qmd)). Exercises are not mandatory, only recommended. 
 
 
-## 2.2 Projects
+## Projects
 
 The small project can start after the second lecture, deadline on Week 5. See [here](projects/project-01.qmd) for details.
 
@@ -56,7 +57,7 @@ The main project can start following the $7$-th lecture, deadline on December 24
 <a name="groups"></a>
 **Groups** can be of size of either 2 or 3 people. The size will *not* matter w.r.t. to grading. However, a group of size 3 will have one additional task to do: as part of their Moodle submission, every team member will individually include a short paragraph describing contributions of every individual member of the team. This is not to be discussed among the team members, as it serves as a safeguard. Regardless of their individual contributions, each member of the team will receive the same grade, apart from where this would be extremely unfair. Such cases will be discussed personally. In case of any team-work problems, the students are encouraged to seek advice (mostly as a group) from the teachers (mostly during the exercise classes).
 
-# 3 Grade Calculation
+# Grade Calculation
 
 Your submissions will receive a grade on the percentage scale of the final grade, e.g. the assignments will be awarded either 0 and 5 points, the small project between 0 and 20 points (mostly 0, 5, 10, 15 or 20), and the final project between 0 and 40 points (again, mostly divisible by 5). Let $a_1,\ldots,a_8$ denote points you receive from the assignments, $s$ points received for the small project, and $p$ be the final project points. The final grade will be calculated as
 $$
@@ -70,12 +71,12 @@ p <- 40
 1 + 5/100*(sum(a) + s + p)
 ```
 
-# 4. Materials
+# Materials
 
 All materials will be gradually made available on this website. Assignments and exercices can be accessed through their respective tabs, supplemental materials can be found in the [`Ressources`](resources/resources.qmd) tab. Lecture slides will be posted in the [schedule](index.qmd).
 
 
-# 5. Handing-in Assignments and Projects
+# Handing-in Assignments and Projects
 
 We will use GitHub Classroom to handle the assignments and projects for this course. See [this page](resources/tutorials/github_classroom.qmd) for more information on how to use GitHub Classroom.
 
