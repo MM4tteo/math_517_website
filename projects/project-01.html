@@ -324,14 +324,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#some-links-to-open-data" id="toc-some-links-to-open-data" class="nav-link active" data-scroll-target="#some-links-to-open-data">Some Links to Open Data</a></li>
-  <li><a href="#tips-and-tricks" id="toc-tips-and-tricks" class="nav-link" data-scroll-target="#tips-and-tricks">Tips and tricks</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/projects/project-01.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -364,83 +357,9 @@ ul.task-list li input[type="checkbox"] {
 <li>use more detailed visualization techniques to hint answers</li>
 </ul>
 <p>Note that the purpose of this project is to play around, demonstrating your data exploration, wrangling and visualization skills. Hopefully, you will also find scientifically interesting questions or questions of personal interest (e.g.&nbsp;does ball possession matter in a game of football?), but even if not, you can still be awarded full points, as long as you avoid Kaggle data sets that have been analyzed zillion times before.</p>
-<p><a href="../resources/week-02/mini-project-example.html">Here</a> is an example of what your report could look like. The first step should be done individually.</p>
-<section id="some-links-to-open-data" class="level2">
-<h2 class="anchored" data-anchor-id="some-links-to-open-data">Some Links to Open Data</h2>
-<p><a href="https://data.fivethirtyeight.com/">fivethirtyeight</a>: article data of Nate Silver’s data journalism platform freely available (see also R package <a href="https://cran.r-project.org/web/packages/fivethirtyeight/index.html">fivethirtyeight</a>)</p>
-<p><a href="https://www.data-is-plural.com/">data-is-plural</a>: weekly newsletter of datasets by Jeremy Singer-Vine</p>
-<p><a href="https://www.re3data.org/">re3data</a>: Registry of research data repositories</p>
-<p><a href="https://www.openml.org/">openml datasets</a>: many uniformly formatted datasets for training machine learning models – however, not always good descriptions available</p>
-<p><a href="https://datacatalog.worldbank.org/">Worldbank Datacatalog</a>: the World Bank data catalogue</p>
-<p><a href="https://beta.ukdataservice.ac.uk/datacatalogue/studies#!?Search=&amp;Rows=10&amp;Sort=0&amp;DateFrom=1753&amp;DateTo=2018&amp;AccessFacet=Open&amp;Page=1">UK Data Service</a>: UK’s largest collection of social, economic and population data resources (filter for open data) or also <a href="https://www.data.gov.uk/">data.gov.uk</a></p>
-<p><a href="https://www.icpsr.umich.edu">ICPSR</a>: unit within the Institute for Social Research at the University of Michigan, social and behavioral research. In particular including <a href="https://www.openicpsr.org/openicpsr/">replication datasets</a> for published studies.</p>
-<p><a href="https://www.govdata.de/">govdata</a>: Open Government - German administrative data freely accessible</p>
-<p><a href="https://www.gapminder.org/">gapminder</a>: “an independent educational non-proﬁt ﬁghting global misconceptions”; collection and vizualisation of datasets concerning gobal developement</p>
-<p><a href="https://www.nature.com/sdata/">nature.com</a>: peer-reviewed, open-access journal for descriptions of datasets (broad range of natural science disciplines)</p>
-<p><a href="https://www.nlm.nih.gov/NIHbmic/domain_specific_repositories.html">NIH (National Institute of Health) Data Sharing Repositories</a>: overview on different thematically sorted medical databases</p>
-<p><a href="https://archive.ics.uci.edu/ml/datasets.php">UCI Machine Learning Repository</a> or the new <a href="https://archive-beta.ics.uci.edu/">beta version</a>: containing various datasets – however, sometimes with a little few description</p>
-<p><a href="https://data.bris.ac.uk/data/">data.bris Research Data Repository</a>: Data repository of the University of Bristol</p>
-<p><em>… no systematic selection. Much more out there</em></p>
-</section>
-<section id="tips-and-tricks" class="level2">
-<h2 class="anchored" data-anchor-id="tips-and-tricks">Tips and tricks</h2>
-<ol type="1">
-<li>Consistency is the most important thing for a statistician.</li>
-</ol>
-<ul>
-<li>jumping between different citation styles is bad</li>
-<li>having some captions centered above the figure produced by R and others flushed right below using Markdown is annoying</li>
-</ul>
-<ol start="2" type="1">
-<li>Save space for better readability.</li>
-</ol>
-<ul>
-<li>plots that convey little information don’t have to be large, several (related) plots can be put next to each other on the same line, etc.</li>
-<li>even in an <code>html</code> file, unnecessary scrolling back and forth when reading a report is annoying</li>
-<li>a plot frame with one or two boxplots is a waste of space (e.g.&nbsp;histograms would be better)</li>
-<li>barplots can often be replaced by tables to both save space and improve readability</li>
-<li>in general, if a plot only shows like 3 numbers and is not important for any argument made, it should not be a plot</li>
-</ul>
-<ol start="3" type="1">
-<li>Story-telling matters.</li>
-</ol>
-<ul>
-<li>it is important to grasp attention with an introduction (and describe at the same time what to expect from a report)</li>
-<li>re-iterate the most important ideas/results in several places</li>
-<li>comment on plots even if they are self-explanatory</li>
-</ul>
-<ol start="4" type="1">
-<li>More on plots.</li>
-</ol>
-<ul>
-<li>text in figures (labels, etc.) should be of similar size as the main text</li>
-<li>labels have to be readable, e.g.&nbsp;no overlaying etc.</li>
-<li>captions are necessary and should make the plot self-contained (without looking at the paragraphs around it)</li>
-</ul>
-<ol start="5" type="1">
-<li>Less is sometimes more.</li>
-</ol>
-<ul>
-<li>showing a scatterplot only to colors to it based on a group of two on the next plot, then adding one regression line, and then two regression lines on the fourth plot… just dilutes the important parts</li>
-<li>Barplots colored by an additional variable should probably be replaced by a table (potentially colored by the cell values – coloring for better readability only).</li>
-</ul>
-<ol start="6" type="1">
-<li>List of references should be itemized or enumerated (in order to be readable).</li>
-<li>Avoid using local paths.</li>
-</ol>
-<ul>
-<li>reproducibility of the report itself!</li>
-</ul>
-<ol start="8" type="1">
-<li>Transforming variables.</li>
-</ol>
-<ul>
-<li>if your plots look bad because of a clear skewing in one of the variables, transform the varible (typically plot it on a log-scale)</li>
-<li>if plotting on a log-scale, consider <code>log10</code> or <code>log2</code> to have better interpretability</li>
-</ul>
+<p>The first step should be done individually. <a href="../resources/week-02/mini-project-example.html">Here</a> is an example of what your report could look like. See the <a href="../projects/project-tips-resources.html">this page</a> for some tips and resources (e.g.&nbsp;example datasets).</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -807,7 +726,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/projects/project-01.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
