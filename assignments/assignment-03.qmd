@@ -76,7 +76,7 @@ The goal is to study the (global, asymptotically optimal) bandwidth choice $h_{A
 
 ## Submission
 
-Write a Markdown report explaining your findings. Use the `report.qmd` file to write your report [^1].
+Write a Markdown report explaining your findings. Use the `report.qmd` file to write your report [^1]. (Alternatively, any other format that produces an html and a pdf file is fine (e.g. Rmarkdown)).
 
 The report should be self-contained and include all code necessary to reproduce your results (for help with virtual environments, see [this page](../resources/tips/virtual_environments.qmd)).
 
