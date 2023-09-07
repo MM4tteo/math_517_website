@@ -1,1 +1,1 @@
-Sitemap: https://github.com/MATH-517/MATH_517_website.github.io"/sitemap.xml
+Sitemap: https://math-517.github.io/math_517_website/sitemap.xml
