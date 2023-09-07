@@ -12,20 +12,18 @@ Students will practice proposing efficient solutions, and effectively communicat
 
 ## Content
 
-- Modern statistical computing environments (e.g., R, Rstudio and Python)
-
-- Overview of other software (e.g., MATLAB, Julia)
-- Aids to efficiency and reproducibility (e.g., GitHub, Markdown, Jupyter)
+- Modern statistical computing environments (e.g., R, Julia, and Python)
+- Aids to efficiency and reproducibility (e.g., GitHub, Markdown)
 - Data management, wrangling, and ethics
 
 - Statistical graphics (grammar, good practices, applications, and examples)
-- EM algorithm and applications
 - Kernel density estimation and smoothing
+- Cross-validation
+- EM algorithm and applications
 - Resampling methods for uncertainty assessment (bootstrap, jackknife, cross-validation), with applications to regression, time series and dependent data
 - Markov chain Monte Carlo techniques (Gibbs sampler, Metropolis-Hastings algorithm, Hamiltonian Monte Carlo, convergence diagnostics) and software (e.g., Stan)
-
-- Other methods for Bayesian inference (e.g., importance sampling, INLA, AGHQ, ...)
-
+- Other methods for Bayesian inference (e.g., importance sampling)
+- Decision trees for classification
 
 
 ## Prerequisites
