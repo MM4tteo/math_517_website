@@ -389,7 +389,7 @@
     "href": "resources/tutorials/github.html",
     "title": "Git and GitHub",
     "section": "",
-    "text": "Important\n\n\n\nPlease read the full guide if something does not work: it is very likely that the answer to your problem lies just a few lines after wherever you stopped reading.\n\n\nFirst follow this set up Git tutorial and then follow this tutorial to get a gentle introduction to Git and GitHub."
+    "text": "Important\n\n\n\nPlease read the full guide if something does not work: it is very likely that the answer to your problem lies just a few lines after wherever you stopped reading.\n\n\nFirst follow this set up Git tutorial and then follow this tutorial to get a gentle introduction to Git and GitHub.\nSummary of the steps\n\nCreate a GitHub account\nInstall Git\nCreate a repository and clone it to your computer\n\nIf all of the above worked, you are ready to go.\nNext steps\nYou should follow the instructions you received by email to join the GitHub organization of your course. This will allow you to access the course repository and to submit your assignments."
   },
   {
     "objectID": "projects/project-01.html",
@@ -879,7 +879,28 @@
     "href": "assignments/assignment-03.html",
     "title": "Assignment 3",
     "section": "",
-    "text": "Important\n\n\n\nDue date: 11:59pm on Sunday, 22 October 2023.\n\n\n\n\n\n\n\n\nNote\n\n\n\nGo to the course GitHub organization and locate the repo titled ae-3-YOUR_GITHUB_USERNAME to get started.\n\n\nCreate a Shiny App or (alternatively) an R Markdown report exploring the (global, asymptotically optimal) bandwidth choice \\(h_{AMISE}\\) on slides 19 and 20 on a simulated data example:\n\ncovariate \\(X\\) from beta distribution rbeta(n,shape1,shape2)\nresponse values \\(Y = m(X) + \\epsilon\\) where\n\nthe regression function \\(m\\) is given by sin(1/(x/3+0.1))\n\\(\\epsilon \\sim \\mathcal{N}(0,\\sigma^2)\\)\n\nfix \\(\\sigma^2\\) at some visually appealing value (e.g. \\(\\sigma^2=1\\) should be fine)\nexplore how \\(h_{AMISE}\\) behaves depending on the following parameters (in case of a Shiny App, these will be sliders for the user to tweak):\n\nsample size n\nblock size N\ndensity of the covariate: beta parameters shape1 and shape2\n\nvisualize (global, asymptotically optimal) bandwidth\n\nalso find a way to visually incorporate the beta density\n\n\n\nTODO:\n\nadd a link to ruppert, sheather, wand jasa 1995 for optimal choice of N\nadd content of slides 19 and 20 from lecture 4"
+    "text": "Important\n\n\n\nDue date: 11:59pm on Sunday, 22 October 2023."
+  },
+  {
+    "objectID": "assignments/assignment-03.html#recap-on-global-optimal-bandwidth",
+    "href": "assignments/assignment-03.html#recap-on-global-optimal-bandwidth",
+    "title": "Assignment 3",
+    "section": "Recap on global optimal bandwidth",
+    "text": "Recap on global optimal bandwidth\nThe Nadaraya–Watson kernel estimator of \\(m(x) = \\mathbb{E}(Y|X=x)\\)\n\\[ \\widehat{m}(x) = \\frac{\\sum_{i=1}^n K\\left( \\frac{X_i-x}{h} \\right) Y_i}{ \\sum_{i=1}^n K\\left( \\frac{X_i-x}{h} \\right)} \\]\nis a weighted mean of the \\(Y_i\\).\nSimilarly to what we did with KDEs in week 3, we consider \\[MSE\\lbrace \\widehat{m}(x) \\rbrace = \\mathrm{var}\\lbrace \\widehat{m}(x) \\rbrace + \\big[\\mathrm{bias}\\lbrace \\widehat{m}(x) \\rbrace\\big]^2\\] and, dropping the little-o terms, we obtain \\[AMSE\\lbrace \\widehat{m}(x) \\rbrace = \\frac{\\sigma^2(x) \\int \\lbrace K(z) \\rbrace ^2 dz}{f_X(x) n h_n} + \\frac{1}{4} \\lbrace m''(x)\\rbrace ^2 h_n^4 \\left(\\int z^2 K(z) dz\\right)^2.\\]\nNow, a local bandwidth choice can be obtained by optimizing AMSE. Taking derivatives and setting them to zero, we obtain \\[h_{opt}(x) = n^{-1/5} \\left[ \\frac{\\sigma^2(x) \\int [K(z)]^2 dz}{m''(x) f_X(x) \\int z^2 K(z) dz} \\right]^{1/5}.\\]\nThis is somewhat more complicated compared to the KDE case, because we have to estimate\n\nthe marginal density \\(f_X(x)\\),\n\nlet’s say that we already know how to do this, e.g. by KDE even though that requires a choice of yet another bandwidth\n\nthe local variance function \\(\\sigma^2(x)\\), and\nthe second derivative of the regression functions \\(m''(x)\\).\n\nAgain, like in the case of KDEs, the global bandwidth choice can be obtained by integration:\n\ncalculate \\(AMISE(\\widehat{m}) = \\int AMSE \\lbrace \\widehat{m}(x) \\rbrace f_X(x) dx\\), and\nset \\(h_{AMISE} = \\mathrm{arg\\,min}_{h&gt;0} AMISE(\\widehat{m})\\).\n\n\nRule of Thumb Plug-in Algorithm\nReplace the unknown quantities in \\[h_{AMISE} = n^{-1/5} \\bigg[ \\frac{\\int K^2(z) dz \\int \\sigma^2(x) dx}{\\int z^2 K(z) dz \\int \\lbrace m''(x) \\rbrace^2 f_{X}(x) dx} \\bigg]^{1/5}\\]\nby parametric OLS estimators\n\nAssume homoscedasticity and a quartic kernel, then \\[h_{AMISE} = n^{-1/5} \\bigg( \\frac{35 \\sigma^2 \\vert supp(X) \\vert}{\\theta_{22}} \\bigg)^{1/5}, \\quad \\theta_{22}= \\int \\lbrace m''(x) \\rbrace^2 f_{X}(x) dx\\]\nBlock the sample in \\(N\\) blocks and fit, in each block \\(j\\), the model \\[y_i = \\beta_{0j} + \\beta_{1j} x_i + \\beta_{2j} x_i^2 + \\beta_{3j} x_i^3 + \\beta_{4j} x_i^4 + \\epsilon_i\\] to obtain estimate \\(\\hat{m}_j = \\hat{\\beta}_{0j} + \\hat{\\beta}_{1j} x_i + \\hat{\\beta}_{2j} x_i^2 + \\hat{\\beta}_{3j} x_i^3 + \\hat{\\beta}_{4j} x_i^4\\)\nEstimate the unknown quantities by \\[\n\\begin{split}\n\\hat{\\theta}_{22}(N) &= \\frac{1}{n} \\sum_{i=1}^n \\sum_{j=1}^N \\hat{m}_j''(X_i) \\hat{m}_j''(X_i)  \\mathbb{1}_{X_i \\in \\mathcal{X}_j} \\\\\n\\hat{\\sigma}^2(N) &= \\frac{1}{n-5N} \\sum_{i=1}^n \\sum_{j=1}^N \\{Y_i - \\hat{m}_j(X_i) \\}^2 \\mathbb{1}_{X_i \\in \\mathcal{X}_j}\n\\end{split}\n\\]"
+  },
+  {
+    "objectID": "assignments/assignment-03.html#task",
+    "href": "assignments/assignment-03.html#task",
+    "title": "Assignment 3",
+    "section": "Task",
+    "text": "Task\nThe goal is to study the (global, asymptotically optimal) bandwidth choice \\(h_{AMISE}\\) on a simulated data example:\n\ncovariate \\(X\\) from beta distribution Beta\\((\\alpha,\\beta)\\)\nresponse values \\(Y = m(X) + \\epsilon\\) where\n\nthe regression function \\(m\\) is given by \\(\\sin\\left(\\left(\\frac{x}{3+0.1}\\right)^{-1}\\right)\\)\n\\(\\epsilon \\sim \\mathcal{N}(0,\\sigma^2)\\)\n\nfix \\(\\sigma^2\\) at some visually appealing value (e.g. \\(\\sigma^2=1\\) should be fine)\nexplore how \\(h_{AMISE}\\) behaves depending on the following parameters (in case of a Shiny App, these will be sliders for the user to tweak):\n\nsample size n\nblock size N (see (Ruppert, Sheather, and Wand 1995) for choosing the optimal block size)\ndensity of the covariate: beta parameters \\(\\alpha\\) and \\(\\beta\\)\n\nvisualize (global, asymptotically optimal) bandwidth\n\nalso find a way to visually incorporate the beta density"
+  },
+  {
+    "objectID": "assignments/assignment-03.html#submission",
+    "href": "assignments/assignment-03.html#submission",
+    "title": "Assignment 3",
+    "section": "Submission",
+    "text": "Submission\nCreate a Shiny App or (alternatively) an R Markdown report explaining your findings. The report should be self-contained and include all code necessary to reproduce your results. If you choose to create a Shiny App, please include a link to the app in your report."
   },
   {
     "objectID": "assignments/assignment-05.html",
