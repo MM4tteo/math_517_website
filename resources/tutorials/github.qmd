@@ -6,11 +6,6 @@ output:
     toc: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
 ::: callout-important 
 
 Please read the full guide if something does not work: it is very likely that the answer to your problem lies just a few lines after wherever you stopped reading.
@@ -24,6 +19,7 @@ First follow this [set up Git tutorial](https://docs.github.com/en/get-started/q
 1. [Create a GitHub account](https://github.com/join)
 2. [Install Git](https://docs.github.com/en/get-started/quickstart/set-up-git#setting-up-git)
 3. Create a repository and clone it to your computer
+4. Create a file and push it to GitHub
 
 If all of the above worked, you are ready to go.
 

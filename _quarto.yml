@@ -55,6 +55,12 @@ website:
             text: Assignment 4
           - href: assignments/assignment-05.qmd
             text: Assignment 5
+          - href: assignments/assignment-06.qmd
+            text: Assignment 6
+          - href: assignments/assignment-07.qmd
+            text: Assignment 7
+          - href: assignments/assignment-08.qmd
+            text: Assignment 8
       - section: "Projects"
         contents:
           - href: projects/project-01.qmd

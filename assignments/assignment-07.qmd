@@ -1,0 +1,17 @@
+---
+title: "Assignment 7"
+subtitle: "TBD"
+date: 11-24-2023
+format: html
+editor: visual
+---
+
+::: callout-important
+**Due date: 11:59pm on Sunday, 3 December 2023.**
+:::
+
+::: callout-note
+Go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-7-YOUR_GITHUB_USERNAME` to get started. If you cannot find the repository, clik on the link you received by email.
+:::
+
+To be posted soon.
