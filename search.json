@@ -907,7 +907,7 @@
     "href": "assignments/assignment-03.html#submission",
     "title": "Assignment 3",
     "section": "Submission",
-    "text": "Submission\nWrite a Markdown report explaining your findings. Use the report.qmd file to write your report 1.\nThe report should be self-contained and include all code necessary to reproduce your results (for help with virtual environments, see this page).\nYou can create a Shiny App (or an interactive Jupyter notebook, Pluto notebook) as it might be easier to play with the data. An interactive report (shiny app, notebook with interactive sliders, …) is not required, but it is a good way to explore the data interactively. The .qmd report is required."
+    "text": "Submission\nWrite a Markdown report explaining your findings. Use the report.qmd file to write your report 1. (Alternatively, any other format that produces an html and a pdf file is fine (e.g. Rmarkdown)).\nThe report should be self-contained and include all code necessary to reproduce your results (for help with virtual environments, see this page).\nYou can create a Shiny App (or an interactive Jupyter notebook, Pluto notebook) as it might be easier to play with the data. An interactive report (shiny app, notebook with interactive sliders, …) is not required, but it is a good way to explore the data interactively. The .qmd report is required."
   },
   {
     "objectID": "assignments/assignment-01.html",
