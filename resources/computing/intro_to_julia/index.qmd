@@ -18,13 +18,13 @@ listing:
 editor: visual
 ---
 
-:::{.callout-important}
-**🏗 Under construction**
+For a refresher on `Julia` basics, you can check out one of the following resources:
 
-Please check [this tutorial](https://crsl4.github.io/julia-workshop/) for now.
-:::
-
-
+- [Tutorials from the official documentation](https://julialang.org/learning/tutorials/)
+- [Julia Workshop for Data Science](https://crsl4.github.io/julia-workshop/)
+- [Julia academy](https://juliaacademy.com/courses?preview=logged_out)
+- [Introduction to Scientific Programming and Machine Learning with Julia](https://sylvaticus.github.io/SPMLJ/stable/)
+- *and many others*
 
 ::: {#classes}
 :::
