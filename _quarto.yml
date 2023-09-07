@@ -5,7 +5,7 @@ website:
   page-navigation: true
   title: "MATH 517"
   description: "Homepage for MATH 517- Computational statistics and visualisation at EPFL, Fall 2023."
-  site-url: https://github.com/MATH-517/MATH_517_website.github.io"
+  site-url: "https://math-517.github.io/math_517_website/"
 
   repo-url: https://github.com/MATH-517/MATH_517_website
   repo-actions: [edit, issue]
