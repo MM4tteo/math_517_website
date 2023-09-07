@@ -31,7 +31,7 @@ website:
       - section: "Course information"
         contents:
           - href: course-overview.qmd
-            text: Overview
+            text: Overview/Organisation
           - href: course-syllabus.qmd
             text: Syllabus
           - href: index.qmd

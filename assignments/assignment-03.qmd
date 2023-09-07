@@ -1,13 +1,13 @@
 ---
 title: "Assignment 3"
 subtitle: "Optimal Bandwidth Selection in KDE"
-date: 10-13-2023
+date: 10-20-2023
 format: html
 editor: visual
 ---
 
 ::: callout-important
-**Due date: 11:59pm on Sunday, 29 October 2023.**
+**Due date: 11:59pm on Sunday, 22 October 2023.**
 :::
 
 ::: callout-note
@@ -28,3 +28,8 @@ Create a [Shiny App](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1
     -   density of the covariate: beta parameters `shape1` and `shape2`
 -   visualize (global, asymptotically optimal) bandwidth
     -   also find a way to visually incorporate the beta density
+
+
+# TODO: 
+- [ ] add a link to ruppert, sheather, wand jasa 1995 for optimal choice of N
+- [ ] add content of slides 19 and 20 from lecture 4
