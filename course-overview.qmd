@@ -36,7 +36,8 @@ This website and part of the course materials where adapted from different sourc
 ::: {.alert .alert-info}
 **TODO: rewrite this section**
 
-add informations about the course organization from lecture 1
+- add informations about the course organization from lecture 1
+- 
 :::
 
 
@@ -44,28 +45,9 @@ The most important point is that the course will be hosted on GitHub, specifical
 
 # 1. Course Content
 
-The plan for the lectures is as follows:
-
-* Week 1: Introduction & Software
-* Week 2: Ethics & Reproducibility
-* Week 3: Data Exploration & Graphics
-* Week 4: Kernel Density Estimation
-* Week 5: Local Polynomial Regression
-* Week 6: Cross-validation
-* Week 7: EM Algorithm
-* Week 8: EM Algorithm
-* Week 9: Monte Carlo
-* Week 10: Bootstrap
-* Week 11: Bootstrap
-* Week 12: Bayesian Computations
-* Week 13: Bayesian Computations
-* Week 14: $\emptyset$
-
-Since our lectures are on Friday morning, 10:15-12 am, and exercises on Friday afternoon, 13:15-15 pm, the last week of the semester falls on December 23. Hence this week is going to be cancelled, and the extra time can be used to work on the final projects. In case of interest, we can also have consultation hours on Zoom on December 23 or some other time during the last week.
-
 As far as the lecture topics go, the first 3 weeks will be less mathematical, while the remaining weeks will be somehow more classical. However, the focus of this course is on methods and algorithms, *not* on inference and theory, hence we will rarely, if ever, prove theorems. We may however do (blackboard) calculations from time to time.
 
-Apart from the topics mentioned above, mastering this course requires scripting (simulation studies and data exploration & visualization tasks) in **R** and **Markdown**, as well as sharing your code via **GitHub**. You will be required to do a small project a final project, and various assignments fostering these skills. There will be no exercise sheets, suggestions for each week's exercise class will be given towards the end of each week's lecture slides. **Exercise classes should be attended** and used to pick up the required skills, and work on these projects and assignments!
+Apart from the topics mentioned [in the schedule](index.qmd), mastering this course requires scripting (simulation studies and data exploration & visualization tasks) in **R** and **Markdown**, as well as sharing your code via **GitHub**. You will be required to do a small project a final project, and various assignments fostering these skills. There will be no exercise sheets, suggestions for each week's exercise class will be given towards the end of each week's lecture slides. **Exercise classes should be attended** and used to pick up the required skills, and work on these projects and assignments!
 
 # 2. Evaluation
 

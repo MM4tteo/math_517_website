@@ -1,7 +1,7 @@
 ---
 title: "Assignment 3"
 subtitle: "Optimal Bandwidth Selection in KDE"
-date: 10-20-2023
+date: 10-13-2023
 format: html
 editor: visual
 ---
