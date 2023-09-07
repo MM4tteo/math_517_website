@@ -76,4 +76,13 @@ The goal is to study the (global, asymptotically optimal) bandwidth choice $h_{A
 
 ## Submission
 
-Create a [Shiny App](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/) or (alternatively) an R Markdown report explaining your findings. The report should be self-contained and include all code necessary to reproduce your results. If you choose to create a Shiny App, please include a link to the app in your report.
+Write a Markdown report explaining your findings. Use the `report.qmd` file to write your report [^1].
+
+The report should be self-contained and include all code necessary to reproduce your results (for help with virtual environments, see [this page](../resources/tips/virtual_environments.qmd)).
+
+
+You can create a [Shiny App](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/) (or an interactive Jupyter notebook, Pluto notebook)  as it might be easier to play with the data. An interactive report (shiny app, notebook with interactive sliders, ...) is not required, but it is a good way to explore the data interactively. The `.qmd` report is required.
+
+
+[^1]: `.qmd` files are [Quarto](https://quarto.org/) files, which can be used to write markdown report with R, Julia and Python (sometimes simultaneously).
+

@@ -46,6 +46,10 @@ It is a good idea to install extension from the visual studio marketplace. You c
 Go to [posit.co](https://posit.co) and download the RStudio IDE. Choose RStudio Desktop free version and make sure the correct operating system was selected. Install RStudio from the downloaded executable. Open RStudio.
 
 
+# Report writing 
+
+We encourage you to use [Quarto](https://quarto.org/), as it is a very powerful tool that allows you to write reports in Markdown, Python, Julia and LaTeX. It also allows you to write reports in multiple programming languages in the same document. See [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/) for installation instructions.
+
 ::: callout-note
 For help with git and GitHub, please check [this tutorial](github.qmd)
 :::
