@@ -368,7 +368,7 @@
     "href": "resources/computing/intro_to_julia/index.html",
     "title": "Introduction to Julia",
     "section": "",
-    "text": "Important\n\n\n\n🏗 Under construction\nPlease check this tutorial for now.\n\n\n\n\n\n\n\nSubject\n\n\nDescription\n\n\n\n\n\n\nGood practices in Julia\n\n\nTips and tricks for writing better code\n\n\n\n\n\nNo matching items"
+    "text": "For a refresher on Julia basics, you can check out one of the following resources:\n\nTutorials from the official documentation\nJulia Workshop for Data Science\nJulia academy\nIntroduction to Scientific Programming and Machine Learning with Julia\nand many others\n\n\n\n\n\n\nSubject\n\n\nDescription\n\n\n\n\n\n\nGood practices in Julia\n\n\nTips and tricks for writing better code\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "resources/week-01/recap-linear-regression.html",
@@ -774,7 +774,7 @@
     "href": "resources/computing/intro_to_python/index.html",
     "title": "Introduction to Python",
     "section": "",
-    "text": "Important\n\n\n\n🏗 Under construction\n\n\nSee (Duchesnay, Lofstedt, and Younes 2020)\n\n\n\n\n\nSubject\n\n\nDescription\n\n\n\n\n\n\nGood practices in Python\n\n\nTips and tricks for writing better code\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\nReferences\n\nDuchesnay, Edouard, Tommy Lofstedt, and Feki Younes. 2020. “Statistics and Machine Learning in Python.”"
+    "text": "For a refresher on Python basics, you can check out one of the following resources:\n\nPython For Beginners\nIntroductory books from the official documentation\nThe Python Tutorial\nThe Hitchhiker’s Guide to Python\nDuchesnay, Lofstedt, and Younes (2020)\nand many others\n\n\n\n\n\n\nSubject\n\n\nDescription\n\n\n\n\n\n\nGood practices in Python\n\n\nTips and tricks for writing better code\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\nReferences\n\nDuchesnay, Edouard, Tommy Lofstedt, and Feki Younes. 2020. “Statistics and Machine Learning in Python.”"
   },
   {
     "objectID": "resources/tips/collaboration.html",
