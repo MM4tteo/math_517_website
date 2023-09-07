@@ -14,7 +14,7 @@ number-sections: true
 :::
 
 ::: callout-note
-Go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-2-YOUR_GITHUB_USERNAME` to get started.
+Click on [this link](https://classroom.github.com/a/zN6evJ0r). Then go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-2-YOUR_GITHUB_USERNAME` to get started.
 :::
 
 

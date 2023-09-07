@@ -12,7 +12,7 @@ bibliography: ref.bib
 :::
 
 ::: callout-note
-Go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-3-YOUR_GITHUB_USERNAME` to get started.
+Click on [this link](https://classroom.github.com/a/ct4FBOoh), then go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-3-YOUR_GITHUB_USERNAME` to get started.
 :::
 
 ## Recap on global optimal bandwidth

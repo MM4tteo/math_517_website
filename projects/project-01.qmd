@@ -4,6 +4,16 @@ subtitle: "Data visualization and exploration"
 ---
 
 
+::: callout-important
+**Due date: 11:59pm on Sunday, 22 October 2023.**
+:::
+
+::: callout-note
+Use [this invite link](https://classroom.github.com/a/3kOhGyFn), and either join an existing team or create a new one. Once this is done, go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `mini-project-TEAM-NAME` to get started.
+:::
+
+
+
 The goal of this project is *data exploration*. Find an interesting (in the sense it interests you!) data set and
 
 * explore the data
