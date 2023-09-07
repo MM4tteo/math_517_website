@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -65,6 +99,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="MATH 517 - Course overview">
 <meta property="og:description" content="Homepage for MATH 517- Computational statistics and visualisation at EPFL, Fall 2023.">
@@ -80,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./course-overview.html">Overview</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./course-overview.html">Overview/Organisation</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -120,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./course-overview.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Overview</span></a>
+ <span class="menu-text">Overview/Organisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -191,6 +227,18 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./assignments/assignment-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assignments/assignment-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assignments/assignment-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 5</span></a>
   </div>
 </li>
       </ul>
@@ -318,13 +366,27 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#class-meetings" id="toc-class-meetings" class="nav-link active" data-scroll-target="#class-meetings">Class meetings</a></li>
   <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
   <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license"><strong>License</strong></a></li>
+  <li><a href="#course-organization" id="toc-course-organization" class="nav-link" data-scroll-target="#course-organization">Course Organization</a></li>
+  <li><a href="#course-content" id="toc-course-content" class="nav-link" data-scroll-target="#course-content">1. Course Content</a></li>
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">2. Evaluation</a>
+  <ul class="collapse">
+  <li><a href="#assignments-1" id="toc-assignments-1" class="nav-link" data-scroll-target="#assignments-1">2.1 Assignments</a></li>
+  <li><a href="#small-project" id="toc-small-project" class="nav-link" data-scroll-target="#small-project">2.2 Small Project</a></li>
+  <li><a href="#final-project" id="toc-final-project" class="nav-link" data-scroll-target="#final-project">2.3 Final Project</a></li>
+  </ul></li>
+  <li><a href="#grade-calculation" id="toc-grade-calculation" class="nav-link" data-scroll-target="#grade-calculation">3 Grade Calculation</a></li>
+  <li><a href="#materials" id="toc-materials" class="nav-link" data-scroll-target="#materials">4. Materials</a></li>
+  <li><a href="#handing-in-assignments-and-projects" id="toc-handing-in-assignments-and-projects" class="nav-link" data-scroll-target="#handing-in-assignments-and-projects">5. Handing-in Assignments and Projects</a>
+  <ul class="collapse">
+  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/course-overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./course-overview.html">Overview</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./course-overview.html">Overview/Organisation</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Course overview</h1>
 </div>
@@ -387,8 +449,170 @@ This online work is licensed under a <a href="https://creativecommons.org/licens
 <li><a href="https://sta101-f23.github.io/course-overview.html">Dr.&nbsp;Mine Çetinkaya-Rundel MATH 517 website</a></li>
 <li><a href="https://fredhutchio.github.io/r_intro/">fredhutch.io</a> and <a href="https://datacarpentry.org/R-ecology-lesson/instructor/aio.html">R for data analysis and visualization of Ecological Data</a></li>
 </ul>
+</section>
+<section id="course-organization" class="level1">
+<h1>Course Organization</h1>
+<div class="alert alert-info">
+<p><strong>TODO: rewrite this section</strong></p>
+<ul>
+<li>add informations about the course organization from lecture 1</li>
+<li></li>
+</ul>
+</div>
+<p>The most important point is that the course will be hosted on GitHub, specifically in <a href="https://github.com/TMasak/StatComp">this repo</a>. You will need to work with GitHub also to submit your assignments. Moodle will only be used to communicate the points received back to you.</p>
+</section>
+<section id="course-content" class="level1">
+<h1>1. Course Content</h1>
+<p>As far as the lecture topics go, the first 3 weeks will be less mathematical, while the remaining weeks will be somehow more classical. However, the focus of this course is on methods and algorithms, <em>not</em> on inference and theory, hence we will rarely, if ever, prove theorems. We may however do (blackboard) calculations from time to time.</p>
+<p>Apart from the topics mentioned <a href="./index.html">in the schedule</a>, mastering this course requires scripting (simulation studies and data exploration &amp; visualization tasks) in <strong>R</strong> and <strong>Markdown</strong>, as well as sharing your code via <strong>GitHub</strong>. You will be required to do a small project a final project, and various assignments fostering these skills. There will be no exercise sheets, suggestions for each week’s exercise class will be given towards the end of each week’s lecture slides. <strong>Exercise classes should be attended</strong> and used to pick up the required skills, and work on these projects and assignments!</p>
+</section>
+<section id="evaluation" class="level1">
+<h1>2. Evaluation</h1>
+<p>The assessment method for this course is “controle continue”, meaning that the course and all the work required from the students effectively ends before Christmas, and final grades will be given during the first two weeks in January. This also means that the <strong>work needed to pass this course starts immediately on Week 1</strong>.</p>
+<p>The final grade will consist of</p>
+<ul>
+<li>handing in assignments – 40 % of the grade, handed-in individually
+<ul>
+<li>probably 8 assignments in total, each for 5 % of the grade</li>
+<li>collaboration during the exercise classes is encouraged, but avoid copies</li>
+</ul></li>
+<li>small project – 20 % of the grade, handed-in in groups of 2-3 students, and</li>
+<li>final project – 40 % of the grade, handed-in in groups of 2-3.</li>
+</ul>
+<p><strong>Grading</strong> will be done on a rough scale. For example the assignments will be mostly graded on a binary basis, you either receive full 5 % or nothing. Similarly the projects will be graded in 5 % increments. Notice that 5 % corresponds to 0.25 increment on the 1-6 scale used at EPFL. As a result, skipping an assignment will irrevocably reduce your final grade. On the other hand, the assignments will be short and simple, and serious attempts to solve them should resolve in the full mark. Similarly for the projects, with one exception: 10 % of the final project will be awarded for value added (original data analysis, simulation study answering a previously unclear question, etc.).</p>
+<p><strong>Deadlines</strong> will always be set at the end of the week (the midnight between Sunday and Monday), hence e.g.&nbsp;“deadline on Week 2” simply means the assignment can be handed-in by 23:59 on October 2. An assignment from Week <span class="math inline">\(k\)</span> (given at the end of slides to the <span class="math inline">\(k\)</span>-th lecture) will always have their deadline on Week <span class="math inline">\(k+1\)</span> (i.e.&nbsp;the midnight between Sunday and Monday following the <span class="math inline">\((k+1)\)</span>-th lecture). We will be pedantic about setting up the deadlines, not about forcing them. However, accepting a late submission will be done solely at teachers’ discretion, following a personal (face-to-face) conversation during the exercises (again, <strong>the exercises should be attended</strong>).</p>
+<section id="assignments-1" class="level2">
+<h2 class="anchored" data-anchor-id="assignments-1">2.1 Assignments</h2>
+<p>There will be 8 assignments during the semester, graded as described above. Assignments can be found toward the end of the slides (but not every week there is an assignment), just before Exercises (those will be available every week towards the end of the slides, but those are not mandatory, only recommended).</p>
+</section>
+<section id="small-project" class="level2">
+<h2 class="anchored" data-anchor-id="small-project">2.2 Small Project</h2>
+<p>Work can start after the second lecture, deadline on Week 6.</p>
+<p>The goal of this project is <em>data exploration</em>. Find an interesting (in the sense it interests you!) data set and</p>
+<ul>
+<li>explore the data</li>
+<li>describe the data</li>
+<li>visualize the data</li>
+<li>lay out some questions about the data based on your exploration</li>
+<li>use more detailed visualization techniques to conjecture answers to those questions</li>
+</ul>
+<p>The first step should be done individually. Then you can form groups and pick up the most interesting data set and perform the subsequent steps. If you realize you have chosen too simple data set (or one that you don’t like), you don’t need to scrap your work. Instead, simply move to a different data set and have your project composed of multiple data sets.</p>
+<p>Note that the purpose of this project is to play around, demonstrating your data exploration, wrangling and visualization skills. Hopefully, you will also find scientifically interesting questions or questions of personal interest (e.g.&nbsp;does ball possession matter in a game of football?), but even if not, you can still be awarded full points, as long as you avoid Kaggle data sets that have been analyzed zillion times before. In that case you do end up with such a data set for any reason, try to avoid reading old solutions, and rather focus on utilizing techniques from this course in your own original way and to the best of your abilities.</p>
+<p><strong>Groups</strong> can be of size of either 2 or 3 people. The size will <em>not</em> matter w.r.t. to grading. However, a group of size 3 will have one additional task to do: as part of their Moodle submission, every team member will individually include a short paragraph describing contributions of every individual member of the team. This is not to be discussed among the team members, as it serves as a safeguard. Regardless of their individual contributions, each member of the team will receive the same grade, apart from where this would be extremely unfair. Such cases will be discussed personally. In case of any team-work problems, the students are encouraged to seek advice (mostly as a group) from the teachers (mostly during the exercise classes).</p>
+</section>
+<section id="final-project" class="level2">
+<h2 class="anchored" data-anchor-id="final-project">2.3 Final Project</h2>
+<p>Work can start following the <span class="math inline">\(7\)</span>-th lecture, deadline on December 23, at 23:59. This is a soft deadline. I would suggest you finish the project before Christmas, however, <em>if all members of the team agree to this</em>, the project can be submitted by the end of the calendar year. In this case, make sure that one member of the team submits a deadline that you set for yourself (e.g.&nbsp;you can decide to submit on December 30) as a submission into the Moodle (to be replaced later by the real submission). This is recommended in order to prevent the holiday season ruined by a lazy member(s) of the team. Note that if a single member of your team wishes to submit on December 23, you are required to do so.</p>
+<p>The goal of this project is quite broad, students are free to come up with their own ideas. While simulation studies are the designated topic, groups that found interesting data during the small project and would like to carry on analyzing it, or groups interested in studying a bit deeper one of the methodological concepts from this course are encouraged to approach the teachers during the exercises and discuss their ideas. <strong>Prospective topics for the final project will be gradually revealed during the lectures.</strong></p>
+<p>A part of the grade for the final project (10 % of the total grade, i.e.&nbsp;one quarter of the final project) will be awarded for value added (original data analysis, simulation study answering a previously unclear question, etc.). All of the prospective topics that will be introduced during the lecture will have this element, and by half-way through the semester (when the final project will start) it should be clear through the examples what the project should aspire to. We will also discuss this in person at some point, likely on Week 7. The remaining three quarters of the project (i.e.&nbsp;30 % of the total grade) will be awarded for</p>
+<ul>
+<li>quality of the Markdown report
+<ul>
+<li>clarity, readability, structure, referencing, etc.</li>
+</ul></li>
+<li>graphical considerations
+<ul>
+<li>well chosen (as discussed during the course) graphics with captions, referenced from the main text</li>
+</ul></li>
+<li>concepts explored beyond the scope of the course
+<ul>
+<li>in the soft sense that they were not fully covered during classes</li>
+</ul></li>
+<li>overall quality
+<ul>
+<li>correctness, demonstration of understanding, etc.</li>
+</ul></li>
+</ul>
+<p>A project seriously lacking in any of the criteria above will be penalized in 5 % reduction(s) in the total grade.</p>
+<p><a name="groups"></a> <strong>Groups</strong> can be of size of either 2 or 3 people. The size will <em>not</em> matter w.r.t. to grading. However, a group of size 3 will have one additional task to do: as part of their Moodle submission, every team member will individually include a short paragraph describing contributions of every individual member of the team. This is not to be discussed among the team members, as it serves as a safeguard. Regardless of their individual contributions, each member of the team will receive the same grade, apart from where this would be extremely unfair. Such cases will be discussed personally. In case of any team-work problems, the students are encouraged to seek advice (mostly as a group) from the teachers (mostly during the exercise classes).</p>
+</section>
+</section>
+<section id="grade-calculation" class="level1">
+<h1>3 Grade Calculation</h1>
+<p>In the Moodle, your submissions will receive a grade on the percentage scale of the final grade, e.g.&nbsp;the assignments will be awarded between 0 and 5 points (mostly either 0 or 5), the small project between 0 and 20 points (mostly 0,5,10,15 or 20), and the final project between 0 and 40 points (again, mostly divisible by 5). Let <span class="math inline">\(a_1,\ldots,a_8\)</span> denote points you receive from the assignments, <span class="math inline">\(s\)</span> points received for the small project, and <span class="math inline">\(p\)</span> be the final project points. The final grade will be calculated as [ 1 + (_{j=1}^8 a_j + s + p ) ] which gives the best possible grade</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">8</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">100</span><span class="sc">*</span>(<span class="fu">sum</span>(a) <span class="sc">+</span> s <span class="sc">+</span> p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+</section>
+<section id="materials" class="level1">
+<h1>4. Materials</h1>
+<p>All materials will be gradually made available on <strong>GitHub</strong>, specifically in <a href="https://github.com/TMasak/StatComp">this repo</a>. This includes</p>
+<ul>
+<li>lecture slides,</li>
+<li>lecture notes, and</li>
+<li>manuals.</li>
+</ul>
+<p>During Week 1-3, lecture notes will cover only a portion of the slides, but from Week 4 slides will basically correspond to a presentable version of the lecture notes. The <em>manuals</em> form a supplementary material created to help you out with various aspects of the course (such as the purpose of this one called “Course Organization” is to tell you everything administration-related that you need to successfully pass the course).</p>
+<p>You will soon learn how to download the up-to-date materials via RStudio, which will allow us to gradually update everything and distribute it to you (the students) on the go. You will have access to all the source code as well, which you can use for example to create a printable version of these manuals (simply replace the <code>html_document</code> in the header by <code>pdf_document</code> and <code>Knit</code> it in RStudio). Learning basics of this is a part of the learning process asociated with this course.</p>
+<p><strong>Moodle</strong> will only be used for its forum and to formally submit assignments (and projects) are receive back the grades (see the next section). There will be no Piazza or video recordings available for this course.</p>
+</section>
+<section id="handing-in-assignments-and-projects" class="level1">
+<h1>5. Handing-in Assignments and Projects</h1>
+<p>Submissions will (mostly) be HTML documents and corresponding R Markdown files (and possibly R scripts) available on students’ GitHub repos. Those files must provide:</p>
+<ul>
+<li>the HTML file must contain no code (mine do only for educational purposes)</li>
+<li>the code in the <code>.Rmd</code> file is well commented</li>
+<li>data and their source is described in the introduction</li>
+<li>main section(s) contain text and graphical outputs</li>
+<li>every plot has a self-explanatory caption and is referenced from and described in the main text</li>
+<li>in the main text describe obstacles you have encountered and how you dealt with them</li>
+<li>reference all work of someone else (even when e.g.&nbsp;copying and modifying code from Stack Overflow)</li>
+<li>discussion summarizing what you have achieved and what additional questions and/or future work your analysis spawns</li>
+</ul>
+<p>The above pertains to projects. For assignments, adjust accordingly. For example, output of an assignment may be only a single plot - in that case just describe the plot.</p>
+<p>Almost everything will be done in GitHub. After completing the assignment from Week 1 (i.e.&nbsp;following <a href="02_Github.html">this manual</a>), you should</p>
+<ul>
+<li>have installed the following software:
+<ul>
+<li>R</li>
+<li>RStudio</li>
+<li>Git</li>
+</ul></li>
+<li>have your personal GitHub account</li>
+<li>a <em>private</em> repository in GitHub called “StatComp-[your SCIPER]” linked to an RStudio project on your local machine</li>
+</ul>
+<p>and be able to push and pull things between GitHub and your local machine.</p>
+<p>Now, in order to obtain points for your assignment, do the following:</p>
+<ul>
+<li>solve the assignment and push your solution to your GitHub repo.</li>
+<li>make sure your repo is well organized, so the teachers can orient themselves in it well.</li>
+<li>provide a link to your <code>.html</code> file (or whatever file is your solution) to Moodle, in the corresponding Assignment.
+<ul>
+<li>this link does not have to render an HTML (may only show a code in your GitHub repo), it is just for cross-checking</li>
+<li>make this link clickable (by <code>ctrl+K</code>)</li>
+</ul></li>
+</ul>
+<p>You will receive grades in the Moodle and, if appropriate, feedback either via Moodle or via <em>issue reporting</em> on GitHub.</p>
+<section id="projects" class="level2">
+<h2 class="anchored" data-anchor-id="projects">Projects</h2>
+<p>The workflow above is mostly for the assignments, since the projects require one more ingredient: collaboration. That can either be done locally, synchronizing pushes to the respective repositories on GitHub (which we recommend for the small project), or by actually utilizing the collaborative features of GitHub by working in a single repo and using tools such as <em>branching</em>, <em>forking</em> and <em>pull requests</em> to move forward. For the final project, we would actually suggest something intermediate:</p>
+<ul>
+<li>one student from a group creates a new <em>private</em> GitHub repo “SmallProj-[SCIPER]” or “FinalProj-[SCIPER]”, respectively</li>
+<li>the one student goes to the repo, into settings -&gt; collaborators and adds the other group members, which gives them the right to push into the repo
+<ul>
+<li>there is also no problem with sharing your “StatComp-[SCIPER]” repo with your collaborators, if you wish to do so instead, so you may opt not to create a new repo</li>
+<li>if you create a new repo, no need to invite the teachers into it</li>
+</ul></li>
+<li>now, each group member can
+<ul>
+<li>pull from the shared repo when starting to work on the project</li>
+<li>push to the shared repo at the end of his work streak</li>
+</ul></li>
+<li>naturally, problems arise when multiple people work on the project at the same time, but our goal is not to teach you remote development tools like this; instead, communicate with your group mates and work together whenever possible.</li>
+<li>when the project is finished, every student pushes it to the private “StatComp-[SCIPER]” repo and submits as described above
+<ul>
+<li>In case of a group of size 3, submit right under your link the distribution of work like described <a href="#groups">above</a>.</li>
+</ul></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

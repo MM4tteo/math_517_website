@@ -28,6 +28,34 @@
     "text": "License\n\nThis online work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International. Visit here for more information about the license.\nThis website and part of the course materials where adapted from different sources:\n\nDr. Mine Çetinkaya-Rundel MATH 517 website\nfredhutch.io and R for data analysis and visualization of Ecological Data"
   },
   {
+    "objectID": "course-overview.html#assignments-1",
+    "href": "course-overview.html#assignments-1",
+    "title": "Course overview",
+    "section": "2.1 Assignments",
+    "text": "2.1 Assignments\nThere will be 8 assignments during the semester, graded as described above. Assignments can be found toward the end of the slides (but not every week there is an assignment), just before Exercises (those will be available every week towards the end of the slides, but those are not mandatory, only recommended)."
+  },
+  {
+    "objectID": "course-overview.html#small-project",
+    "href": "course-overview.html#small-project",
+    "title": "Course overview",
+    "section": "2.2 Small Project",
+    "text": "2.2 Small Project\nWork can start after the second lecture, deadline on Week 6.\nThe goal of this project is data exploration. Find an interesting (in the sense it interests you!) data set and\n\nexplore the data\ndescribe the data\nvisualize the data\nlay out some questions about the data based on your exploration\nuse more detailed visualization techniques to conjecture answers to those questions\n\nThe first step should be done individually. Then you can form groups and pick up the most interesting data set and perform the subsequent steps. If you realize you have chosen too simple data set (or one that you don’t like), you don’t need to scrap your work. Instead, simply move to a different data set and have your project composed of multiple data sets.\nNote that the purpose of this project is to play around, demonstrating your data exploration, wrangling and visualization skills. Hopefully, you will also find scientifically interesting questions or questions of personal interest (e.g. does ball possession matter in a game of football?), but even if not, you can still be awarded full points, as long as you avoid Kaggle data sets that have been analyzed zillion times before. In that case you do end up with such a data set for any reason, try to avoid reading old solutions, and rather focus on utilizing techniques from this course in your own original way and to the best of your abilities.\nGroups can be of size of either 2 or 3 people. The size will not matter w.r.t. to grading. However, a group of size 3 will have one additional task to do: as part of their Moodle submission, every team member will individually include a short paragraph describing contributions of every individual member of the team. This is not to be discussed among the team members, as it serves as a safeguard. Regardless of their individual contributions, each member of the team will receive the same grade, apart from where this would be extremely unfair. Such cases will be discussed personally. In case of any team-work problems, the students are encouraged to seek advice (mostly as a group) from the teachers (mostly during the exercise classes)."
+  },
+  {
+    "objectID": "course-overview.html#final-project",
+    "href": "course-overview.html#final-project",
+    "title": "Course overview",
+    "section": "2.3 Final Project",
+    "text": "2.3 Final Project\nWork can start following the \\(7\\)-th lecture, deadline on December 23, at 23:59. This is a soft deadline. I would suggest you finish the project before Christmas, however, if all members of the team agree to this, the project can be submitted by the end of the calendar year. In this case, make sure that one member of the team submits a deadline that you set for yourself (e.g. you can decide to submit on December 30) as a submission into the Moodle (to be replaced later by the real submission). This is recommended in order to prevent the holiday season ruined by a lazy member(s) of the team. Note that if a single member of your team wishes to submit on December 23, you are required to do so.\nThe goal of this project is quite broad, students are free to come up with their own ideas. While simulation studies are the designated topic, groups that found interesting data during the small project and would like to carry on analyzing it, or groups interested in studying a bit deeper one of the methodological concepts from this course are encouraged to approach the teachers during the exercises and discuss their ideas. Prospective topics for the final project will be gradually revealed during the lectures.\nA part of the grade for the final project (10 % of the total grade, i.e. one quarter of the final project) will be awarded for value added (original data analysis, simulation study answering a previously unclear question, etc.). All of the prospective topics that will be introduced during the lecture will have this element, and by half-way through the semester (when the final project will start) it should be clear through the examples what the project should aspire to. We will also discuss this in person at some point, likely on Week 7. The remaining three quarters of the project (i.e. 30 % of the total grade) will be awarded for\n\nquality of the Markdown report\n\nclarity, readability, structure, referencing, etc.\n\ngraphical considerations\n\nwell chosen (as discussed during the course) graphics with captions, referenced from the main text\n\nconcepts explored beyond the scope of the course\n\nin the soft sense that they were not fully covered during classes\n\noverall quality\n\ncorrectness, demonstration of understanding, etc.\n\n\nA project seriously lacking in any of the criteria above will be penalized in 5 % reduction(s) in the total grade.\n Groups can be of size of either 2 or 3 people. The size will not matter w.r.t. to grading. However, a group of size 3 will have one additional task to do: as part of their Moodle submission, every team member will individually include a short paragraph describing contributions of every individual member of the team. This is not to be discussed among the team members, as it serves as a safeguard. Regardless of their individual contributions, each member of the team will receive the same grade, apart from where this would be extremely unfair. Such cases will be discussed personally. In case of any team-work problems, the students are encouraged to seek advice (mostly as a group) from the teachers (mostly during the exercise classes)."
+  },
+  {
+    "objectID": "course-overview.html#projects",
+    "href": "course-overview.html#projects",
+    "title": "Course overview",
+    "section": "Projects",
+    "text": "Projects\nThe workflow above is mostly for the assignments, since the projects require one more ingredient: collaboration. That can either be done locally, synchronizing pushes to the respective repositories on GitHub (which we recommend for the small project), or by actually utilizing the collaborative features of GitHub by working in a single repo and using tools such as branching, forking and pull requests to move forward. For the final project, we would actually suggest something intermediate:\n\none student from a group creates a new private GitHub repo “SmallProj-[SCIPER]” or “FinalProj-[SCIPER]”, respectively\nthe one student goes to the repo, into settings -&gt; collaborators and adds the other group members, which gives them the right to push into the repo\n\nthere is also no problem with sharing your “StatComp-[SCIPER]” repo with your collaborators, if you wish to do so instead, so you may opt not to create a new repo\nif you create a new repo, no need to invite the teachers into it\n\nnow, each group member can\n\npull from the shared repo when starting to work on the project\npush to the shared repo at the end of his work streak\n\nnaturally, problems arise when multiple people work on the project at the same time, but our goal is not to teach you remote development tools like this; instead, communicate with your group mates and work together whenever possible.\nwhen the project is finished, every student pushes it to the private “StatComp-[SCIPER]” repo and submits as described above\n\nIn case of a group of size 3, submit right under your link the distribution of work like described above."
+  },
+  {
     "objectID": "exercises/exercise-02.html",
     "href": "exercises/exercise-02.html",
     "title": "Exercise 2: mutlivariate KDE",
@@ -35,18 +63,39 @@
     "text": "Consider bivariate kernel density estimator. Simulate data from bivariate normak distribution \\(\\mathcal{N}((0,0), (1, 0.3; 0.3, 1))\\).\n\nTry different bandwidths and different kernels (use the bivariate normal kernel as well as the product kernel with the univariate Epanechnikov kernel)\nFind ways to visually compare your estimates with the real density (3d plots of the density or density contour plots)\nR functions such as kde2d of package MASS, contour and persp might be helpful"
   },
   {
-    "objectID": "assignments/assignment-03.html",
-    "href": "assignments/assignment-03.html",
-    "title": "Assignment 3",
+    "objectID": "assignments/assignment-01.html",
+    "href": "assignments/assignment-01.html",
+    "title": "Assignment 1",
     "section": "",
-    "text": "Important\n\n\n\nDue date: 11:59pm on Sunday, 29 October 2023.\n\n\n\n\n\n\n\n\nNote\n\n\n\nGo to the course GitHub organization and locate the repo titled ae-3-YOUR_GITHUB_USERNAME to get started.\n\n\nCreate a Shiny App or (alternatively) an R Markdown report exploring the (global, asymptotically optimal) bandwidth choice \\(h_{AMISE}\\) on slides 19 and 20 on a simulated data example:\n\ncovariate \\(X\\) from beta distribution rbeta(n,shape1,shape2)\nresponse values \\(Y = m(X) + \\epsilon\\) where\n\nthe regression function \\(m\\) is given by sin(1/(x/3+0.1))\n\\(\\epsilon \\sim \\mathcal{N}(0,\\sigma^2)\\)\n\nfix \\(\\sigma^2\\) at some visually appealing value (e.g. \\(\\sigma^2=1\\) should be fine)\nexplore how \\(h_{AMISE}\\) behaves depending on the following parameters (in case of a Shiny App, these will be sliders for the user to tweak):\n\nsample size n\nblock size N\ndensity of the covariate: beta parameters shape1 and shape2\n\nvisualize (global, asymptotically optimal) bandwidth\n\nalso find a way to visually incorporate the beta density"
+    "text": "Important\n\n\n\nDue date: 11:59pm on Sunday, 1 October 2023."
+  },
+  {
+    "objectID": "assignments/assignment-01.html#today",
+    "href": "assignments/assignment-01.html#today",
+    "title": "Assignment 1",
+    "section": "Today",
+    "text": "Today\nBy the end of today you will…\n\ncreate a github account and familiarise yourself with git and GitHub\naccept the first assignment and submit your work\nmake sure GitHub Classroom works as expected and you can submit your work."
+  },
+  {
+    "objectID": "assignments/assignment-01.html#assignment",
+    "href": "assignments/assignment-01.html#assignment",
+    "title": "Assignment 1",
+    "section": "Assignment",
+    "text": "Assignment\nThe goal of this assignment is for you to fit a linear model. For a refresher on linear models, see the ressource for this week. Your task will be to code a function that fits a linear model to a given dataset. You will need to fill in the blacks in the code located in your personal repository ae-1-YOUR_GITHUB_USERNAME.\nHere is how to proceed:\n\nWe expect you to know the basis of progamming in either R, Julia or Python. Please read the introduction to the language of your choice (R, Julia, or Python) if it is not the case.\n\n\nRead the README.md file in your assignment repository and follow the instructions there."
+  },
+  {
+    "objectID": "assignments/assignment-04.html",
+    "href": "assignments/assignment-04.html",
+    "title": "Assignment 4",
+    "section": "",
+    "text": "Important\n\n\n\nDue date: 11:59pm on Sunday, 29 October 2023.\n\n\n\n\n\n\n\n\nNote\n\n\n\nGo to the course GitHub organization and locate the repo titled ae-4-YOUR_GITHUB_USERNAME to get started. If you cannot find the repository, clik on the link you received by email.\n\n\nTo be posted soon."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "MATH 517: Statistical computation and visualisation",
     "section": "",
-    "text": "This page contains an outline of the topics, exercises (ex.), and assignments (ae.) for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester. See the overview page for more information about the course.\n\n\n\n\n\n\nTip\n\n\n\nIt can be useful to check the available tutorials to get ready for the assignments quickly. You can find them under the resources section on your left. Please check the FAQ page for common questions and answers.\n\n\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n    \n    \n  \n  \n    \n    \n      WEEK\n      DATE\n      TOPIC\n      RESOURCES\n      AE\n      EX\n      DUE\n    \n  \n  \n    1\nFri, Sep 22\nSoftware and Data Considerations\n\n📖 linear regression\n\n📖 ae-01\n\n⌨️ ex-01\n\n\n    2\nFri, Sep 29\nGraphics and Visualization\n\n\n💻 mini project\n\n\n\n    \nSun, Oct 1\n\n\n\n\n📖 ae-01\n\n    3\nFri, Oct 6\nKernel Density Estimation\n\n🖥️ kde interactive  from notes\n\n📖 ae-02\n\n⌨️ ex-02\n\n\n    \nSun, Oct 8\n\n\n\n\n\n    4\nFri, Oct 13\nNonparametric Regression (Smoothing)\n\n\n📖 ae-03\n\n\n\n    \nSun, Oct 15\n\n\n\n\n📖 ae-02\n\n    5\nFri, Oct 20\n\n\n\n\n\n    \nSun, Oct 22\n\n\n\n\n💻 mini project\n\n    6\nFri, Oct 27\n\n\n\n\n\n    \nSun, Oct 29\n\n\n\n\n📖 ae-03\n\n    7\nFri, Nov 3\n\n\n\n\n\n    \nSun, Nov 5\n\n\n\n\n\n    8\nFri, Nov 10\n\n\n\n\n\n    \nSun, Nov 12\n\n\n\n\n\n    9\nFri, Nov 17\n\n\n\n\n\n    \nSun, Nov 19\n\n\n\n\n\n    10\nFri, Nov 24\n\n\n\n\n\n    \nSun, Nov 26\n\n\n\n\n\n    11\nFri, Dec 1\n\n\n\n\n\n    \nSun, Dec 3\n\n\n\n\n\n    12\nFri, Dec 8\n\n\n\n\n\n    \nSun, Dec 10\n\n\n\n\n\n    13\nFri, Dec 15\n\n\n\n\n\n    \nSun, Dec 17\n\n\n\n\n\n    14\nFri, Dec 22\n\n\n\n\n\n    \nSun, Dec 24\n\n\n\n\n💻 project"
+    "text": "This page contains an outline of the topics, exercises (ex.), and assignments (ae.) for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester. See the overview page for more information about the course.\n\n\n\n\n\n\nTip\n\n\n\nIt can be useful to check the available tutorials to get ready for the assignments quickly. You can find them under the resources section on your left. Please check the FAQ page for common questions and answers.\n\n\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n    \n    \n  \n  \n    \n    \n      WEEK\n      DATE\n      TOPIC\n      RESOURCES\n      AE\n      EX\n      DUE\n    \n  \n  \n    1\nFri, Sep 22\nSoftware and Data Considerations\n\n📖 linear regression\n\n📖 ae-01\n\n⌨️ ex-01\n\n\n    2\nFri, Sep 29\nGraphics and Visualization\n\n\n💻 mini project\n\n\n\n    \nSun, Oct 1\n\n\n\n\n📖 ae-01\n\n    3\nFri, Oct 6\nKernel Density Estimation\n\n🖥️ kde interactive  from notes\n\n📖 ae-02\n\n⌨️ ex-02\n\n\n    \nSun, Oct 8\n\n\n\n\n\n    4\nFri, Oct 13\nNonparametric Regression (Smoothing)\n\n\n📖 ae-03\n\n\n\n    \nSun, Oct 15\n\n\n\n\n📖 ae-02\n\n    5\nFri, Oct 20\nCross-validation\n\n\n📖 ae-04\n\n\n\n    \nSun, Oct 22\n\n\n\n\n💻 mini project\n📖 ae-03\n\n    6\nFri, Oct 27\nEM algorithm\n\n\n📖 ae-05\n\n\n\n    \nSun, Oct 29\n\n\n\n\n📖 ae-04\n\n    7\nFri, Nov 3\nEM algorithm\n\n\n💻 project\n\n\n\n    \nSun, Nov 5\n\n\n\n\n📖 ae-05\n\n    8\nFri, Nov 10\nMonte Carlo\n\n\n📖 ae-06\n\n\n\n    \nSun, Nov 12\n\n\n\n\n\n    9\nFri, Nov 17\nBootstrap\n\n\n\n\n\n    \nSun, Nov 19\n\n\n\n\n📖 ae-06\n\n    10\nFri, Nov 24\nBootstrap\n\n\n📖 ae-07\n\n\n\n    \nSun, Nov 26\n\n\n\n\n\n    11\nFri, Dec 1\nBayesian Computations\n\n\n📖 ae-08\n\n\n\n    \nSun, Dec 3\n\n\n\n\n📖 ae-07\n\n    12\nFri, Dec 8\nBayesian Computations\n\n\n\n\n\n    \nSun, Dec 10\n\n\n\n\n📖 ae-08\n\n    13\nFri, Dec 15\nTree-based Methods for Classification\n\n\n\n\n\n    \nSun, Dec 17\n\n\n\n\n\n    14\nFri, Dec 22\nno lecture\n\n\n\n\n\n    \nSun, Dec 24\n\n\n\n\n💻 project"
   },
   {
     "objectID": "resources/tips/virtual_environments.html",
@@ -903,25 +952,18 @@
     "text": "3 Gaussian mixture\nThe two functions below allow for random number generation and density evaluation for the Gaussian mixture distribution \\[f(x) = (1-\\tau) \\varphi_{\\mu_1,\\sigma_1^2}(x) + \\tau\\varphi_{\\mu_2,\\sigma_2^2}(x).\\]\n\n\nCode\n# random generation for a mixture of two normal distributions\nrmixnorm &lt;- function(N, mu1, mu2, sigma1, sigma2, tau){\n  ind &lt;- I(runif(N) &gt; tau)\n  X &lt;- rep(0,N)\n  X[ind] &lt;- rnorm(sum(ind), mu1, sigma1)\n  X[!ind] &lt;- rnorm(sum(!ind), mu2, sigma2)\n  return(X)\n}\n\n# density evaluation for a mixture of two normal distributions\ndmixnorm &lt;- function(x, mu1, mu2, sigma1, sigma2, tau){\n  y &lt;- (1-tau)*dnorm(x,mu1,sigma1) + tau*dnorm(x,mu2,sigma2)\n  return(y)\n}\n\n\nA sample call is below.\n\n\nCode\nlibrary(ggplot2)\n\nN &lt;- 300\nmu1 &lt;- 3\nmu2 &lt;- 0\nsigma1 &lt;- 0.5\nsigma2 &lt;- 1\ntau &lt;- 0.6\n\nX &lt;- rmixnorm(N, mu1, mu2, sigma1, sigma2, tau)\nx &lt;- seq(-3, 6, by = 0.01)\nfx &lt;- dmixnorm(x, mu1, mu2, sigma1, sigma2, tau)\n\nggplot() +\n    theme_bw() +\n    aes(X, after_stat(density)) +\n    geom_histogram(colour = \"#999999\", fill = \"#999999\", binwidth = 0.1) + \n    geom_line(aes(x, fx), colour = \"#E69F00\", linewidth = 1) + \n    labs(\n    title = \"Gaussian mixture density and histogram of 300 samples\",\n    subtitle = \"generated from a Gaussian mixture with tau = 0.6\")    \n\n\n\n\n\nSimilar functions will be provided for Python and Julia in the assignment repository."
   },
   {
-    "objectID": "assignments/assignment-01.html",
-    "href": "assignments/assignment-01.html",
-    "title": "Assignment 1",
+    "objectID": "assignments/assignment-03.html",
+    "href": "assignments/assignment-03.html",
+    "title": "Assignment 3",
     "section": "",
-    "text": "Important\n\n\n\nDue date: 11:59pm on Sunday, 1 October 2023."
+    "text": "Important\n\n\n\nDue date: 11:59pm on Sunday, 22 October 2023.\n\n\n\n\n\n\n\n\nNote\n\n\n\nGo to the course GitHub organization and locate the repo titled ae-3-YOUR_GITHUB_USERNAME to get started.\n\n\nCreate a Shiny App or (alternatively) an R Markdown report exploring the (global, asymptotically optimal) bandwidth choice \\(h_{AMISE}\\) on slides 19 and 20 on a simulated data example:\n\ncovariate \\(X\\) from beta distribution rbeta(n,shape1,shape2)\nresponse values \\(Y = m(X) + \\epsilon\\) where\n\nthe regression function \\(m\\) is given by sin(1/(x/3+0.1))\n\\(\\epsilon \\sim \\mathcal{N}(0,\\sigma^2)\\)\n\nfix \\(\\sigma^2\\) at some visually appealing value (e.g. \\(\\sigma^2=1\\) should be fine)\nexplore how \\(h_{AMISE}\\) behaves depending on the following parameters (in case of a Shiny App, these will be sliders for the user to tweak):\n\nsample size n\nblock size N\ndensity of the covariate: beta parameters shape1 and shape2\n\nvisualize (global, asymptotically optimal) bandwidth\n\nalso find a way to visually incorporate the beta density\n\n\n\nTODO:\n\nadd a link to ruppert, sheather, wand jasa 1995 for optimal choice of N\nadd content of slides 19 and 20 from lecture 4"
   },
   {
-    "objectID": "assignments/assignment-01.html#today",
-    "href": "assignments/assignment-01.html#today",
-    "title": "Assignment 1",
-    "section": "Today",
-    "text": "Today\nBy the end of today you will…\n\ncreate a github account and familiarise yourself with git and GitHub\naccept the first assignment and submit your work\nmake sure GitHub Classroom works as expected and you can submit your work."
-  },
-  {
-    "objectID": "assignments/assignment-01.html#assignment",
-    "href": "assignments/assignment-01.html#assignment",
-    "title": "Assignment 1",
-    "section": "Assignment",
-    "text": "Assignment\nThe goal of this assignment is for you to fit a linear model. For a refresher on linear models, see the ressource for this week. Your task will be to code a function that fits a linear model to a given dataset. You will need to fill in the blacks in the code located in your personal repository ae-1-YOUR_GITHUB_USERNAME.\nHere is how to proceed:\n\nWe expect you to know the basis of progamming in either R, Julia or Python. Please read the introduction to the language of your choice (R, Julia, or Python) if it is not the case.\n\n\nRead the README.md file in your assignment repository and follow the instructions there."
+    "objectID": "assignments/assignment-05.html",
+    "href": "assignments/assignment-05.html",
+    "title": "Assignment 5",
+    "section": "",
+    "text": "Important\n\n\n\nDue date: 11:59pm on Sunday, 5 November 2023.\n\n\n\n\n\n\n\n\nNote\n\n\n\nGo to the course GitHub organization and locate the repo titled ae-5-YOUR_GITHUB_USERNAME to get started. If you cannot find the repository, clik on the link you received by email.\n\n\nTo be posted soon."
   },
   {
     "objectID": "exercises/exercise-01.html",
