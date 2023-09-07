@@ -1,5 +1,6 @@
 ---
-title: "Exercise 2: mutlivariate KDE"
+title: "Exercise 2"
+subtitle: "Mutlivariate KDE"
 format: 
   html:
     theme: labs.scss

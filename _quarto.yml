@@ -38,35 +38,17 @@ website:
             text: Schedule
           - href: course-faq.qmd
       - section: "Exercises"
-        contents:
-          - href: exercises/exercise-01.qmd
-            text: Exercise 1
-          - href: exercises/exercise-02.qmd
-            text: Exercise 2
+        contents: exercises/*
       - section: "Assignments"
-        contents:
-          - href: assignments/assignment-01.qmd
-            text: Assignment 1
-          - href: assignments/assignment-02.qmd
-            text: Assignment 2
-          - href: assignments/assignment-03.qmd
-            text: Assignment 3
-          - href: assignments/assignment-04.qmd
-            text: Assignment 4
-          - href: assignments/assignment-05.qmd
-            text: Assignment 5
-          - href: assignments/assignment-06.qmd
-            text: Assignment 6
-          - href: assignments/assignment-07.qmd
-            text: Assignment 7
-          - href: assignments/assignment-08.qmd
-            text: Assignment 8
+        contents: assignments/*
       - section: "Projects"
         contents:
           - href: projects/project-01.qmd
           - href: projects/project-02.qmd
           - href: projects/project-tips-resources.qmd
             text: Tips + resources
+      - section: "Supplementary notes"
+        contents: notes/*
       - section: "Resources"
         contents:
           - section: "Coding introduction"

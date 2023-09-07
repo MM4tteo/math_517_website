@@ -1,5 +1,6 @@
 ---
-title: "Exercise 1: Peeking"
+title: "Exercise 1"
+subtitle: "Peeking"
 format: 
   html:
     theme: labs.scss

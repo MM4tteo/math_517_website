@@ -19,6 +19,7 @@ listing:
       contents:
         - "week-01/recap-linear-regression.qmd"
         - "week-02/mini-project-example.qmd"
+        - ../notes/*
       type: table
       fields: [title, description]
       field-display-names:
