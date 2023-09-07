@@ -1,7 +1,7 @@
 {
-  "hash": "725f96b554069285ec04e1686a6d8cd3",
+  "hash": "ddff1912500ab7bd13b15ab5d6903c23",
   "result": {
-    "markdown": "---\ntitle: \"Git and GitHub\"\ndescription: \"A guide to set-up Git and GitHub\"\noutput:\n  html_document:\n    toc: true\n---\n\n\n\n\n\n::: callout-important \n\nPlease read the full guide if something does not work: it is very likely that the answer to your problem lies just a few lines after wherever you stopped reading.\n:::\n\n\nFirst follow this [set up Git tutorial](https://docs.github.com/en/get-started/quickstart/set-up-git) and then follow [this tutorial](https://docs.github.com/en/get-started/quickstart/hello-world) to get a gentle introduction to Git and GitHub.\n",
+    "markdown": "---\ntitle: \"Git and GitHub\"\ndescription: \"A guide to set-up Git and GitHub\"\noutput:\n  html_document:\n    toc: true\n---\n\n\n\n\n\n::: callout-important \n\nPlease read the full guide if something does not work: it is very likely that the answer to your problem lies just a few lines after wherever you stopped reading.\n:::\n\n\nFirst follow this [set up Git tutorial](https://docs.github.com/en/get-started/quickstart/set-up-git) and then follow [this tutorial](https://docs.github.com/en/get-started/quickstart/hello-world) to get a gentle introduction to Git and GitHub.\n\n**Summary of the steps**\n\n1. [Create a GitHub account](https://github.com/join)\n2. [Install Git](https://docs.github.com/en/get-started/quickstart/set-up-git#setting-up-git)\n3. Create a repository and clone it to your computer\n\nIf all of the above worked, you are ready to go.\n\n**Next steps**\n\nYou should follow the instructions you received by email to join the [GitHub organization of your course](https://github.com/MATH-517). This will allow you to access the course repository and to submit your assignments.",
     "supporting": [
       "github_files"
     ],
