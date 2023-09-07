@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-10-13">
+<meta name="description" content="tbd">
 
-<title>MATH 517 - Assignment 3</title>
+<title>MATH 517 - Note week 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,26 +21,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../assignments/assignment-04.html" rel="next">
-<link href="../assignments/assignment-02.html" rel="prev">
+<link href="../resources/computing/intro_to_r/index.html" rel="next">
+<link href="../projects/project-tips-resources.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -86,11 +67,9 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="MATH 517 - Assignment 3">
-<meta property="og:description" content="Optimal Bandwidth Selection in KDE">
+<meta property="og:title" content="MATH 517 - Note week 1">
+<meta property="og:description" content="tbd">
 <meta property="og:site_name" content="MATH 517">
 </head>
 
@@ -103,7 +82,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/assignment-01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/assignment-03.html">Assignment 3</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/week_01.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/week_01.html">Note week 1</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -191,13 +170,13 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Assignments</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment-01.html" class="sidebar-item-text sidebar-link">
@@ -212,7 +191,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/assignment-03.html" class="sidebar-item-text sidebar-link active">
+  <a href="../assignments/assignment-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 3</span></a>
   </div>
 </li>
@@ -279,16 +258,16 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Supplementary notes</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/week_01.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/week_01.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Note week 1</span></a>
   </div>
 </li>
@@ -381,36 +360,26 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#recap-on-global-optimal-bandwidth" id="toc-recap-on-global-optimal-bandwidth" class="nav-link active" data-scroll-target="#recap-on-global-optimal-bandwidth">Recap on global optimal bandwidth</a></li>
-  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task">Task</a></li>
-  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/assignments/assignment-03.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/assignment-01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/assignment-03.html">Assignment 3</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/week_01.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/week_01.html">Note week 1</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Assignment 3</h1>
-<p class="subtitle lead">Optimal Bandwidth Selection in KDE</p>
+<h1 class="title">Note week 1</h1>
 </div>
 
+<div>
+  <div class="description">
+    tbd
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 13, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -419,105 +388,11 @@ div.csl-indent {
 
 </header>
 
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Due date: 11:59pm on Sunday, 22 October 2023.</strong></p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Go to the <a href="https://github.com/MATH-517">course GitHub organization</a> and locate the repo titled <code>ae-3-YOUR_GITHUB_USERNAME</code> to get started.</p>
-</div>
-</div>
-<section id="recap-on-global-optimal-bandwidth" class="level2">
-<h2 class="anchored" data-anchor-id="recap-on-global-optimal-bandwidth">Recap on global optimal bandwidth</h2>
-<p>The Nadaraya–Watson kernel estimator of <span class="math inline">\(m(x) = \mathbb{E}(Y|X=x)\)</span></p>
-<p><span class="math display">\[ \widehat{m}(x) = \frac{\sum_{i=1}^n K\left( \frac{X_i-x}{h} \right) Y_i}{ \sum_{i=1}^n K\left( \frac{X_i-x}{h} \right)} \]</span></p>
-<p>is a weighted mean of the <span class="math inline">\(Y_i\)</span>.</p>
-<p>Similarly to what we did with KDEs in week 3, we consider <span class="math display">\[MSE\lbrace \widehat{m}(x) \rbrace = \mathrm{var}\lbrace \widehat{m}(x) \rbrace + \big[\mathrm{bias}\lbrace \widehat{m}(x) \rbrace\big]^2\]</span> and, dropping the little-o terms, we obtain <span class="math display">\[AMSE\lbrace \widehat{m}(x) \rbrace = \frac{\sigma^2(x) \int \lbrace K(z) \rbrace ^2 dz}{f_X(x) n h_n} + \frac{1}{4} \lbrace m''(x)\rbrace ^2 h_n^4 \left(\int z^2 K(z) dz\right)^2.\]</span></p>
-<p>Now, a local bandwidth choice can be obtained by optimizing AMSE. Taking derivatives and setting them to zero, we obtain <span class="math display">\[h_{opt}(x) = n^{-1/5} \left[ \frac{\sigma^2(x) \int [K(z)]^2 dz}{m''(x) f_X(x) \int z^2 K(z) dz} \right]^{1/5}.\]</span></p>
-<p>This is somewhat more complicated compared to the KDE case, because we have to estimate</p>
-<ul>
-<li>the marginal density <span class="math inline">\(f_X(x)\)</span>,
-<ul>
-<li>let’s say that we already know how to do this, e.g.&nbsp;by KDE even though that requires a choice of yet another bandwidth</li>
-</ul></li>
-<li>the local variance function <span class="math inline">\(\sigma^2(x)\)</span>, and</li>
-<li>the second derivative of the regression functions <span class="math inline">\(m''(x)\)</span>.</li>
-</ul>
-<p>Again, like in the case of KDEs, the global bandwidth choice can be obtained by integration:</p>
-<ul>
-<li>calculate <span class="math inline">\(AMISE(\widehat{m}) = \int AMSE \lbrace \widehat{m}(x) \rbrace f_X(x) dx\)</span>, and</li>
-<li>set <span class="math inline">\(h_{AMISE} = \mathrm{arg\,min}_{h&gt;0} AMISE(\widehat{m})\)</span>.</li>
-</ul>
-<section id="rule-of-thumb-plug-in-algorithm" class="level4">
-<h4 class="anchored" data-anchor-id="rule-of-thumb-plug-in-algorithm">Rule of Thumb Plug-in Algorithm</h4>
-<p>Replace the unknown quantities in <span class="math display">\[h_{AMISE} = n^{-1/5} \bigg[ \frac{\int K^2(z) dz \int \sigma^2(x) dx}{\int z^2 K(z) dz \int \lbrace m''(x) \rbrace^2 f_{X}(x) dx} \bigg]^{1/5}\]</span></p>
-<p>by parametric OLS estimators</p>
-<ul>
-<li><p>Assume homoscedasticity and a quartic kernel, then <span class="math display">\[h_{AMISE} = n^{-1/5} \bigg( \frac{35 \sigma^2 \vert supp(X) \vert}{\theta_{22}} \bigg)^{1/5}, \quad \theta_{22}= \int \lbrace m''(x) \rbrace^2 f_{X}(x) dx\]</span></p></li>
-<li><p>Block the sample in <span class="math inline">\(N\)</span> blocks and fit, in each block <span class="math inline">\(j\)</span>, the model <span class="math display">\[y_i = \beta_{0j} + \beta_{1j} x_i + \beta_{2j} x_i^2 + \beta_{3j} x_i^3 + \beta_{4j} x_i^4 + \epsilon_i\]</span> to obtain estimate <span class="math inline">\(\hat{m}_j = \hat{\beta}_{0j} + \hat{\beta}_{1j} x_i + \hat{\beta}_{2j} x_i^2 + \hat{\beta}_{3j} x_i^3 + \hat{\beta}_{4j} x_i^4\)</span></p></li>
-<li><p>Estimate the unknown quantities by <span class="math display">\[
-\begin{split}
-\hat{\theta}_{22}(N) &amp;= \frac{1}{n} \sum_{i=1}^n \sum_{j=1}^N \hat{m}_j''(X_i) \hat{m}_j''(X_i)  \mathbb{1}_{X_i \in \mathcal{X}_j} \\
-\hat{\sigma}^2(N) &amp;= \frac{1}{n-5N} \sum_{i=1}^n \sum_{j=1}^N \{Y_i - \hat{m}_j(X_i) \}^2 \mathbb{1}_{X_i \in \mathcal{X}_j}
-\end{split}
-\]</span></p></li>
-</ul>
-</section>
-</section>
-<section id="task" class="level2">
-<h2 class="anchored" data-anchor-id="task">Task</h2>
-<p>The goal is to study the (global, asymptotically optimal) bandwidth choice <span class="math inline">\(h_{AMISE}\)</span> on a simulated data example:</p>
-<ul>
-<li>covariate <span class="math inline">\(X\)</span> from beta distribution Beta<span class="math inline">\((\alpha,\beta)\)</span></li>
-<li>response values <span class="math inline">\(Y = m(X) + \epsilon\)</span> where
-<ul>
-<li>the regression function <span class="math inline">\(m\)</span> is given by <span class="math inline">\(\sin\left(\left(\frac{x}{3+0.1}\right)^{-1}\right)\)</span></li>
-<li><span class="math inline">\(\epsilon \sim \mathcal{N}(0,\sigma^2)\)</span></li>
-</ul></li>
-<li>fix <span class="math inline">\(\sigma^2\)</span> at some visually appealing value (e.g.&nbsp;<span class="math inline">\(\sigma^2=1\)</span> should be fine)</li>
-<li>explore how <span class="math inline">\(h_{AMISE}\)</span> behaves depending on the following parameters (in case of a Shiny App, these will be sliders for the user to tweak):
-<ul>
-<li>sample size <code>n</code></li>
-<li>block size <code>N</code> (see <span class="citation" data-cites="ruppert1995effective">(<a href="#ref-ruppert1995effective" role="doc-biblioref">Ruppert, Sheather, and Wand 1995</a>)</span> for choosing the optimal block size)</li>
-<li>density of the covariate: beta parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span></li>
-</ul></li>
-<li>visualize (global, asymptotically optimal) bandwidth
-<ul>
-<li>also find a way to visually incorporate the beta density</li>
-</ul></li>
-</ul>
-</section>
-<section id="submission" class="level2">
-<h2 class="anchored" data-anchor-id="submission">Submission</h2>
-<p>Create a <a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/">Shiny App</a> or (alternatively) an R Markdown report explaining your findings. The report should be self-contained and include all code necessary to reproduce your results. If you choose to create a Shiny App, please include a link to the app in your report.</p>
+<p>to be posted soon.</p>
 
 
 
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-ruppert1995effective" class="csl-entry" role="listitem">
-Ruppert, David, Simon J Sheather, and Matthew P Wand. 1995. <span>“An Effective Bandwidth Selector for Local Least Squares Regression.”</span> <em>Journal of the American Statistical Association</em> 90 (432): 1257–70.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -864,13 +739,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../assignments/assignment-02.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Assignment 2</span>
+      <a href="../projects/project-tips-resources.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tips + resources</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../assignments/assignment-04.html" class="pagination-link">
-        <span class="nav-page-text">Assignment 4</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../resources/computing/intro_to_r/index.html" class="pagination-link">
+        <span class="nav-page-text">R</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -882,7 +757,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/notes/week_01.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
