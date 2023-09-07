@@ -592,7 +592,7 @@
     "href": "resources/tutorials/installing_software.html#rstudio",
     "title": "Software installation",
     "section": "RStudio",
-    "text": "RStudio\nGo to posit.co and download the RStudio IDE. Choose RStudio Desktop free version and make sure the correct operating system was selected. Install RStudio from the downloaded executable. Open RStudio.\n\n\n\n\n\n\nNote\n\n\n\nFor help with git and GitHub, please check this tutorial"
+    "text": "RStudio\nGo to posit.co and download the RStudio IDE. Choose RStudio Desktop free version and make sure the correct operating system was selected. Install RStudio from the downloaded executable. Open RStudio."
   },
   {
     "objectID": "resources/resources.html",
@@ -907,7 +907,7 @@
     "href": "assignments/assignment-03.html#submission",
     "title": "Assignment 3",
     "section": "Submission",
-    "text": "Submission\nCreate a Shiny App or (alternatively) an R Markdown report explaining your findings. The report should be self-contained and include all code necessary to reproduce your results. If you choose to create a Shiny App, please include a link to the app in your report."
+    "text": "Submission\nWrite a Markdown report explaining your findings. Use the report.qmd file to write your report 1.\nThe report should be self-contained and include all code necessary to reproduce your results (for help with virtual environments, see this page).\nYou can create a Shiny App (or an interactive Jupyter notebook, Pluto notebook) as it might be easier to play with the data. An interactive report (shiny app, notebook with interactive sliders, …) is not required, but it is a good way to explore the data interactively. The .qmd report is required."
   },
   {
     "objectID": "assignments/assignment-01.html",
