@@ -43,7 +43,11 @@ The final grade will consist of
 
 ## Assignments
 
-There will be 8 assignments during the semester, graded as described above. Assignments can be in the `Assignments` tab on this website (or equivalently in [the schedule](index.qmd)). Exercises are not mandatory, only recommended. 
+There will be 8 assignments during the semester, graded as described above. Assignments can be in the `Assignments` tab on this website (or equivalently in [the schedule](index.qmd)). Exercises are not mandatory, only recommended.  
+
+::: callout-info
+To accept the assignment, you need to click on the link at the top of each assignment. The links are not active until the assignment is released.
+:::
 
 
 ## Projects
