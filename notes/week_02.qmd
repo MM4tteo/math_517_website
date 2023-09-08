@@ -41,7 +41,7 @@ also collected at the ZIP code level. The variables are:
 
 The variable `involact` acts as a measure of insurance availability in the voluntary market, since most FAIR plan policyholders secure such coverage only after they have been rejected by the voluntary market. Insurance companies claim to reject insurances based on their past losses (captured in variables `theft` and `fire`). The U.S. Commission on Civil Rights in 1979 was interested in how much `income`, `age` of housing, and in particular `race` affect insurance availability.
 
-```{r, echo=F, warning=F}
+```{r, echo=F, warning=F, message=F}
 install.packages("viridis")
 ```
 
