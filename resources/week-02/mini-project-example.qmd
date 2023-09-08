@@ -43,11 +43,11 @@ str(chredlin) # the name "chredlin" refers to CHicago REDLINing
 head(chredlin)
 ```
 
-The first column are ZIP codes, since we only have aggregated data for counties (not for individuals). This is not unreasonable here, due to the nature of redlining.
+The first column is ZIP codes, since we only aggregated data for counties (not for individuals). This is not unreasonable here, due to the nature of redlining.
 
 # Data Exploration
 
-Let's take a look at the individual variables, e.g. using histograms
+Let's take a look at the individual variables, e.g., using histograms
 
 ```{r, warning=F, message=F}
 library(tidyverse)
@@ -67,7 +67,7 @@ The univariate distributions look quite nice for most of the variables. For exam
   - e.g. using log-transform for `income` and `fire` seems like a no-brainer, also due to interpretation
 * there is an outlier visible at the right tail of `theft`, and other potential outliers.
 
-Will not act on these observations at this point, with the exception of taking `log(income)`.
+We will not act on these observations at this point, with the exception of taking `log(income)`.
 
 Now let us explore relationships between the individual predictors and the response. The following plots show the simple regression lines with 95 % confidence bands (for the regression line). Jittering has been added to the variable `side` to avoid overplotting.
 
@@ -83,7 +83,7 @@ library(ggpubr)
 ggarrange(p1,p2,p3,p4,p5,p6)
 ```
 
-Without a doubt, we see that `race` has a strong correlation with the response variable, potentially suggesting the bad practice of insurance redlining based on race. However, we also may be observing confounding: can insurance companies claim that this is due to correlation between risks (`fire` and `thift`) and `race`?
+Without a doubt, we see that `race` has a strong correlation with the response variable, potentially suggesting the bad practice of insurance redlining is based on race. However, we also may be observing confounding: can insurance companies claim that this is due to correlation between risks (`fire` and `thift`) and `race`?
 
 ```{r, fig.dim = c(6, 3)}
 p1 <- ggplot(chredlin,aes(race,fire)) + geom_point() +stat_smooth(method="lm")
@@ -91,4 +91,4 @@ p2 <- ggplot(chredlin,aes(race,theft)) + geom_point() +stat_smooth(method="lm")
 ggarrange(p1,p2)
 ```
 
-There seem to be a  positive relationships between `race` (percentage of minorities) and the variables `fire` and `theft`.
+There seems to be a positive relationship between `race` (percentage of minorities) and the variables `fire` and `theft`.
