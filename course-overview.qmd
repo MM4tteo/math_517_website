@@ -46,7 +46,7 @@ The final grade will consist of
 There will be 8 assignments during the semester, graded as described above. Assignments can be in the `Assignments` tab on this website (or equivalently in [the schedule](index.qmd)). Exercises are not mandatory, only recommended.  
 
 ::: callout-info
-To accept the assignment, you need to click on the link at the top of each assignment. The links are not active until the assignment is released.
+To accept the assignment, you need to first acess the [google document with all the invite links](https://docs.google.com/document/d/1XTO7obXEr2Yxllxk48wnZ5e49ptPGMsMyl40KEZDGRg/edit?usp=sharing), then click on the link corresponding to the assignment you want to accept. This will create a repository for you on GitHub. You can then clone this repository on your computer and start working on the assignment.
 :::
 
 
