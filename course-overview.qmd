@@ -59,7 +59,7 @@ The main project can start following the $7$-th lecture, deadline on December 24
 
 
 <a name="groups"></a>
-**Groups** can be of size of either 2 or 3 people. The size will *not* matter w.r.t. to grading. However, a group of size 3 will have one additional task to do: as part of their Moodle submission, every team member will individually include a short paragraph describing contributions of every individual member of the team. This is not to be discussed among the team members, as it serves as a safeguard. Regardless of their individual contributions, each member of the team will receive the same grade, apart from where this would be extremely unfair. Such cases will be discussed personally. In case of any team-work problems, the students are encouraged to seek advice (mostly as a group) from the teachers (mostly during the exercise classes).
+**Groups** can be of size of either 2 or 3 people. The size will *not* matter w.r.t. to grading. However, a group of size 3 will have one additional task to do: as part of their submission, every team member will individually include a short paragraph describing contributions of every individual member of the team. This is not to be discussed among the team members, as it serves as a safeguard. Regardless of their individual contributions, each member of the team will receive the same grade, apart from where this would be extremely unfair. Such cases will be discussed personally. In case of any team-work problems, the students are encouraged to seek advice (mostly as a group) from the teachers (mostly during the exercise classes).
 
 # Grade Calculation
 
