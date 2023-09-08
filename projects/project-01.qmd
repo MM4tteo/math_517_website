@@ -9,7 +9,7 @@ subtitle: "Data visualization and exploration"
 :::
 
 ::: callout-note
-Use [this invite link](https://classroom.github.com/a/3kOhGyFn), and either join an existing team or create a new one. Once this is done, go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `mini-project-TEAM-NAME` to get started.
+Use the corresponding invite link in [this google doc](https://docs.google.com/document/d/1XTO7obXEr2Yxllxk48wnZ5e49ptPGMsMyl40KEZDGRg/edit?usp=sharing) (accessible with your EPFL account) to accept the project, and either join an existing team or create a new one. Once this is done, go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `mini-project-TEAM-NAME` to get started.
 :::
 
 

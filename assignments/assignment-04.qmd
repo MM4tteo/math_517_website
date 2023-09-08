@@ -11,7 +11,7 @@ editor: visual
 :::
 
 ::: callout-note
-Go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-4-YOUR_GITHUB_USERNAME` to get started. If you cannot find the repository, clik on [this link]().
+Use the corresponding invite link in [this google doc](https://docs.google.com/document/d/1XTO7obXEr2Yxllxk48wnZ5e49ptPGMsMyl40KEZDGRg/edit?usp=sharing) (accessible with your EPFL account) to accept the assignment. Then go to the[course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-4-YOUR_GITHUB_USERNAME` to get started.
 :::
 
 To be posted soon.
