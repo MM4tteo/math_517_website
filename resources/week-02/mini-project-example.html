@@ -468,11 +468,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 60610 54.0 34.1    68 52.6      0.3  8.231    n</code></pre>
 </div>
 </div>
-<p>The first column are ZIP codes, since we only have aggregated data for counties (not for individuals). This is not unreasonable here, due to the nature of redlining.</p>
+<p>The first column is ZIP codes, since we only aggregated data for counties (not for individuals). This is not unreasonable here, due to the nature of redlining.</p>
 </section>
 <section id="data-exploration" class="level1">
 <h1>Data Exploration</h1>
-<p>Let’s take a look at the individual variables, e.g.&nbsp;using histograms</p>
+<p>Let’s take a look at the individual variables, e.g., using histograms</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>chredlin <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">side =</span> <span class="fu">as.numeric</span>(side)) <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
@@ -490,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>there is an outlier visible at the right tail of <code>theft</code>, and other potential outliers.</li>
 </ul>
-<p>Will not act on these observations at this point, with the exception of taking <code>log(income)</code>.</p>
+<p>We will not act on these observations at this point, with the exception of taking <code>log(income)</code>.</p>
 <p>Now let us explore relationships between the individual predictors and the response. The following plots show the simple regression lines with 95 % confidence bands (for the regression line). Jittering has been added to the variable <code>side</code> to avoid overplotting.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chredlin,<span class="fu">aes</span>(race,involact)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span><span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span>
@@ -506,8 +506,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="mini-project-example_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Without a doubt, we see that <code>race</code> has a strong correlation with the response variable, potentially suggesting the bad practice of insurance redlining based on race. However, we also may be observing confounding: can insurance companies claim that this is due to correlation between risks (<code>fire</code> and <code>thift</code>) and <code>race</code>?</p>
-<div class="cell" data-fig.dim="[6,3]">
+<p>Without a doubt, we see that <code>race</code> has a strong correlation with the response variable, potentially suggesting the bad practice of insurance redlining is based on race. However, we also may be observing confounding: can insurance companies claim that this is due to correlation between risks (<code>fire</code> and <code>thift</code>) and <code>race</code>?</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chredlin,<span class="fu">aes</span>(race,fire)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span><span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chredlin,<span class="fu">aes</span>(race,theft)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span><span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(p1,p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -519,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="mini-project-example_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
-<p>There seem to be a positive relationships between <code>race</code> (percentage of minorities) and the variables <code>fire</code> and <code>theft</code>.</p>
+<p>There seems to be a positive relationship between <code>race</code> (percentage of minorities) and the variables <code>fire</code> and <code>theft</code>.</p>
 
 
 </section>
