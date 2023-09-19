@@ -1,6 +1,6 @@
 ---
 title: "Assignment 4"
-subtitle: "TBD"
+subtitle: "Hyperparameters selection with cross-validation"
 date: 10-20-2023
 format: html
 editor: visual
@@ -14,4 +14,34 @@ editor: visual
 Use the corresponding invite link in [this google doc](https://docs.google.com/document/d/1XTO7obXEr2Yxllxk48wnZ5e49ptPGMsMyl40KEZDGRg/edit?usp=sharing) (accessible with your EPFL account) to accept the assignment. Then go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-4-YOUR_GITHUB_USERNAME` to get started.
 :::
 
-To be posted soon.
+
+Consider a subset of `mcycle` data (of the `MASS` package)[^1] for `times` $\leq 40$ and use cross-validation to select
+
+-  the polynomial degree of $p$ from candidate values $p=1,2,3$, and
+-  the bandwidth $h$ from candidate values $h=3,4,\ldots,15$
+
+for a local polynomial smoother[^2].
+
+```{r, echo=F, fig.align='center',out.width="70%"}
+library(MASS)
+library(ggplot2)
+data(mcycle)
+mcycle <- mcycle[mcycle$times <= 40, ]
+
+ggplot() +
+    theme_bw() +
+    geom_point(data=mcycle, aes(x=times, y=accel)) +
+    labs(x="time after impact (ms)", y="acceleration (g)", title="Simulated Motorcycle Accident Data")
+```
+
+**Notes**:
+
+-  Use your own visualizations to verify your progress
+-  You may run into issues for large $p$ and small $h$ if you use small number of folds.
+-  Beware of how your points are ordered.
+
+
+
+
+[^1]: available [on Kaggle](https://www.kaggle.com/datasets/ukveteran/data-from-a-simulated-motorcycle-accident), through the R library `MASS` or through `RDataset.jl`
+[^2]: for `R` you can use  [`locpol`](https://www.rdocumentation.org/packages/locpol/versions/0.8.0/topics/locpol), for `Python` [`localreg`](https://github.com/sigvaldm/localreg), and for `Julia` you can try [`KernSmooth`](https://github.com/lendle/KernSmooth.jl) or just call `locpol` via [`RCall`](https://juliainterop.github.io/RCall.jl/stable/). 
