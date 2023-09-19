@@ -1,6 +1,6 @@
 ---
 title: "Assignment 4"
-subtitle: "Hyperparameters selection with cross-validation"
+subtitle: "Tuning parameters selection with cross-validation"
 date: 10-20-2023
 format: html
 editor: visual
@@ -17,10 +17,15 @@ Use the corresponding invite link in [this google doc](https://docs.google.com/d
 
 Consider a subset of `mcycle` data (of the `MASS` package)[^1] for `times` $\leq 40$ and use cross-validation to select
 
--  the polynomial degree of $p$ from candidate values $p=1,2,3$, and
--  the bandwidth $h$ from candidate values $h=3,4,\ldots,15$
+-  the polynomial degree of $\textcolor{red}{p}$ from candidate values $\{1,2,3\}$
+-  the bandwidth $\textcolor{red}{h}$ from candidate values $\{3,4,\ldots,15\}$
 
-for a local polynomial smoother[^2].
+for a local polynomial smoother[^2] of the form
+
+$$ \underset{\boldsymbol{\beta} \in \mathbb{R}^{\textcolor{red}{p}+1}}{\operatorname{argmin}} \sum_{i=1}^n [Y_i - \sum_{j=0}^\textcolor{red}{p} \beta_j(x)\left(x_i-x\right)^j]^2 K\left(\frac{X_i-x}{\textcolor{red}{h}}\right),$$
+
+with $K(x)=\frac{3}{4}(1 - x^2)$ if $|x|\leq 1$ and $0$ otherwise is the Epanechnikov kernel.
+
 
 ```{r, echo=F, fig.align='center',out.width="70%"}
 library(MASS)
