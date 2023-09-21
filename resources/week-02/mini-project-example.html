@@ -507,7 +507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Without a doubt, we see that <code>race</code> has a strong correlation with the response variable, potentially suggesting the bad practice of insurance redlining is based on race. However, we also may be observing confounding: can insurance companies claim that this is due to correlation between risks (<code>fire</code> and <code>thift</code>) and <code>race</code>?</p>
-<div class="cell">
+<div class="cell" data-fig.dim="[6,3]">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chredlin,<span class="fu">aes</span>(race,fire)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span><span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chredlin,<span class="fu">aes</span>(race,theft)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span><span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(p1,p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
