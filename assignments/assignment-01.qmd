@@ -31,5 +31,12 @@ The goal of this assignment is for you to fit a linear model. For a refresher on
 Here is how to proceed: 
 
 1. We expect you to know the basis of progamming in either R, Julia or Python. Please read the introduction to the language of your choice ([R](../resources/computing/intro_to_r/index.qmd), [Julia](../resources/computing/intro_to_julia/index.qmd), or [Python](../resources/computing/intro_to_python/index.qmd)) if it is not the case.
--  Read the `README.md` file in your assignment repository and follow the instructions there.
 
+
+2. Read the `README.md` file in your assignment repository and follow the instructions there. (duplicated there for your convenience):
+
+    You have to code a function that performs linear regression on a given dataset. The function should take as input a dataset (a matrix of size `n x d` where `n` is the number of observations and `d` is the number of features) and a vector of size `n` containing the labels. The function should return the vector of coefficients of the linear regression model.
+
+    You are not allowed to use any library for linear regression. You can use libraries for basic operations (e.g. matrix multiplication, matrix inversion, etc.). You will have to check the correctness of your code by comparing the results with the ones obtained by traditional libraries (e.g. `sklearn` in Python, `lm` in R, `GLM.jl` in Julia).
+
+    You will have to save a figure showing the data and the linear regression from your function like below, and modify the `README.md` file to add a table containing the coefficients of the linear regression model.
