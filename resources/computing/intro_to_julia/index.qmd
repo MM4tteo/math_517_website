@@ -30,4 +30,6 @@ For a refresher on `Julia` basics, you can check out one of the following resour
 :::
 
 
-
+::: callout-info
+A very useful Julia package is [RDatasets.jl](https://github.com/JuliaStats/RDatasets.jl), which provides access to many of the datasets available in R packages.
+:::

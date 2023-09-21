@@ -1,0 +1,16 @@
+{
+  "hash": "cf083d5f078588f38f58a74ef423004f",
+  "result": {
+    "markdown": "---\ntitle: \"Assignment 4\"\nsubtitle: \"Tuning parameters selection with cross-validation\"\ndate: 10-20-2023\nformat: html\neditor: visual\n---\n\n\n::: callout-important\n**Due date: 11:59pm on Sunday, 29 October 2023.**\n:::\n\n::: callout-note\nUse the corresponding invite link in [this google doc](https://docs.google.com/document/d/1XTO7obXEr2Yxllxk48wnZ5e49ptPGMsMyl40KEZDGRg/edit?usp=sharing) (accessible with your EPFL account) to accept the assignment. Then go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-4-YOUR_GITHUB_USERNAME` to get started.\n:::\n\n\nConsider a subset of `mcycle` data (of the `MASS` package)[^1] for `times` $\\leq 40$ and use cross-validation to select\n\n-  the polynomial degree of $\\textcolor{red}{p}$ from candidate values $\\{1,2,3\\}$\n-  the bandwidth $\\textcolor{red}{h}$ from candidate values $\\{3,4,\\ldots,15\\}$\n\nfor a local polynomial smoother[^2] of the form\n\n$$ \\underset{\\boldsymbol{\\beta} \\in \\mathbb{R}^{\\textcolor{red}{p}+1}}{\\operatorname{argmin}} \\sum_{i=1}^n [Y_i - \\sum_{j=0}^\\textcolor{red}{p} \\beta_j(x)\\left(x_i-x\\right)^j]^2 K\\left(\\frac{X_i-x}{\\textcolor{red}{h}}\\right),$$\n\nwith $K(x)=\\frac{3}{4}(1 - x^2)$ if $|x|\\leq 1$ and $0$ otherwise is the Epanechnikov kernel.\n\n\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![](assignment-04_files/figure-html/unnamed-chunk-1-1.png){fig-align='center' width=70%}\n:::\n:::\n\n\n**Notes**:\n\n-  Use your own visualizations to verify your progress\n-  You may run into issues for large $p$ and small $h$ if you use small number of folds.\n-  Beware of how your points are ordered.\n\n\n\n\n[^1]: available [on Kaggle](https://www.kaggle.com/datasets/ukveteran/data-from-a-simulated-motorcycle-accident), through the R library `MASS` or through `RDataset.jl`\n[^2]: for `R` you can use  [`locpol`](https://www.rdocumentation.org/packages/locpol/versions/0.8.0/topics/locpol), for `Python` [`localreg`](https://github.com/sigvaldm/localreg), and for `Julia` you can try [`KernSmooth`](https://github.com/lendle/KernSmooth.jl) or just call `locpol` via [`RCall`](https://juliainterop.github.io/RCall.jl/stable/). ",
+    "supporting": [
+      "assignment-04_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
