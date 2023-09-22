@@ -67,6 +67,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="MATH 517 - Assignment 1">
 <meta property="og:description" content="Introduction to Github and programming">
@@ -441,7 +443,7 @@ Note
 <li><p>Read the <code>README.md</code> file in your assignment repository and follow the instructions there. (duplicated there for your convenience):</p>
 <p>You have to code a function that performs linear regression on a given dataset. The function should take as input a dataset (a matrix of size <code>n x d</code> where <code>n</code> is the number of observations and <code>d</code> is the number of features) and a vector of size <code>n</code> containing the labels. The function should return the vector of coefficients of the linear regression model.</p>
 <p>You are not allowed to use any library for linear regression. You can use libraries for basic operations (e.g.&nbsp;matrix multiplication, matrix inversion, etc.). You will have to check the correctness of your code by comparing the results with the ones obtained by traditional libraries (e.g.&nbsp;<code>sklearn</code> in Python, <code>lm</code> in R, <code>GLM.jl</code> in Julia).</p>
-<p>You will have to save a figure showing the data and the linear regression from your function like below, and modify the <code>README.md</code> file to add a table containing the coefficients of the linear regression model.</p></li>
+<p>You will have to save a figure showing the data and add the line <span class="math inline">\(X_{BMI}*\hat{\beta}_{BMI}\)</span> as <code>result.png</code>, and modify the <code>README.md</code> file to add a table containing the coefficients of the linear regression model.</p></li>
 </ol>
 
 
