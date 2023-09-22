@@ -12,7 +12,7 @@ Please read the full guide if something does not work: it is very likely that th
 :::
 
 
-First follow this [set up Git tutorial](https://docs.github.com/en/get-started/quickstart/set-up-git) and then follow [this tutorial](https://docs.github.com/en/get-started/quickstart/hello-world) to get a gentle introduction to Git and GitHub.
+First follow this [set up Git tutorial](https://docs.github.com/en/get-started/quickstart/set-up-git)[^1] and then follow [this tutorial](https://docs.github.com/en/get-started/quickstart/hello-world) to get a gentle introduction to Git and GitHub.
 
 **Summary of the steps**
 
@@ -26,3 +26,5 @@ If all of the above worked, you are ready to go.
 **Next steps**
 
 You should follow the instructions you received by email to join the [GitHub organization of your course](https://github.com/MATH-517). This will allow you to access the course repository and to submit your assignments.
+
+[^1]: If you need more help installing and using git, see [this tutorial](https://github.com/git-guides).
