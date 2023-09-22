@@ -39,4 +39,4 @@ Here is how to proceed:
 
     You are not allowed to use any library for linear regression. You can use libraries for basic operations (e.g. matrix multiplication, matrix inversion, etc.). You will have to check the correctness of your code by comparing the results with the ones obtained by traditional libraries (e.g. `sklearn` in Python, `lm` in R, `GLM.jl` in Julia).
 
-    You will have to save a figure showing the data and the linear regression from your function like below, and modify the `README.md` file to add a table containing the coefficients of the linear regression model.
+    You will have to save a figure showing the data and add the line $X_{BMI}*\hat{\beta}_{BMI}$ as `result.png`, and modify the `README.md` file to add a table containing the coefficients of the linear regression model.
