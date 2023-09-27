@@ -486,19 +486,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   year month day dep_delay arr_delay carrier origin dest air_time distance
-1: 2014     5  22        82        60      UA    EWR  SFO      328     2565
-2: 2014     8  23        -4       -30      UA    EWR  LAX      308     2454
-3: 2014     9  22         6         6      DL    LGA  MSY      160     1183
-4: 2014     7  25        38        14      AA    JFK  SFO      330     2586
-5: 2014     5  10        -5        11      WN    EWR  STL      135      872
-6: 2014     2   7        -4        21      UA    EWR  SFO      381     2565
+1: 2014     6  26        -2       -16      EV    EWR  DTW       80      488
+2: 2014     1  14         4       -13      DL    EWR  SLC      269     1969
+3: 2014     4   7        22        18      UA    EWR  BOS       42      200
+4: 2014     8   2        -7       -15      F9    LGA  DEN      218     1620
+5: 2014     3  18        -9        -2      US    LGA  BOS       37      184
+6: 2014     2  14       132       112      EV    EWR  ATL      121      746
    hour
-1:   16
-2:    8
-3:   15
-4:   11
-5:    6
-6:    6</code></pre>
+1:   18
+2:   17
+3:   16
+4:   16
+5:   15
+6:   21</code></pre>
 </div>
 </div>
 </section>
@@ -524,12 +524,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   year month day dep_delay arr_delay air_time distance hour
-1: 2014     5  22        82        60      328     2565   16
-2: 2014     8  23        -4       -30      308     2454    8
-3: 2014     9  22         6         6      160     1183   15
-4: 2014     7  25        38        14      330     2586   11
-5: 2014     5  10        -5        11      135      872    6
-6: 2014     2   7        -4        21      381     2565    6</code></pre>
+1: 2014     6  26        -2       -16       80      488   18
+2: 2014     1  14         4       -13      269     1969   17
+3: 2014     4   7        22        18       42      200   16
+4: 2014     8   2        -7       -15      218     1620   16
+5: 2014     3  18        -9        -2       37      184   15
+6: 2014     2  14       132       112      121      746   21</code></pre>
 </div>
 </div>
 <p>As an example, let us filter flights that departed on the April Fool’s day:</p>
@@ -538,7 +538,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(fools, <span class="fu">n</span>()) <span class="co"># in our sub-sample, we have 17 flights on April 1st</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  n()
-1  17</code></pre>
+1  19</code></pre>
 </div>
 </div>
 <p>When working with tidyverse, it is customary to use the “pipe” operator <code>%&gt;%</code>. Basically, <code>f(x,y)</code> is equivalent to <code>x %&gt;% f(y)</code>. This is useful when chaining operations (composing functions), e.g.,</p>
@@ -561,12 +561,12 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 # Groups:   month [1]
   month   day `n()`
   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-1     1     1    13
-2     1     2    14
-3     1     3     9
-4     1     4    14
+1     1     1    21
+2     1     2    16
+3     1     3     6
+4     1     4    15
 5     1     5    13
-6     1     6    12</code></pre>
+6     1     6    19</code></pre>
 </div>
 </div>
 <p>The original data set was arranged by <code>month</code>, <code>day</code> and <code>hour</code>, but we have lost this ordering by sub-sampling.</p>
@@ -574,12 +574,12 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   year month day dep_delay arr_delay air_time distance hour
-1: 2014     5  22        82        60      328     2565   16
-2: 2014     8  23        -4       -30      308     2454    8
-3: 2014     9  22         6         6      160     1183   15
-4: 2014     7  25        38        14      330     2586   11
-5: 2014     5  10        -5        11      135      872    6
-6: 2014     2   7        -4        21      381     2565    6</code></pre>
+1: 2014     6  26        -2       -16       80      488   18
+2: 2014     1  14         4       -13      269     1969   17
+3: 2014     4   7        22        18       42      200   16
+4: 2014     8   2        -7       -15      218     1620   16
+5: 2014     3  18        -9        -2       37      184   15
+6: 2014     2  14       132       112      121      746   21</code></pre>
 </div>
 </div>
 <p>So let’s fix this by <code>arrange()</code>.</p>
@@ -589,12 +589,12 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   year month day dep_delay arr_delay air_time distance hour
-1: 2014     1   1        61        62      157     1069   10
-2: 2014     1   1        10         4      155     1023   11
-3: 2014     1   1        24        34      165     1069   13
-4: 2014     1   1        39        21      355     2565   13
-5: 2014     1   1        -2       -23      160     1096   15
-6: 2014     1   1         3       -10      349     2475   16</code></pre>
+1: 2014     1   1        11        -3      147      997    6
+2: 2014     1   1        -5        15      254     1620    7
+3: 2014     1   1        -6         2       62      301    7
+4: 2014     1   1        -4       -14      122      762    7
+5: 2014     1   1        -3        -5       98      541    8
+6: 2014     1   1        -6       -25      117      764    8</code></pre>
 </div>
 </div>
 <p>Let’s read and sub-sample the data again</p>
@@ -606,16 +606,16 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes 'data.table' and 'data.frame':  5000 obs. of  11 variables:
  $ year     : int  2014 2014 2014 2014 2014 2014 2014 2014 2014 2014 ...
- $ month    : int  4 8 8 8 9 7 4 4 3 7 ...
- $ day      : int  25 29 17 11 2 29 20 17 10 11 ...
- $ dep_delay: int  17 -2 27 15 4 -7 -8 -9 -5 0 ...
- $ arr_delay: int  -2 -21 29 1 -20 -7 -53 29 -13 -8 ...
- $ carrier  : chr  "US" "DL" "EV" "B6" ...
- $ origin   : chr  "LGA" "EWR" "EWR" "JFK" ...
- $ dest     : chr  "BOS" "ATL" "BNA" "BQN" ...
- $ air_time : int  32 96 106 187 229 158 329 68 122 69 ...
- $ distance : int  184 746 748 1576 1620 1089 2586 405 733 483 ...
- $ hour     : int  16 10 18 0 10 6 8 16 14 20 ...
+ $ month    : int  1 9 5 2 4 9 10 6 7 1 ...
+ $ day      : int  31 3 13 10 11 12 17 30 12 29 ...
+ $ dep_delay: int  -3 -5 -7 158 -7 -2 5 -5 -3 -7 ...
+ $ arr_delay: int  3 -30 -16 158 6 -6 -26 -28 -33 -12 ...
+ $ carrier  : chr  "DL" "DL" "B6" "DL" ...
+ $ origin   : chr  "JFK" "LGA" "LGA" "LGA" ...
+ $ dest     : chr  "LAX" "MIA" "FLL" "MCO" ...
+ $ air_time : int  362 154 143 149 337 231 140 136 175 113 ...
+ $ distance : int  2475 1096 1076 950 2475 1605 1035 1010 1389 719 ...
+ $ hour     : int  18 8 5 12 6 15 18 15 17 16 ...
  - attr(*, ".internal.selfref")=&lt;externalptr&gt; </code></pre>
 </div>
 </div>
@@ -629,16 +629,16 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes 'data.table' and 'data.frame':  5000 obs. of  11 variables:
  $ year     : int  2014 2014 2014 2014 2014 2014 2014 2014 2014 2014 ...
- $ month    : int  4 8 8 8 9 7 4 4 3 7 ...
- $ day      : int  25 29 17 11 2 29 20 17 10 11 ...
- $ dep_delay: int  17 -2 27 15 4 -7 -8 -9 -5 0 ...
- $ arr_delay: int  -2 -21 29 1 -20 -7 -53 29 -13 -8 ...
- $ carrier  : Factor w/ 14 levels "AA","AS","B6",..: 12 4 5 3 14 1 3 9 1 9 ...
- $ origin   : Factor w/ 3 levels "EWR","JFK","LGA": 3 1 1 2 3 2 2 3 3 2 ...
- $ dest     : Factor w/ 98 levels "ABQ","ACK","ALB",..: 12 5 11 13 29 56 85 77 65 25 ...
- $ air_time : int  32 96 106 187 229 158 329 68 122 69 ...
- $ distance : int  184 746 748 1576 1620 1089 2586 405 733 483 ...
- $ hour     : int  16 10 18 0 10 6 8 16 14 20 ...
+ $ month    : int  1 9 5 2 4 9 10 6 7 1 ...
+ $ day      : int  31 3 13 10 11 12 17 30 12 29 ...
+ $ dep_delay: int  -3 -5 -7 158 -7 -2 5 -5 -3 -7 ...
+ $ arr_delay: int  3 -30 -16 158 6 -6 -26 -28 -33 -12 ...
+ $ carrier  : Factor w/ 14 levels "AA","AS","B6",..: 4 4 3 4 1 11 4 4 1 9 ...
+ $ origin   : Factor w/ 3 levels "EWR","JFK","LGA": 2 3 3 3 2 1 3 3 3 1 ...
+ $ dest     : Factor w/ 99 levels "ABQ","ACK","ALB",..: 48 56 34 52 48 28 67 95 29 65 ...
+ $ air_time : int  362 154 143 149 337 231 140 136 175 113 ...
+ $ distance : int  2475 1096 1076 950 2475 1605 1035 1010 1389 719 ...
+ $ hour     : int  18 8 5 12 6 15 18 15 17 16 ...
  - attr(*, ".internal.selfref")=&lt;externalptr&gt; </code></pre>
 </div>
 </div>
@@ -659,7 +659,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flights) <span class="sc">+</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carrier))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We can split every bar by departure airport (i.e., variable <code>origin</code>) by adding the <code>fill</code> argument.</p>
@@ -667,7 +667,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flights) <span class="sc">+</span> </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carrier, <span class="at">fill =</span> origin))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>If we wanted one histogram for each NY airport instead, we could use <code>facet_wrap</code>:</p>
@@ -676,7 +676,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carrier)) <span class="sc">+</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> origin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>What if we wanted to add numbers denoting the bin sizes?</p>
@@ -685,7 +685,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carrier)) <span class="sc">+</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carrier, <span class="at">label=</span>..count.., <span class="at">y=</span>..count.. <span class="sc">+</span> <span class="dv">40</span>), <span class="at">geom=</span><span class="st">"text"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">color=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>To show labels for split bars above, one just adds <code>group=origin</code> in the <code>stat_count</code>’s <code>aes</code>, but it is impossible to vertically align the text properly. We bypass it by creating a new variable <code>veralign</code>, which controls the vertical alignment.</p>
@@ -703,7 +703,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data =</span> flights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carrier, <span class="at">fill =</span> origin)) <span class="sc">+</span></span>
 <span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>n_flights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carrier, <span class="at">label=</span>count, <span class="at">y=</span>veralign), <span class="at">size=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>As long as we are plotting frequencies of occurrence, there is little difference between bar plots and histograms. If the variable on the x-axis is categorical, we speak of bar plots, while if the variable is numerical and some binning has to be done, we speak of histograms. For example:</p>
@@ -715,7 +715,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>But we may also scale the y-axis to show probabilities (total area equal to one), instead of frequencies (total area equal to the number of observations). In such a case, histogram can be considered as an estimator of density function (more on that later in the semester). Hence histograms are often overlaid with other density estimators. We will see that later.</p>
@@ -729,7 +729,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"red"</span>)) <span class="sc">+</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
@@ -740,7 +740,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"red"</span>)) <span class="sc">+</span></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>There is probably no difference between north and south w.r.t. the relationship between the response and <code>race</code>, but it might be a different story for <code>fire</code></p>
@@ -751,7 +751,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"red"</span>)) <span class="sc">+</span></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>What if I want only a single regression line but ability to distinguish between points at the same time? I could either use different mappings for every layer</p>
@@ -762,7 +762,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"red"</span>)) <span class="sc">+</span></span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>or, equivalently, use one global mapping in ggplot (the most general one) and then specify it a bit more for some layers</p>
@@ -771,7 +771,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> side, <span class="at">color =</span> side)) <span class="sc">+</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span>lm, <span class="at">color =</span> <span class="st">"purple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>If we want to split into multiple plots, use the <code>facet_wrap</code> function</p>
@@ -781,7 +781,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span>lm, <span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> side) <span class="co"># split by a value of a factor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>For faceting by two factor variables, we can use <code>facet_grid</code> instead, such as if we wanted to create scatterplots for our <code>flights</code> data, split by <code>carrier</code> and <code>origin</code> (we filter only some carriers so we don’t have too many plots).</p>
@@ -793,7 +793,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span>lm) <span class="sc">+</span></span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(origin <span class="sc">~</span> carrier)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Exercise: create histograms of <code>dep_delay</code> for all three <code>origins</code> and seven consecutive days in the <code>flights</code> data set.</p>
@@ -811,7 +811,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> outliers, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fire, <span class="at">y =</span> involact), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">pch =</span> <span class="dv">17</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> leverage_pts, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fire, <span class="at">y =</span> involact), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">pch =</span> <span class="dv">18</span>, <span class="at">size=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Alternatively, we could incorporate the information about which points are outliers and which are leverage points into the data set as a new variable and use it for plotting. The code is quite ugly (notice how we start with booleans, then turn them into numericals, and then re-type them into factors), but it does the job.</p>
@@ -826,7 +826,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fire, <span class="at">y =</span> involact, <span class="at">shape =</span> out_lev, <span class="at">color =</span> out_lev, <span class="at">size =</span> out_lev)) <span class="sc">+</span></span>
 <span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Another alternative would be to use <code>fortify()</code> to add residuals and Cook’s distances from a linear model fit directly to the data set. Then we could use <code>mutate()</code> more naturally to decide which observations are outliers and leverage points.</p>
@@ -847,7 +847,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Boxplot by factor"</span>) <span class="sc">+</span></span>
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Carrier"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Using the <code>fill</code> argument here creates a grouped boxplot, where grouping is given by the <code>fill</code> variable. To reduce the size of the plot, we filter only four carriers.</p>
@@ -863,7 +863,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Boxplot by two factors"</span>) <span class="sc">+</span></span>
 <span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Carrier"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -882,7 +882,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The complement of <code>pivot_longer()</code> is <code>pivot_wider()</code>. We may want to use it, e.g., after <code>group_by()</code> and <code>summarize()</code>, which naturally lead to a long table. For example, assume we want to produce a heatmap of the average departure delay of flights on different days (x-axis) and months (y-axis), in order to see average departure delay in a calendar-like fashion. While this is not terribly useful, it is done below.</p>
@@ -898,7 +898,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>coul <span class="ot">&lt;-</span> <span class="fu">plasma</span>(<span class="dv">100</span>)</span>
 <span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="fu">levelplot</span>(<span class="fu">t</span>(<span class="fu">as.matrix</span>(new_dat)), <span class="at">col.regions =</span> <span class="fu">rev</span>(coul), <span class="at">xlab=</span><span class="st">"Day"</span>, <span class="at">ylab=</span><span class="st">"Month"</span>, <span class="at">main=</span><span class="st">"Departure delay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>While we could create a heatmap using <code>ggplot2</code>’s <code>geom_tile()</code>, I personally find <code>levelplot()</code> of the <code>lattice</code> package more useful for quick plotting. One can do great heatmaps with <code>ggplot2</code> and <code>geom_tile()</code>, but it requires some work to set up the color schemes and to magnify the colorkey.</p>
@@ -948,7 +948,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> involact, <span class="at">x =</span> value)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method=</span>lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Secondly, let’s denote the outliers. We will use the second extra-variable approach (as opposed to the over-plotting approach). We create an additional variable which tells us, which of the observations are outliers.</p>
@@ -965,7 +965,7 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> involact, <span class="at">x =</span> value, <span class="at">color =</span> out_lev)) <span class="sc">+</span></span>
 <span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> involact, <span class="at">x =</span> value), <span class="at">method=</span>lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="week_02_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+<p><img src="week_02_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
