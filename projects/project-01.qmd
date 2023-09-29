@@ -28,3 +28,7 @@ Note that the purpose of this project is to play around, demonstrating your data
 
  The first step should be done individually. [Here](../resources/week-02/mini-project-example.qmd) is an example of what your report could look like. See the [this page](project-tips-resources.qmd) for some tips and resources (e.g. example datasets).
 
+
+## Task
+
+Write your report in the `report.qmd` file, and compile it. See the `Assignment.md` file in your github repository for details. 

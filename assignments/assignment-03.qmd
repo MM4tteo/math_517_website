@@ -1,6 +1,6 @@
 ---
 title: "Assignment 3"
-subtitle: "Gloabl Optimal Bandwidth"
+subtitle: "Global Optimal Bandwidth"
 date: 10-13-2023
 format: html
 editor: visual
