@@ -43,7 +43,7 @@ ggplot() +
 
 -  Use your own visualizations to verify your progress.
 -  You may run into issues for large $p$ and small $h$ if you use a small number of folds.
--  Beware of how your points are ordered.
+-  Beware of the time-dependent aspect of your data. 
 
 
 
