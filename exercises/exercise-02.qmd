@@ -8,7 +8,7 @@ editor: visual
 date: 10-06-2023
 ---
 
-Consider bivariate kernel density estimator. Simulate data from bivariate normak distribution $\mathcal{N}((0,0), (1, 0.3; 0.3, 1))$.
+Consider bivariate kernel density estimation. Simulate data from the bivariate normal distribution $\mathcal{N}((0,0), (1, 0.3; 0.3, 1))$.
 
 1. Try different bandwidths and different kernels (use the bivariate normal kernel as well as the product kernel with the univariate Epanechnikov kernel)
 
