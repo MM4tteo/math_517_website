@@ -114,7 +114,7 @@ Assumptions 1-3 above hold for any density of a symmetric distribution. Assumpti
 
 plus some others just shown below
 
-![Kernels](../Plots/kernels.png'){width=60%, fig-align=center}
+![Kernels](../images/kernels.png'){width=60%, fig-align=center}
 
 
 While the Gaussian kernel looks more spread visually, this does not matter since the spread is controlled by the bandwidth. What makes the Gaussian kernel different from the others is:
@@ -236,7 +236,7 @@ In this sub-section only, we will index $p$-dimensional vectors from $0$ to $p-1
 
 **Definition:** A matrix $\mathbf{C} = (c_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}$ is called *circulant* if $c_{jk} = c_{|j-k|}$, where $\mathbf{c} = (c_j) \in \mathbb{R}^{p}$ is the *symbol* of $\mathbf{C}$ (the first column of $\mathbf{C}$).
 
-![Circulant matrix](../Plots/circulant_matrix.png){width=40%, fig-align="center"}(https://en.wikipedia.org/wiki/Circulant_matrix)
+![Circulant matrix](../images/circulant_matrix.png){width=40%, fig-align="center"}(https://en.wikipedia.org/wiki/Circulant_matrix)
 
 
 **Definition:** The *discrete Fourier basis* in $\mathbf{R}^p$ is (in the columns of) the matrix $\mathbf{E} = (e_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}$ with entries given by
