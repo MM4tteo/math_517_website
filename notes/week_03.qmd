@@ -118,7 +118,7 @@ plus some others just shown below
 for figures with multiple attributes using commas fail, we need to use space.
 use path from root directory
 -->
-![](/images/kernels.png){width=60% fig-align=center}
+![](/images/multuiple_kernels.png){width=60% fig-align=center}
 
 
 While the Gaussian kernel looks more spread visually, this does not matter since the spread is controlled by the bandwidth. What makes the Gaussian kernel different from the others is:
