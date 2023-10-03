@@ -443,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Let <span class="math inline">\(X_1,\ldots,X_n\)</span> be a random sample from a density <span class="math inline">\(f(x)\)</span>. Our goal is to estimate the density <span class="math inline">\(f\)</span> non-parametrically (as flexibly as possible). We have already used a histogram to give us some intuition on an underlying distribution of a variable in a data set.</p>
 <p>We will be using the <code>faithful</code> data which provides the time between eruptions (variable <code>waiting</code>) and the duration time of the eruptions (variable <code>eruptions</code>) for the Old Faithful geyser in Yellowstone. By specifying <code>probability=T</code>, we scaled the y-axis so each histogram integrates to one (it is easy to see why this is not the default – the numbers do not tell us much, but here we want to look at histograms as density estimators).</p>
-<div class="cell">
+<div class="cell" data-fig.dim="[8,4]">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(faithful)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">probability=</span>T, <span class="at">main =</span> <span class="st">"Eruption duration"</span>, <span class="at">xlab=</span><span class="st">"time [min]"</span>)</span>
@@ -453,7 +453,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We assume that there exist underlying densities from which the eruption duration and waiting times are drawn. While histograms are useful in providing some quick information (supports, bimodality, etc.) they are quite useless in capturing finer properties, such as the shape, since they heavily depend on the <em>binwidth</em> as well as the <em>origin</em> – the two quantities that determine equally-spaced breaks for the bins.</p>
-<div class="cell">
+<div class="cell" data-fig.dim="[10,2]">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>)) <span class="co"># reduce the white space around individual plots</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Origin at 1.5"</span>);</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.4</span>,<span class="fl">5.4</span>,<span class="at">by=</span><span class="fl">0.5</span>), <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Origin at 1.4"</span>, <span class="at">xlab=</span><span class="st">"time [min]"</span>)  </span>
@@ -463,7 +463,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="week_03_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="960"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-fig.dim="[10,2]">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Binwidth=0.5"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.5</span>,<span class="fl">5.5</span>,<span class="at">by=</span><span class="fl">0.25</span>), <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Binwidth=0.25"</span>) </span>
@@ -489,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 For plotting purposes, these are interpolated by a piece-wise linear function. Notice that if we choose the grid’s resolution to match the bandwidth and interpolate by a piece-wise constant function instead, we end up exactly with a histogram.<br>
 Also, even when we compute the naive estimator <span class="math inline">\(\widehat{f}(x)\)</span> on a dense grid of points (compared to a histogram) we will have exactly the histogram’s value in the middle of every histogram bin. Hence the naive estimator <span class="math inline">\(\widehat{f}(x)\)</span> can be essentially thought of as a “moving histogram” (so <em>origin</em> does not matter anymore).</li>
 </ol>
-<div class="cell">
+<div class="cell" data-fig.dim="[8,4]">
 <div class="cell-output-display">
 <p><img src="week_03_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -539,9 +539,12 @@ Also, even when we compute the naive estimator <span class="math inline">\(\wide
 </tbody>
 </table>
 <p>plus some others just shown below</p>
+<!--
+for figures with multiple attributes using commas fail, we need to use space.
+-->
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/kernels.png'" class="img-fluid figure-img"></p>
+<p><img src="../images/kernels.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption class="figure-caption">Kernels</figcaption>
 </figure>
 </div>
@@ -552,7 +555,7 @@ Also, even when we compute the naive estimator <span class="math inline">\(\wide
 </ul>
 <p>In practice, a thresholded Gaussian is most commonly used, followed by Epanechnikov, for which there exist some subtle optimality arguments.</p>
 <p>As shown below, while there is some improvement when not using the naive rectangular kernel (i.e.&nbsp;uniform distribution density), choosing appropriate bandwidth <span class="math inline">\(h\)</span> is much more important in practice than choosing the kernel <span class="math inline">\(K(\cdot)\)</span>.</p>
-<div class="cell">
+<div class="cell" data-fig.dim="[10,2.5]">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># again, this is only a handle, not a proper function!</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plot_kdes <span class="ot">&lt;-</span> <span class="cf">function</span>(bw){</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"gaussian"</span>, <span class="at">bw=</span>bw),</span>
@@ -574,7 +577,7 @@ Also, even when we compute the naive estimator <span class="math inline">\(\wide
 <h1>3. Bandwidth</h1>
 <p>The bandwidth should be thought of as a <em>tuning parameter</em>, and in practice it needs to be chosen somehow.</p>
 <p>It should be clear that a small bandwidth <span class="math inline">\(h\)</span> leads to a wiggly estimator <span class="math inline">\(\widehat{f}(x)\)</span> while a large bandwidth <span class="math inline">\(h\)</span> leads to a smooth estimator:</p>
-<div class="cell">
+<div class="cell" data-fig.dim="[10,3]">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"rectangular"</span>, <span class="at">bw=</span><span class="dv">1</span>), <span class="at">main=</span><span class="st">" "</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">lwd=</span><span class="dv">2</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"rectangular"</span>, <span class="at">bw=</span><span class="fl">0.1</span>), <span class="at">col=</span><span class="dv">2</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">type=</span><span class="st">"l"</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
@@ -588,7 +591,11 @@ Also, even when we compute the naive estimator <span class="math inline">\(\wide
 <p>This is actually the bias-variance decomposition in practice. We look for a sweet spot, which minimizes the mean squared error (MSE) of <span class="math inline">\(\widehat{f}\)</span> at <span class="math inline">\(x\)</span>: <span class="math display">\[\underbrace{\mathbb{E} \big[ \widehat{f}(x) - f(x) \big]^2}_{MSE} = \mathbb{E} \big[ \widehat{f}(x) \pm \mathbb{E} \widehat{f}(x) - f(x) \big]^2 = \underbrace{\big[\mathbb{E} \widehat{f}(x) - f(x) \big]^2}_{bias^2} + \underbrace{\mathrm{var}\big( \widehat{f}(x) \big)}_{variance}\]</span> Let us calculate the bias and the variance (note that they are both pointwise, i.e., depending on <span class="math inline">\(x\)</span>, just as the MSE). For the bias: <span class="math display">\[
 \mathbb{E} \widehat{f}(x) = \mathbb{E} \frac{1}{n h} \sum_{i=1}^n K\left(\frac{X_i - x}{h} \right) = \frac{1}{h} \int K\left(\frac{y - x}{h} \right) f(y) d y
 \]</span> and substituting <span class="math inline">\(z=(y-x)/h\)</span>, we have <span class="math display">\[bias = \frac{1}{h} \int K\left(\frac{y - x}{h} \right) f(y) d y - f(x) = \int K(z) \big[ f(x+hz) - f(x) \big] dz\]</span> We already know that we have hopes for consistency only with <span class="math inline">\(h=h_n \to 0\)</span> and <span class="math inline">\(n h_n \to \infty\)</span>, so let us invoke Taylor expansion of <span class="math inline">\(f(x+hz)\)</span> at <span class="math inline">\(x\)</span>: <span class="math display">\[f(x+hz) = f(x) + h z f'(x) + \frac{1}{2}h^2z^2f''(x) + \ldots\]</span> leading for <span class="math inline">\(h \to 0\)</span> to <span class="math display">\[ bias = h f'(x) \underbrace{\int z K(z) dz}_{=0} + \frac{1}{2} h^2 f''(x) \int z^2 K(z) dz + \mathcal{o}(h^2) \]</span></p>
-<p>For the variance: denoting <span class="math inline">\(\star = K\left(\frac{y - x}{h} \right)\)</span> <span class="math display">\[\mathrm{var}\big\lbrace \widehat{f}(x) \big\rbrace = \frac{1}{nh^2} \mathrm{var}\left(\star\right) = \frac{1}{nh^2} \mathbb{E} \star^2 - \frac{1}{nh^2} \big(\mathbb{E} \star \big)^2 = \frac{1}{nh^2} \int \left\lbrace K\left(\frac{y - x}{h} \right) \right\rbrace^2 f(y) dy - \frac{1}{nh^2} \left\lbrace \int K\left(\frac{y - x}{h} \right)  f(y) dy \right\rbrace^2 \]</span> and hence for <span class="math inline">\(h=h_n \to 0\)</span> and <span class="math inline">\(n h_n \to \infty\)</span> we have (using the same substitution and Taylor expansion as above) <span class="math display">\[
+<p>For the variance: denoting <span class="math inline">\(\star = K\left(\frac{y - x}{h} \right)\)</span> <span class="math display">\[
+\begin{align*}
+\mathrm{var}\big\lbrace \widehat{f}(x) \big\rbrace &amp;= \frac{1}{nh^2} \mathrm{var}\left(\star\right) = \frac{1}{nh^2} \mathbb{E} \star^2 - \frac{1}{nh^2} \big(\mathbb{E} \star \big)^2 \\  
+&amp;= \frac{1}{nh^2} \int \left\lbrace K\left(\frac{y - x}{h} \right) \right\rbrace^2 f(y) dy - \frac{1}{nh^2} \left\lbrace \int K\left(\frac{y - x}{h} \right)  f(y) dy \right\rbrace^2
+\end{align*}\]</span> and hence for <span class="math inline">\(h=h_n \to 0\)</span> and <span class="math inline">\(n h_n \to \infty\)</span> we have (using the same substitution and Taylor expansion as above) <span class="math display">\[
 \begin{split}
 \mathrm{var}\big\lbrace \widehat{f}(x) \big\rbrace &amp;= \frac{1}{nh} \underbrace{\frac{1}{h} \int \left\lbrace K\left(\frac{y - x}{h} \right) \right\rbrace^2 f(y) dy}_{\int f(x+hz) [K(z)]^2 dz} - \underbrace{\frac{1}{n}\big\lbrace f(x) + bias(x) \big\rbrace^2}_{\mathcal{O}(n^{-1}) = \mathcal{o}(n^{-1} h^{-1})} \\
 &amp;= \frac{1}{nh} f(x) \int \big\lbrace K(z)\big\rbrace^2 dz + \mathcal{o}\left( \frac{1}{nh} \right)
@@ -619,9 +626,13 @@ Also, even when we compute the naive estimator <span class="math inline">\(\wide
 </ul>
 <p>but the above formula is the simplest generalization of KDE to multiple dimensions. Interestingly, if we do require a separable kernel, the only radially symmetric option is the Gaussian kernel (because of such nice properties, the Gaussian kernel is often the default choice).</p>
 <p>It is possible to show that the optimal rate for MSE of KDE in <span class="math inline">\(d\)</span> dimensions is <span class="math inline">\(\mathcal{O}(n^{-4/(4+d)})\)</span>, so we loose convergence speed fast with increasing dimensions. To appreciate this, we visualize the rate for several values of <span class="math inline">\(d\)</span>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img src="week_03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week_03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Notice the gray horizontal line showing that, in terms of this asymptotic rate, <span class="math inline">\(n\approx 300\)</span> with <span class="math inline">\(d=1\)</span> leads to approximately the same error as <span class="math inline">\(n=30000\)</span> with <span class="math inline">\(d=5\)</span>. This is a manifestation of the infamous <em>curse of dimensionality</em>. For this reason, KDE is usually restricted to dimensions <span class="math inline">\(d=1\)</span> or <span class="math inline">\(d=2\)</span> (beyond these, one usually assumes independence between the dimensions, estimates marginals separately using the ideas here, and then stitch the dimensions together using <em>copulas</em> for example).</p>
@@ -633,7 +644,7 @@ Also, even when we compute the naive estimator <span class="math inline">\(\wide
 <h2 class="anchored" data-anchor-id="circulant-matrices-and-discrete-fourier-transform">5.1 Circulant Matrices and Discrete Fourier Transform</h2>
 <p>In this sub-section only, we will index <span class="math inline">\(p\)</span>-dimensional vectors from <span class="math inline">\(0\)</span> to <span class="math inline">\(p-1\)</span> and similarly for matrices. I will write it down explicitly as a reminder from time to time.</p>
 <p><strong>Definition:</strong> A matrix <span class="math inline">\(\mathbf{C} = (c_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}\)</span> is called <em>circulant</em> if <span class="math inline">\(c_{jk} = c_{|j-k|}\)</span>, where <span class="math inline">\(\mathbf{c} = (c_j) \in \mathbb{R}^{p}\)</span> is the <em>symbol</em> of <span class="math inline">\(\mathbf{C}\)</span> (the first column of <span class="math inline">\(\mathbf{C}\)</span>).</p>
-<p><img src="../images/circulant_matrix.png" class="img-fluid" data-fig-align="center" alt="Circulant matrix">(https://en.wikipedia.org/wiki/Circulant_matrix)</p>
+<p><span class="math display">\[C=\left[\begin{array}{ccccc}c_0 &amp; c_{n-1} &amp; \cdots &amp; c_2 &amp; c_1 \\ c_1 &amp; c_0 &amp; c_{n-1} &amp; &amp; c_2 \\ \vdots &amp; c_1 &amp; c_0 &amp; \ddots &amp; \vdots \\ c_{n-2} &amp; &amp; \ddots &amp; \ddots &amp; c_{n-1} \\ c_{n-1} &amp; c_{n-2} &amp; \cdots &amp; c_1 &amp; c_0\end{array}\right]\]</span></p>
 <p><strong>Definition:</strong> The <em>discrete Fourier basis</em> in <span class="math inline">\(\mathbf{R}^p\)</span> is (in the columns of) the matrix <span class="math inline">\(\mathbf{E} = (e_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}\)</span> with entries given by <span class="math display">\[ e_{jk} = \frac{1}{\sqrt{p}} e^{2\pi i j k / p} , \qquad j,k=0,\ldots,p-1\]</span> It is straightforward to check that <span class="math inline">\(\mathbf{E}\)</span> is unitary and hence the discrete Fourier basis is really a basis.</p>
 <p><strong>Definition:</strong> The <em>discrete Fourier transform</em> (DFT) of <span class="math inline">\(\mathbf{x} \in \mathbb{R}^p\)</span> is <span class="math inline">\(\mathbf{E}^* \mathbf{x}\)</span> with <span class="math inline">\(\mathbf{E}\)</span> being the discrete Fourier basis from the previous definition.</p>
 <p>In the previous definition, the superscript <span class="math inline">\(*\)</span> denotes the conjugate transpose. Since <span class="math inline">\(\mathbf{E}\)</span> is symmetric, it only corresponds to adding minuses to all the complex exponents. The <em>inverse DFT</em> (IDFT) is just the application <span class="math inline">\(\mathbf{E} \mathbf{x}\)</span> (without the complex conjugate).</p>
@@ -691,7 +702,7 @@ e^{2 \pi i j p/p} \sum_k c_{|(p-1)-k|} e^{2 \pi i j (k-p+1)/p}
 \widehat{f}(x) = \frac{1}{n h_n} \sum_{i=1}^n K\left(\frac{\widetilde{X}_i - x}{h_n} \right) =
 \frac{1}{n h_n} \sum_{j=1}^p K\left(\frac{t_j - x}{h_n} \right) y_j
 \]</span></p>
-<div class="cell">
+<div class="cell" data-fig.dim="[8,4]">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>init_hist <span class="ot">&lt;-</span> <span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks =</span> <span class="dv">256</span>, <span class="at">plot=</span>F)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x_tilde <span class="ot">&lt;-</span> <span class="fu">rep</span>(init_hist<span class="sc">$</span>mids, <span class="at">times=</span>init_hist<span class="sc">$</span>counts) <span class="co"># read \tilde{X} from the initial histogram</span></span>
@@ -711,23 +722,31 @@ e^{2 \pi i j p/p} \sum_k c_{|(p-1)-k|} e^{2 \pi i j (k-p+1)/p}
 \]</span> where the entries of <span class="math inline">\(\mathbf{S}\)</span> are given by <span class="math inline">\(s_{ij} = \frac{1}{n h_n} K\left(\frac{t_j - t_i}{h_n} \right)\)</span>.</p>
 <p>Methods that calculate the output as a matrix transformation of the input (like in the previous formula or in linear regression) are called <em>linear smoothers</em>, and their simplicity leads to nice properties. This will be seen in the next section as well as later in the course. For example, questions such as “how would the fit look like if we dropped a single observations” (which is needed e.g.&nbsp;in linear regression for calculating the Cook’s distances) can be answered without refitting for linear smoothers. Adopting linear models terminology, <span class="math inline">\(\mathbf{S}\)</span> is called the <em>hat matrix</em>.</p>
 <p>You can notice that KDE is a linear smoother even without rounding the observations on a grid (simply take <span class="math inline">\(\mathbf{y} \equiv \mathbf{1}\)</span>), but only on an equidistant grid is the hat matrix <span class="math inline">\(\mathbf{S}\)</span> <em>Toeplitz</em> (in this case, it is symmetric, see below).</p>
-<div class="cell">
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" data-fig.dim="[4,4]" style="flex-basis: 50.0%;justify-content: center;">
 <div class="cell-output-display">
 <p><img src="week_03_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="384"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell quarto-layout-cell" data-fig.dim="[4,4]" style="flex-basis: 50.0%;justify-content: center;">
 <div class="cell-output-display">
 <p><img src="week_03_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="384"></p>
+</div>
+</div>
 </div>
 </div>
 <p>The kernel on the left-hand plot above just shifts (from left to right, visualized in the middle) and its values form the hat matrix on the right-hand side (from bottom to top).</p>
 <p>Any Toeplitz matrix <span class="math inline">\(\mathbf{S}\)</span> of dimensions <span class="math inline">\(n \times n\)</span> can be embedded into a circulant matrix <span class="math inline">\(\mathbf{C}\)</span> of dimensions at most <span class="math inline">\((2n -1) \times (2n-1)\)</span>. The easiest way is to wrap the first row of <span class="math inline">\(\mathbf{S}\)</span>, denoted <span class="math inline">\(\mathbf{s}\)</span>, to form the first row of <span class="math inline">\(\mathbf{C}\)</span> as <span class="math display">\[
 \mathbf{c} = (s_1, s_2, \ldots, s_{n-1}, s_n, s_{n-1},\ldots,s_2)^\top
 \]</span></p>
-<div class="cell">
+<div class="cell" data-layout-align="center" data-fig.dim="[4,4]">
 <div class="cell-output-display">
-<p><img src="week_03_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="384"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week_03_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Then, when we want to apply the Toeplitz matrix <span class="math inline">\(\mathbf{S}\)</span>, i.e., calculate the KDE from the initial histogram as <span class="math inline">\(\mathbf{S} y\)</span>, we can instead apply the wrapped circulant matrix <span class="math inline">\(\mathbf{C}\)</span> on a vector suitably extended with zeros: <span class="math display">\[
@@ -767,7 +786,7 @@ e^{2 \pi i j p/p} \sum_k c_{|(p-1)-k|} e^{2 \pi i j (k-p+1)/p}
 <p>I would like to conclude with another reason, why understanding KDEs as linear smoothers is useful, again through the connection with linear regression. In linear models, the (regression, as opposed to residual) <em>degrees of freedom</em> is the dimensionality in which the model (for the mean) is free to vary. If there is no linear dependence between the predictors, then this is simply the number of predictors <span class="math inline">\(p\)</span>. If, on the other hand, there is linear dependence, we can still define the degrees of freedom as <span class="math inline">\(\mathrm{df} := \mathrm{tr}(\mathbf{H})\)</span>, where <span class="math inline">\(\mathrm{tr}(\cdot)\)</span> denotes the trace of the matrix (the sum of the diagonal elements), <span class="math inline">\(\mathbf{H} = \mathbf{X} (\mathbf{X}^\top \mathbf{X})^\dagger \mathbf{X}^\top\)</span> is the hat matrix (and the <span class="math inline">\(\dagger\)</span> superscript denotes the pseudo-inverse). The degrees of freedom defined via the hat matrix still correspond to the model dimension. In KDE (or other non-parametric approaches), the model dimension in infinite. But for all linear smoothers (including KDE) it still makes sense to consider the trace of the hat-matrix as the degrees of freedom in our model: <span class="math display">\[ \mathrm{df} := \mathrm{tr}(\mathbf{S}) \]</span> We can still vaguely think of this <span class="math inline">\(\mathrm{df}\)</span> as the model dimensionality.</p>
 <p>For the global bandwidth choice, the hat matrix <span class="math inline">\(\mathbf{S}\)</span> is constant on the diagonal, equal to <span class="math inline">\(\frac{1}{n h}K(0)\)</span>. Hence we simply have <span class="math inline">\(\mathrm{df} = K(0)/h\)</span>, and so the degrees of freedom are inversely proportional to the bandwidth <span class="math inline">\(h\)</span>, also depending on the kernel <span class="math inline">\(K(\cdot)\)</span>.</p>
 <p>It is important to note that counting degrees of freedom is merely a concept, which often appears in calculations, that can be helpful for comparison purposes, but should not be subject to overinterpretation. For example, looking at the Old Faithful eruptions and some of their smooths above, we might think of fitting a mixture of two Gaussians <span class="math display">\[f(x) = \tau \varphi_{\mu_1,\sigma_1^2}(x) + (1-\tau)\varphi_{\mu_2,\sigma_2^2}(x)\]</span> to the data. This mixture has 5 parameters (two means, two variances, and the mixing proportion), so it has 5 degrees of freedom. Below, we visualize the KDE of the eruptions with bandwidth chosen such that the resulting estimator has also 5 degrees of freedom. We can vaguely think of this smooth as having the same level of complexity as the Gaussian mixture model above (which we will learn to fit later in the semester, but already now we can imagine how the fit would look like – less wiggly).</p>
-<div class="cell">
+<div class="cell" data-fig.dim="[4,4]">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_bw <span class="ot">&lt;-</span> <span class="fl">0.07977</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">/</span>my_bw</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions,<span class="at">bw=</span>my_bw),<span class="at">main=</span><span class="fu">paste</span>(<span class="st">"bw ="</span>,my_bw,<span class="st">" &amp; "</span>,<span class="st">"df ="</span>,<span class="fu">round</span>(my_df,<span class="dv">5</span>)),<span class="at">xlab=</span><span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
