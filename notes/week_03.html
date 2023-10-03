@@ -541,7 +541,7 @@ Also, even when we compute the naive estimator <span class="math inline">\(\wide
 <p>plus some others just shown below</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../Plots/kernels.png'" class="img-fluid figure-img"></p>
+<p><img src="../images/kernels.png'" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Kernels</figcaption>
 </figure>
 </div>
@@ -633,7 +633,7 @@ Also, even when we compute the naive estimator <span class="math inline">\(\wide
 <h2 class="anchored" data-anchor-id="circulant-matrices-and-discrete-fourier-transform">5.1 Circulant Matrices and Discrete Fourier Transform</h2>
 <p>In this sub-section only, we will index <span class="math inline">\(p\)</span>-dimensional vectors from <span class="math inline">\(0\)</span> to <span class="math inline">\(p-1\)</span> and similarly for matrices. I will write it down explicitly as a reminder from time to time.</p>
 <p><strong>Definition:</strong> A matrix <span class="math inline">\(\mathbf{C} = (c_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}\)</span> is called <em>circulant</em> if <span class="math inline">\(c_{jk} = c_{|j-k|}\)</span>, where <span class="math inline">\(\mathbf{c} = (c_j) \in \mathbb{R}^{p}\)</span> is the <em>symbol</em> of <span class="math inline">\(\mathbf{C}\)</span> (the first column of <span class="math inline">\(\mathbf{C}\)</span>).</p>
-<p><img src="../Plots/circulant_matrix.png" class="img-fluid" data-fig-align="center" alt="Circulant matrix">(https://en.wikipedia.org/wiki/Circulant_matrix)</p>
+<p><img src="../images/circulant_matrix.png" class="img-fluid" data-fig-align="center" alt="Circulant matrix">(https://en.wikipedia.org/wiki/Circulant_matrix)</p>
 <p><strong>Definition:</strong> The <em>discrete Fourier basis</em> in <span class="math inline">\(\mathbf{R}^p\)</span> is (in the columns of) the matrix <span class="math inline">\(\mathbf{E} = (e_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}\)</span> with entries given by <span class="math display">\[ e_{jk} = \frac{1}{\sqrt{p}} e^{2\pi i j k / p} , \qquad j,k=0,\ldots,p-1\]</span> It is straightforward to check that <span class="math inline">\(\mathbf{E}\)</span> is unitary and hence the discrete Fourier basis is really a basis.</p>
 <p><strong>Definition:</strong> The <em>discrete Fourier transform</em> (DFT) of <span class="math inline">\(\mathbf{x} \in \mathbb{R}^p\)</span> is <span class="math inline">\(\mathbf{E}^* \mathbf{x}\)</span> with <span class="math inline">\(\mathbf{E}\)</span> being the discrete Fourier basis from the previous definition.</p>
 <p>In the previous definition, the superscript <span class="math inline">\(*\)</span> denotes the conjugate transpose. Since <span class="math inline">\(\mathbf{E}\)</span> is symmetric, it only corresponds to adding minuses to all the complex exponents. The <em>inverse DFT</em> (IDFT) is just the application <span class="math inline">\(\mathbf{E} \mathbf{x}\)</span> (without the complex conjugate).</p>
