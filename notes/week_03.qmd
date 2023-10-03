@@ -114,7 +114,10 @@ Assumptions 1-3 above hold for any density of a symmetric distribution. Assumpti
 
 plus some others just shown below
 
-![Kernels](../images/kernels.png'){width=60%, fig-align=center}
+<!--
+for figures with multiple attributes using commas fail, we need to use space.
+-->
+![Kernels](../images/kernels.png){width=60% fig-align=center}
 
 
 While the Gaussian kernel looks more spread visually, this does not matter since the spread is controlled by the bandwidth. What makes the Gaussian kernel different from the others is:
@@ -170,7 +173,11 @@ leading for $h \to 0$ to
 $$ bias = h f'(x) \underbrace{\int z K(z) dz}_{=0} + \frac{1}{2} h^2 f''(x) \int z^2 K(z) dz + \mathcal{o}(h^2) $$
 
 For the variance: denoting $\star = K\left(\frac{y - x}{h} \right)$
-$$\mathrm{var}\big\lbrace \widehat{f}(x) \big\rbrace = \frac{1}{nh^2} \mathrm{var}\left(\star\right) = \frac{1}{nh^2} \mathbb{E} \star^2 - \frac{1}{nh^2} \big(\mathbb{E} \star \big)^2 = \frac{1}{nh^2} \int \left\lbrace K\left(\frac{y - x}{h} \right) \right\rbrace^2 f(y) dy - \frac{1}{nh^2} \left\lbrace \int K\left(\frac{y - x}{h} \right)  f(y) dy \right\rbrace^2 $$
+$$
+\begin{align*}
+\mathrm{var}\big\lbrace \widehat{f}(x) \big\rbrace &= \frac{1}{nh^2} \mathrm{var}\left(\star\right) = \frac{1}{nh^2} \mathbb{E} \star^2 - \frac{1}{nh^2} \big(\mathbb{E} \star \big)^2 \\  
+&= \frac{1}{nh^2} \int \left\lbrace K\left(\frac{y - x}{h} \right) \right\rbrace^2 f(y) dy - \frac{1}{nh^2} \left\lbrace \int K\left(\frac{y - x}{h} \right)  f(y) dy \right\rbrace^2
+\end{align*}$$
 and hence for $h=h_n \to 0$ and $n h_n \to \infty$ we have (using the same substitution and Taylor expansion as above)
 $$
 \begin{split}
@@ -209,7 +216,7 @@ but the above formula is the simplest generalization of KDE to multiple dimensio
 
 It is possible to show that the optimal rate for MSE of KDE in $d$ dimensions is $\mathcal{O}(n^{-4/(4+d)})$, so we loose convergence speed fast with increasing dimensions. To appreciate this, we visualize the rate for several values of $d$:
 
-```{r,echo=F}
+```{r,echo=F, fig.align="center"}
 n <- 2^{7:15}
 plot(1:length(n),n^(-4/(4+5)),type="b",col=5,ylim=c(0,0.10), ylab=paste("asymptotic error rate ", expression(n^(-4/(4+d)))),xlab=expression(n), xaxt="n")
 abline(h=0.01,col="gray")
@@ -236,7 +243,8 @@ In this sub-section only, we will index $p$-dimensional vectors from $0$ to $p-1
 
 **Definition:** A matrix $\mathbf{C} = (c_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}$ is called *circulant* if $c_{jk} = c_{|j-k|}$, where $\mathbf{c} = (c_j) \in \mathbb{R}^{p}$ is the *symbol* of $\mathbf{C}$ (the first column of $\mathbf{C}$).
 
-![Circulant matrix](../images/circulant_matrix.png){width=40%, fig-align="center"}(https://en.wikipedia.org/wiki/Circulant_matrix)
+$$C=\left[\begin{array}{ccccc}c_0 & c_{n-1} & \cdots & c_2 & c_1 \\ c_1 & c_0 & c_{n-1} & & c_2 \\ \vdots & c_1 & c_0 & \ddots & \vdots \\ c_{n-2} & & \ddots & \ddots & c_{n-1} \\ c_{n-1} & c_{n-2} & \cdots & c_1 & c_0\end{array}\right]$$
+
 
 
 **Definition:** The *discrete Fourier basis* in $\mathbf{R}^p$ is (in the columns of) the matrix $\mathbf{E} = (e_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}$ with entries given by
@@ -339,18 +347,20 @@ Methods that calculate the output as a matrix transformation of the input (like 
 
 You can notice that KDE is a linear smoother even without rounding the observations on a grid (simply take $\mathbf{y} \equiv \mathbf{1}$), but only on an equidistant grid is the hat matrix $\mathbf{S}$ *Toeplitz* (in this case, it is symmetric, see below).
 
-\column{0.5\textwidth}
+::: {layout-ncol=2}
+
 ```{r, echo=F,fig.dim=c(4,4)}
 gkern_x <- density(0,bw=0.25)$x[seq(1,512,by=2)]
 gkern_y <- density(0,bw=0.25)$y[seq(1,512,by=2)] # the Gaussian kernel for smoothing the initial histogram
 hist(faithful$eruptions, breaks = 256, freq=F, plot=T,xlab="",main="")
 points(gkern_x+3,gkern_y, col="2",type="l",lwd=2)
 ```
-\column{0.5\textwidth}
 ```{r, echo=F,fig.dim=c(4,4)}
 library(lattice)
 levelplot(toeplitz(c(gkern_y[129:256],rep(0,128))),xaxt="n")
 ```
+:::
+
 
 The kernel on the left-hand plot above just shifts (from left to right, visualized in the middle) and its values form the hat matrix on the right-hand side (from bottom to top).
 
@@ -358,7 +368,7 @@ Any Toeplitz matrix $\mathbf{S}$ of dimensions $n \times n$ can be embedded into
 $$
 \mathbf{c} = (s_1, s_2, \ldots, s_{n-1}, s_n, s_{n-1},\ldots,s_2)^\top
 $$
-```{r,echo=F,fig.dim=c(4,4)}
+```{r,echo=F,fig.dim=c(4,4), fig.align="center"}
 s_vec <- c(gkern_y[129:256],rep(0,128))
 c_vec <- c(s_vec,rev(s_vec[2:256]))
 levelplot(toeplitz(c_vec),xaxt="n")
