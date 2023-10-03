@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MATH 517 - Kernel Density Estimation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../resources/computing/intro_to_r/index.html" rel="next">
+<link href="../notes/week_02.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="MATH 517 - Kernel Density Estimation">
+<meta property="og:description" content="Homepage for MATH 517- Computational statistics and visualisation at EPFL, Fall 2023.">
+<meta property="og:site_name" content="MATH 517">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/week_02.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/week_03.html">Kernel Density Estimation</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">MATH 517</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MATH-517/MATH_517_website" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview/Organisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Help &amp; FAQ</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercise-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercise-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/project-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Small project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/project-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Main project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/project-tips-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips + resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Supplementary notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/week_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring Data with <code>tidyverse</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/week_03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Kernel Density Estimation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">Coding introduction</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/computing/intro_to_r/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/computing/intro_to_python/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/computing/intro_to_julia/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Julia</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/tutorials/github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/tutorials/github_classroom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub classroom</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/tutorials/installing_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing software</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/computing/computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">All resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#naive-kde" id="toc-naive-kde" class="nav-link active" data-scroll-target="#naive-kde">1. Naive KDE</a></li>
+  <li><a href="#kde" id="toc-kde" class="nav-link" data-scroll-target="#kde">2. KDE</a></li>
+  <li><a href="#bandwidth" id="toc-bandwidth" class="nav-link" data-scroll-target="#bandwidth">3. Bandwidth</a></li>
+  <li><a href="#higher-dimension" id="toc-higher-dimension" class="nav-link" data-scroll-target="#higher-dimension">4. Higher Dimension</a></li>
+  <li><a href="#computational-considerations-not-covered-in-the-lecture" id="toc-computational-considerations-not-covered-in-the-lecture" class="nav-link" data-scroll-target="#computational-considerations-not-covered-in-the-lecture">5. Computational Considerations (not covered in the lecture)</a>
+  <ul class="collapse">
+  <li><a href="#circulant-matrices-and-discrete-fourier-transform" id="toc-circulant-matrices-and-discrete-fourier-transform" class="nav-link" data-scroll-target="#circulant-matrices-and-discrete-fourier-transform">5.1 Circulant Matrices and Discrete Fourier Transform</a></li>
+  <li><a href="#kde-viewed-as-a-linear-smoother" id="toc-kde-viewed-as-a-linear-smoother" class="nav-link" data-scroll-target="#kde-viewed-as-a-linear-smoother">5.2 KDE viewed as a Linear Smoother</a></li>
+  <li><a href="#kde-in-r" id="toc-kde-in-r" class="nav-link" data-scroll-target="#kde-in-r">5.3 KDE in R</a></li>
+  </ul></li>
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">6. Degrees of Freedom</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/notes/week_03.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/week_02.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/week_03.html">Kernel Density Estimation</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Kernel Density Estimation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<p>Let <span class="math inline">\(X_1,\ldots,X_n\)</span> be a random sample from a density <span class="math inline">\(f(x)\)</span>. Our goal is to estimate the density <span class="math inline">\(f\)</span> non-parametrically (as flexibly as possible). We have already used a histogram to give us some intuition on an underlying distribution of a variable in a data set.</p>
+<p>We will be using the <code>faithful</code> data which provides the time between eruptions (variable <code>waiting</code>) and the duration time of the eruptions (variable <code>eruptions</code>) for the Old Faithful geyser in Yellowstone. By specifying <code>probability=T</code>, we scaled the y-axis so each histogram integrates to one (it is easy to see why this is not the default – the numbers do not tell us much, but here we want to look at histograms as density estimators).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(faithful)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">probability=</span>T, <span class="at">main =</span> <span class="st">"Eruption duration"</span>, <span class="at">xlab=</span><span class="st">"time [min]"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">probability=</span>T, <span class="at">main =</span> <span class="st">"Waiting time"</span>, <span class="at">xlab=</span><span class="st">"time [min]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>We assume that there exist underlying densities from which the eruption duration and waiting times are drawn. While histograms are useful in providing some quick information (supports, bimodality, etc.) they are quite useless in capturing finer properties, such as the shape, since they heavily depend on the <em>binwidth</em> as well as the <em>origin</em> – the two quantities that determine equally-spaced breaks for the bins.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>)) <span class="co"># reduce the white space around individual plots</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Origin at 1.5"</span>);</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.4</span>,<span class="fl">5.4</span>,<span class="at">by=</span><span class="fl">0.5</span>), <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Origin at 1.4"</span>, <span class="at">xlab=</span><span class="st">"time [min]"</span>)  </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.3</span>,<span class="fl">5.3</span>,<span class="at">by=</span><span class="fl">0.5</span>), <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Origin at 1.3"</span>, <span class="at">xlab=</span><span class="st">"time [min]"</span>) </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.2</span>,<span class="fl">5.2</span>,<span class="at">by=</span><span class="fl">0.5</span>), <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Origin at 1.2"</span>, <span class="at">xlab=</span><span class="st">"time [min]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Binwidth=0.5"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.5</span>,<span class="fl">5.5</span>,<span class="at">by=</span><span class="fl">0.25</span>), <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Binwidth=0.25"</span>) </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.5</span>,<span class="fl">5.5</span>,<span class="at">by=</span><span class="fl">0.1</span>), <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Binwidth=0.1"</span>) </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.5</span>,<span class="fl">5.5</span>,<span class="at">by=</span><span class="fl">0.01</span>), <span class="at">probability=</span>T, <span class="at">main=</span><span class="st">"Binwidth=0.01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p>While binwidth is a reasonable tuning parameter (it’s role is quite intuitive and the histogram for different binwidths provides the same qualitative information), the choice of origin is completely arbitrary, and can significantly distort the histogram.</p>
+<section id="naive-kde" class="level1">
+<h1>1. Naive KDE</h1>
+<p>Recall that the density <span class="math inline">\(f\)</span> is the derivative of the distribution function <span class="math inline">\(F\)</span>, and hence <span class="math display">\[ f(x) = \lim_{h \to 0_+} \frac{F(x+h) - F(x-h)}{2h} \]</span> The most natural estimator for <span class="math inline">\(F\)</span> is the empirical distribution function <span class="math inline">\(\widehat{F}_n\)</span>, i.e., <span class="math inline">\(\widehat{F}_n(x) = \frac{1}{n} \sum_{i=1}^n \mathbb{1}_{[X_i \leq x]}\)</span>. If we fix the <em>bandwidth</em> <span class="math inline">\(h = h_n\)</span> (at something “small” and depending on <span class="math inline">\(n\)</span>, we need <span class="math inline">\(h_n \to 0_+\)</span> for <span class="math inline">\(n \to \infty\)</span> in order to have any hope for consistency) and plug in the EDF to the previous equation, we obtain a density estimator <span class="math display">\[ \widehat{f}(x) = \frac{\widehat{F}_n(x+h_n) - \widehat{F}_n(x-h_n)}{2h_n}. \]</span></p>
+<p>So let’s take a look at consistency: <span class="math display">\[ \mathbb{E} \widehat{f}(x) = \frac{F(x+h_n) - F(x-h_n)}{2h_n} \to f(x) \quad\text{if}\quad h_n \to 0_+ \]</span> and since we can write <span class="math inline">\(\widehat{f}(x) = \frac{1}{2 n h_n} \sum_{i=1}^n \mathbb{1}_{\big[X_i \in (x-h_n, x+h_n]\big]}\)</span>, where <span class="math inline">\(\mathbb{1}_{\big[X_i \in (x-h_n, x+h_n]\big]} \sim Ber\big(F(x+h_n) - F(x-h_n)\big)\)</span> <span class="math display">\[
+\begin{split}
+\mathrm{var}\left(\widehat{f}(x)\right) &amp;= \frac{1}{4 n h_n^2} \big[F(x+h_n) - F(x-h_n)\big]\big[1 - F(x+h_n) + F(x-h_n)\big] \\
+&amp;= \frac{F(x+h_n) - F(x-h_n)}{2 h_n} \frac{1 - F(x+h_n) + F(x-h_n)}{2 n h_n} \to 0 \quad\text{if}\quad h_n \to 0 \;\wedge \; n h_n \to \infty
+\end{split}
+\]</span> Hence we have pointwise (for every continuity point <span class="math inline">\(x\)</span>) consistency if <span class="math inline">\(h_n \to 0\)</span> and <span class="math inline">\(n h_n \to \infty\)</span>, as <span class="math inline">\(n \to \infty\)</span>.</p>
+<p>There are two other observations to be made about the naive estimator above:</p>
+<ol type="1">
+<li>While the naive estimator <span class="math inline">\(\widehat{f}(x)\)</span> is well defined for any <span class="math inline">\(x\)</span>, computing it in practice requires specifying a (usually equidistant) grid of points <span class="math inline">\(x_1, \ldots, x_k\)</span> for which the estimator should be evaluated.<br>
+For plotting purposes, these are interpolated by a piece-wise linear function. Notice that if we choose the grid’s resolution to match the bandwidth and interpolate by a piece-wise constant function instead, we end up exactly with a histogram.<br>
+Also, even when we compute the naive estimator <span class="math inline">\(\widehat{f}(x)\)</span> on a dense grid of points (compared to a histogram) we will have exactly the histogram’s value in the middle of every histogram bin. Hence the naive estimator <span class="math inline">\(\widehat{f}(x)\)</span> can be essentially thought of as a “moving histogram” (so <em>origin</em> does not matter anymore).</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ol start="2" type="1">
+<li>The estimator can be rewritten as <span class="math display">\[ \widehat{f}(x) = \frac{1}{2 n h_n} \sum_{i=1}^n \mathbb{1}_{\big[X_i \in (x-h_n, x+h_n]\big]} = \frac{1}{2 n h_n} \sum_{i=1}^n \mathbb{1}_{\big[-1 \leq \frac{X_i - x}{h_n} \leq 1]\big]} = \frac{1}{n h_n} \sum_{i=1}^n K\left(\frac{X_i - x}{h_n} \right) \]</span> where <span class="math inline">\(K(\cdot)\)</span> is a function weighting in observations (called the <em>kernel</em>) that are close to <span class="math inline">\(x\)</span>, specifically <span class="math inline">\(K(t) = \frac{1}{2} \mathbb{1}_{[|t| \leq 1]}\)</span>. Notice that <span class="math inline">\(K\)</span> is the density of <span class="math inline">\(U[-1,1]\)</span>.</li>
+</ol>
+</section>
+<section id="kde" class="level1">
+<h1>2. KDE</h1>
+<p>In the previous section, we developed an estimator of the density <span class="math inline">\(f\)</span> by considering a (limiting) relationship between <span class="math inline">\(f\)</span> and <span class="math inline">\(F\)</span>, into which we plugged in the empirical estimator of <span class="math inline">\(F\)</span>, ending up with an estimator of <span class="math inline">\(f\)</span>, based on the density of the uniform distribution.</p>
+<p>The uniform density in the estimator <span class="math inline">\(\widehat{f}(x) = \frac{1}{n h_n} \sum_{i=1}^n K\left(\frac{X_i - x}{h_n} \right)\)</span> can be replaced by some kernel <span class="math inline">\(K(\cdot)\)</span>. As long as the kernel satisfies the following assumptions:</p>
+<ol type="1">
+<li><span class="math inline">\(K(x) \geq 0\)</span> for all <span class="math inline">\(x \in \mathbb{R}\)</span></li>
+<li><span class="math inline">\(K(- x) = K(x)\)</span> for all <span class="math inline">\(x \in \mathbb{R}\)</span></li>
+<li><span class="math inline">\(\int_\mathbb{R} K(x) d x = 1\)</span></li>
+<li><span class="math inline">\(\lim_{|x| \to \infty} |x| K(x) = 0\)</span></li>
+<li><span class="math inline">\(\sup_x |K(x)| &lt; \infty\)</span></li>
+</ol>
+<p>and <span class="math inline">\(h_n \to 0\)</span> and <span class="math inline">\(n h_n \to \infty\)</span>, we can show consistency and asymptotic normality for any fixed <span class="math inline">\(x\)</span> (in which <span class="math inline">\(f\)</span> is continuous, and moreover non-zero for asymptotic normality), though not as easily done as above for the uniform density kernel.</p>
+<p><em>Note</em>: Consistency is shown below in Section 3. Showing uniform consistency, i.e., that <span class="math inline">\(\sup_{x}|\widehat{f}(x) - f(x)| \to 0\)</span>, is also possible, but much harder.</p>
+<p>Assumptions 1-3 above hold for any density of a symmetric distribution. Assumption 4 holds if the support is compact or if the corresponding random variable has a finite absolute moment. Assumption 5 is uniform boundedness of the kernel. These assumptions are satisfied by many densities. The most commonly used ones are:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kernel Name</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Epanechnikov</td>
+<td><span class="math inline">\(K(x) \propto (1-x^2) \mathbb{1}_{[|x| \leq 1]}\)</span></td>
+</tr>
+<tr class="even">
+<td>Tricube</td>
+<td><span class="math inline">\(K(x) \propto (1- |x|^3)^3 \mathbb{1}_{[|x| \leq 1]}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Gaussian</td>
+<td><span class="math inline">\(K(x) \propto \exp(-x^2/2)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>plus some others just shown below</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../Plots/kernels.png'" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Kernels</figcaption>
+</figure>
+</div>
+<p>While the Gaussian kernel looks more spread visually, this does not matter since the spread is controlled by the bandwidth. What makes the Gaussian kernel different from the others is:</p>
+<ul>
+<li>unbounded support (maybe not good for computational reasons),</li>
+<li>analytic (i.e.&nbsp;infinitely differentiable, which is good).</li>
+</ul>
+<p>In practice, a thresholded Gaussian is most commonly used, followed by Epanechnikov, for which there exist some subtle optimality arguments.</p>
+<p>As shown below, while there is some improvement when not using the naive rectangular kernel (i.e.&nbsp;uniform distribution density), choosing appropriate bandwidth <span class="math inline">\(h\)</span> is much more important in practice than choosing the kernel <span class="math inline">\(K(\cdot)\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># again, this is only a handle, not a proper function!</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plot_kdes <span class="ot">&lt;-</span> <span class="cf">function</span>(bw){</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"gaussian"</span>, <span class="at">bw=</span>bw),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste</span>(<span class="st">"Bandwidth = "</span>,bw,<span class="at">sep=</span><span class="st">""</span>), <span class="at">xlab=</span><span class="st">"time [min]"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(<span class="fu">c</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"gaussian"</span>, <span class="at">bw=</span>bw)<span class="sc">$</span>y,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                                                                         <span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"epanechnikov"</span>, <span class="at">bw=</span>bw)<span class="sc">$</span>y,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                                                         <span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"rectangular"</span>, <span class="at">bw=</span>bw)<span class="sc">$</span>y))))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"epanechnikov"</span>, <span class="at">bw=</span>bw), <span class="at">col=</span><span class="dv">4</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"rectangular"</span>, <span class="at">bw=</span>bw), <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"Gauss"</span>, <span class="st">"Epan"</span>, <span class="st">"rect"</span>), <span class="at">cex=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_kdes</span>(<span class="dv">1</span>); <span class="fu">plot_kdes</span>(<span class="fl">0.5</span>); <span class="fu">plot_kdes</span>(<span class="fl">0.25</span>); <span class="fu">plot_kdes</span>(<span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="bandwidth" class="level1">
+<h1>3. Bandwidth</h1>
+<p>The bandwidth should be thought of as a <em>tuning parameter</em>, and in practice it needs to be chosen somehow.</p>
+<p>It should be clear that a small bandwidth <span class="math inline">\(h\)</span> leads to a wiggly estimator <span class="math inline">\(\widehat{f}(x)\)</span> while a large bandwidth <span class="math inline">\(h\)</span> leads to a smooth estimator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"rectangular"</span>, <span class="at">bw=</span><span class="dv">1</span>), <span class="at">main=</span><span class="st">" "</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"rectangular"</span>, <span class="at">bw=</span><span class="fl">0.1</span>), <span class="at">col=</span><span class="dv">2</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">type=</span><span class="st">"l"</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions, <span class="at">kernel=</span><span class="st">"rectangular"</span>, <span class="at">bw=</span><span class="fl">0.01</span>), <span class="at">col=</span><span class="dv">4</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">type=</span><span class="st">"l"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rug</span>(<span class="fu">jitter</span>(faithful<span class="sc">$</span>eruptions))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"h=1"</span>,<span class="st">"h=0.1"</span>,<span class="st">"h=0.01"</span>),<span class="at">lty=</span><span class="dv">1</span>,<span class="at">col=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>), <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p>This is actually the bias-variance decomposition in practice. We look for a sweet spot, which minimizes the mean squared error (MSE) of <span class="math inline">\(\widehat{f}\)</span> at <span class="math inline">\(x\)</span>: <span class="math display">\[\underbrace{\mathbb{E} \big[ \widehat{f}(x) - f(x) \big]^2}_{MSE} = \mathbb{E} \big[ \widehat{f}(x) \pm \mathbb{E} \widehat{f}(x) - f(x) \big]^2 = \underbrace{\big[\mathbb{E} \widehat{f}(x) - f(x) \big]^2}_{bias^2} + \underbrace{\mathrm{var}\big( \widehat{f}(x) \big)}_{variance}\]</span> Let us calculate the bias and the variance (note that they are both pointwise, i.e., depending on <span class="math inline">\(x\)</span>, just as the MSE). For the bias: <span class="math display">\[
+\mathbb{E} \widehat{f}(x) = \mathbb{E} \frac{1}{n h} \sum_{i=1}^n K\left(\frac{X_i - x}{h} \right) = \frac{1}{h} \int K\left(\frac{y - x}{h} \right) f(y) d y
+\]</span> and substituting <span class="math inline">\(z=(y-x)/h\)</span>, we have <span class="math display">\[bias = \frac{1}{h} \int K\left(\frac{y - x}{h} \right) f(y) d y - f(x) = \int K(z) \big[ f(x+hz) - f(x) \big] dz\]</span> We already know that we have hopes for consistency only with <span class="math inline">\(h=h_n \to 0\)</span> and <span class="math inline">\(n h_n \to \infty\)</span>, so let us invoke Taylor expansion of <span class="math inline">\(f(x+hz)\)</span> at <span class="math inline">\(x\)</span>: <span class="math display">\[f(x+hz) = f(x) + h z f'(x) + \frac{1}{2}h^2z^2f''(x) + \ldots\]</span> leading for <span class="math inline">\(h \to 0\)</span> to <span class="math display">\[ bias = h f'(x) \underbrace{\int z K(z) dz}_{=0} + \frac{1}{2} h^2 f''(x) \int z^2 K(z) dz + \mathcal{o}(h^2) \]</span></p>
+<p>For the variance: denoting <span class="math inline">\(\star = K\left(\frac{y - x}{h} \right)\)</span> <span class="math display">\[\mathrm{var}\big\lbrace \widehat{f}(x) \big\rbrace = \frac{1}{nh^2} \mathrm{var}\left(\star\right) = \frac{1}{nh^2} \mathbb{E} \star^2 - \frac{1}{nh^2} \big(\mathbb{E} \star \big)^2 = \frac{1}{nh^2} \int \left\lbrace K\left(\frac{y - x}{h} \right) \right\rbrace^2 f(y) dy - \frac{1}{nh^2} \left\lbrace \int K\left(\frac{y - x}{h} \right)  f(y) dy \right\rbrace^2 \]</span> and hence for <span class="math inline">\(h=h_n \to 0\)</span> and <span class="math inline">\(n h_n \to \infty\)</span> we have (using the same substitution and Taylor expansion as above) <span class="math display">\[
+\begin{split}
+\mathrm{var}\big\lbrace \widehat{f}(x) \big\rbrace &amp;= \frac{1}{nh} \underbrace{\frac{1}{h} \int \left\lbrace K\left(\frac{y - x}{h} \right) \right\rbrace^2 f(y) dy}_{\int f(x+hz) [K(z)]^2 dz} - \underbrace{\frac{1}{n}\big\lbrace f(x) + bias(x) \big\rbrace^2}_{\mathcal{O}(n^{-1}) = \mathcal{o}(n^{-1} h^{-1})} \\
+&amp;= \frac{1}{nh} f(x) \int \big\lbrace K(z)\big\rbrace^2 dz + \mathcal{o}\left( \frac{1}{nh} \right)
+\end{split}
+\]</span></p>
+<p>The calculations above lead to the asymptotically optimal choice of bandwidth (ignore the o-terms, take the derivative of the MSE w.r.t. <span class="math inline">\(h\)</span> and set it to zero): <span class="math display">\[h_{opt}(x) = n^{-1/5} \left(\frac{f(x) \int K(z)^2 dz}{\big[ f''(x) \big]^2 \big[\int z^2 K(z) dz \big]^2}\right)^{1/5}\]</span></p>
+<p>About this formula, notice that:</p>
+<ul>
+<li>This is a <em>local</em> choice of the bandwidth, since it depends on <span class="math inline">\(x\)</span>. Local choice makes sense, since in regions with dense observations one anticipates a smaller bandwidth to work well, compared to regions that are relatively sparse on observations (see the previous plot).</li>
+<li>It cannot be directly used, since it depends on the unknown density <span class="math inline">\(f\)</span>. Let’s use the plugin principle:
+<ul>
+<li>reference method: we assume that <span class="math inline">\(f\)</span> is Gaussian (only for the purposes of bandwidth selection), estimate the mean and the variance, and plug it into the <span class="math inline">\(h_{opt}\)</span> formula</li>
+<li>two-step method: firstly fit the KDE with some choice of <span class="math inline">\(h\)</span> (e.g., a visually appealing and global), and then use the fit in the formula for <span class="math inline">\(h_{opt}\)</span></li>
+</ul></li>
+<li>The local choices above can be turned into global choices by integration.</li>
+<li>It reveals that <span class="math inline">\(h_n \propto n^{-1/5}\)</span> is the asymptotically optimal rate for the bandwidth. Plugging the optimal bandwidth back to the formulas for bias and variance, both the squared bias and the variance will be of order <span class="math inline">\(\mathcal{O}(n^{-4/5})\)</span>, which is indeed the optimal rate of convergence. Notice that this rate is slower than the usual <span class="math inline">\(1/n\)</span> we achieve with parametric methods (in the correct models!), which is the price we pay for the flexibility offered by the non-parametric approach.</li>
+</ul>
+<p>In practice, cross-validation (CV) is the method of choice for bandwidth selection. CV will be the topic of one of the future lectures, and we will return to bandwidth selection for KDE then.</p>
+</section>
+<section id="higher-dimension" class="level1">
+<h1>4. Higher Dimension</h1>
+<p><a name="1.4"></a></p>
+<p>What if our sample was multivariate instead, denoted <span class="math inline">\(X_1,\ldots,X_n \in \mathbb{R}^d\)</span>? In the simplest form, kernel density estimator can be defined naturally as <span class="math display">\[ \widehat{f}(\mathbf{x}) = \frac{1}{n h^d} \sum_{i=1}^n K\left( \frac{X_{i,1} - x_1}{h} \right) \cdot \ldots \cdot K\left( \frac{X_{i,d} - x_d}{h} \right)\]</span> In some cases, we might wish for</p>
+<ul>
+<li>different bandwidths for different dimensions,</li>
+<li>different kernels for different dimensions, or</li>
+<li>multivariate kernel which is not separable (a product of univariate kernels),</li>
+</ul>
+<p>but the above formula is the simplest generalization of KDE to multiple dimensions. Interestingly, if we do require a separable kernel, the only radially symmetric option is the Gaussian kernel (because of such nice properties, the Gaussian kernel is often the default choice).</p>
+<p>It is possible to show that the optimal rate for MSE of KDE in <span class="math inline">\(d\)</span> dimensions is <span class="math inline">\(\mathcal{O}(n^{-4/(4+d)})\)</span>, so we loose convergence speed fast with increasing dimensions. To appreciate this, we visualize the rate for several values of <span class="math inline">\(d\)</span>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Notice the gray horizontal line showing that, in terms of this asymptotic rate, <span class="math inline">\(n\approx 300\)</span> with <span class="math inline">\(d=1\)</span> leads to approximately the same error as <span class="math inline">\(n=30000\)</span> with <span class="math inline">\(d=5\)</span>. This is a manifestation of the infamous <em>curse of dimensionality</em>. For this reason, KDE is usually restricted to dimensions <span class="math inline">\(d=1\)</span> or <span class="math inline">\(d=2\)</span> (beyond these, one usually assumes independence between the dimensions, estimates marginals separately using the ideas here, and then stitch the dimensions together using <em>copulas</em> for example).</p>
+</section>
+<section id="computational-considerations-not-covered-in-the-lecture" class="level1">
+<h1>5. Computational Considerations (not covered in the lecture)</h1>
+<p>Say we have <span class="math inline">\(n\)</span> observations (<span class="math inline">\(X_1,\ldots,X_n)\)</span> and <span class="math inline">\(m\)</span> points on which we want to evaluate the estimator (<span class="math inline">\(x_1,\ldots,x_m\)</span>). For a fixed bandwidth <span class="math inline">\(h\)</span>, calculating the estimator <span class="math display">\[ \widehat{f}(x_j) = \frac{1}{n h} \sum_{i=1}^n K\left( \frac{X_i - x_j}{h} \right)\]</span> for every <span class="math inline">\(j=1,\ldots,m\)</span>, i.e.&nbsp;for all the evaluation points, takes <span class="math inline">\(\mathcal{O}(mn)\)</span> operations. Say that <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> are comparable, then the complexity is quadratic: <span class="math inline">\(\mathcal{O}(n^2)\)</span>. While this may not seem bad (for comparison, solving a system of <span class="math inline">\(n\)</span> equations <span class="math inline">\(\mathbf{A} \mathbf{x} = \mathbf{b}\)</span> without any special structure on the left-hand matrix <span class="math inline">\(\mathbf{A}\)</span> takes <span class="math inline">\(\mathcal{O}(n^3)\)</span> operations), it may get bad pretty fast in higher dimensions (everything naturally translates there). Here we discuss how to reduce the quadratic complexity to log-linear one, i.e.&nbsp;how to calculate the estimator in <span class="math inline">\(\mathcal{O}(n \log n)\)</span> operations.</p>
+<section id="circulant-matrices-and-discrete-fourier-transform" class="level2">
+<h2 class="anchored" data-anchor-id="circulant-matrices-and-discrete-fourier-transform">5.1 Circulant Matrices and Discrete Fourier Transform</h2>
+<p>In this sub-section only, we will index <span class="math inline">\(p\)</span>-dimensional vectors from <span class="math inline">\(0\)</span> to <span class="math inline">\(p-1\)</span> and similarly for matrices. I will write it down explicitly as a reminder from time to time.</p>
+<p><strong>Definition:</strong> A matrix <span class="math inline">\(\mathbf{C} = (c_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}\)</span> is called <em>circulant</em> if <span class="math inline">\(c_{jk} = c_{|j-k|}\)</span>, where <span class="math inline">\(\mathbf{c} = (c_j) \in \mathbb{R}^{p}\)</span> is the <em>symbol</em> of <span class="math inline">\(\mathbf{C}\)</span> (the first column of <span class="math inline">\(\mathbf{C}\)</span>).</p>
+<p><img src="../Plots/circulant_matrix.png" class="img-fluid" data-fig-align="center" alt="Circulant matrix">(https://en.wikipedia.org/wiki/Circulant_matrix)</p>
+<p><strong>Definition:</strong> The <em>discrete Fourier basis</em> in <span class="math inline">\(\mathbf{R}^p\)</span> is (in the columns of) the matrix <span class="math inline">\(\mathbf{E} = (e_{jk})_{j,k=0}^{p-1} \in \mathbb{R}^{p \times p}\)</span> with entries given by <span class="math display">\[ e_{jk} = \frac{1}{\sqrt{p}} e^{2\pi i j k / p} , \qquad j,k=0,\ldots,p-1\]</span> It is straightforward to check that <span class="math inline">\(\mathbf{E}\)</span> is unitary and hence the discrete Fourier basis is really a basis.</p>
+<p><strong>Definition:</strong> The <em>discrete Fourier transform</em> (DFT) of <span class="math inline">\(\mathbf{x} \in \mathbb{R}^p\)</span> is <span class="math inline">\(\mathbf{E}^* \mathbf{x}\)</span> with <span class="math inline">\(\mathbf{E}\)</span> being the discrete Fourier basis from the previous definition.</p>
+<p>In the previous definition, the superscript <span class="math inline">\(*\)</span> denotes the conjugate transpose. Since <span class="math inline">\(\mathbf{E}\)</span> is symmetric, it only corresponds to adding minuses to all the complex exponents. The <em>inverse DFT</em> (IDFT) is just the application <span class="math inline">\(\mathbf{E} \mathbf{x}\)</span> (without the complex conjugate).</p>
+<p>A <strong>fast Fourier transform</strong> (FFT) is an algorithm for evaluating the DFT <span class="math inline">\(\mathbf{E}^* \mathbf{x}\)</span> efficiently. While the naive matrix-vector multiplication would require <span class="math inline">\(\mathcal{O}(p^2)\)</span> operations, this can be reduced to <span class="math inline">\(\mathcal{O}(p \log p)\)</span> by utilizing the special (cyclic) structure of <span class="math inline">\(\mathbf{E}\)</span>. Any specific algorithm achieving this reduction is referred to as a FTT.</p>
+<p>The FFT is indispensable (mainly in the engineering areas), and is widely considered to be one of the most important algorithms out there. While the FFT idea goes back to Gauss and has little to do with statistics, the FFT is attributed to the great statistician John W. Tukey.</p>
+<p>The important connection between circulant matrices is in the following claim.</p>
+<p><strong>Claim:</strong> Circulant matrices are diagonalizable by the DFT. Specifically, the eigendecomposition of a circulant matrix <span class="math inline">\(\mathbf{C}\)</span> (with a symbol <span class="math inline">\(\mathbf{c}\)</span>) is given by <span class="math inline">\(\mathbf{C} = \mathbf{E} \mathrm{diag}(\mathbf{q}) \mathbf{E}^*\)</span>, where <span class="math inline">\(\mathbf{q} = \mathbf{E}^* \mathbf{c}\)</span>.</p>
+<p><strong>Proof:</strong> As usual, let <span class="math inline">\(\mathbf{e}_j\)</span> denote the <span class="math inline">\(j\)</span>-th column of <span class="math inline">\(\mathbf{E}\)</span>. Then we have <span class="math display">\[
+\mathbf{C} \mathbf{e}_j = \begin{pmatrix}
+\sum_{k=0}^{p-1} c_{0k} e_{jk} \\
+\sum_{k=0}^{p-1} c_{1k} e_{jk} \\
+\vdots \\
+\sum_{k=0}^{p-1} c_{(p-1),k} e_{jk}
+\end{pmatrix} =
+\frac{1}{\sqrt{p}}\begin{pmatrix}
+\sum_{k} c_{|0-k|} e_{jk} \\
+\sum_{k} c_{|1-k|} e_{jk} \\
+\vdots \\
+\sum_{k} c_{|(p-1)-k|} e_{jk}
+\end{pmatrix} =
+\frac{1}{\sqrt{p}}\begin{pmatrix}
+e^{2 \pi i j/p} \sum_k c_{|0-k|} e^{2 \pi i j (k-0)/p} \\
+e^{2 \pi i j 2/p} \sum_k c_{|1-k|} e^{2 \pi i j (k-1)/p} \\
+\vdots \\
+e^{2 \pi i j p/p} \sum_k c_{|(p-1)-k|} e^{2 \pi i j (k-p+1)/p}
+\end{pmatrix}
+\]</span> Since both the symbol <span class="math inline">\(\mathbf{c}\)</span> and the Fourier basis are cyclic, all the sums on the RHS of the previous formula are the same, let us denote them by <span class="math inline">\(\widetilde{q}_j\)</span>. Then we have <span class="math inline">\(\mathbf{C} \mathbf{e}_j = \frac{1}{\sqrt{p}} \widetilde{q}_j \mathbf{e}_j\)</span> for all <span class="math inline">\(j\)</span>. Equivalently, in the full matrix format: <span class="math display">\[ \mathbf{C} \mathbf{E} = \mathbf{E} \frac{1}{\sqrt{p}} \mathrm{diag}\big(\widetilde{q}\big) \]</span> and hence we have the eigendecomposition <span class="math inline">\(\mathbf{C} = \mathbf{E} \frac{1}{\sqrt{p}} \mathrm{diag}\big(\widetilde{q}\big) \mathbf{E}^*\)</span>. Defining <span class="math inline">\(\mathbf{q} := \frac{1}{\sqrt{p}} \widetilde{q}\)</span>, this is exactly what we wanted. It remains to show that <span class="math inline">\(\mathbf{q} = \mathbf{E}^* \mathbf{c}\)</span>, but this is clear since: <span class="math display">\[
+\mathbf{q} =
+\frac{1}{\sqrt{p}}\begin{pmatrix}
+\sum_k c_{|0-k|} e^{2 \pi i j (k-0)/p} \\
+\sum_k c_{|1-k|} e^{2 \pi i j (k-1)/p} \\
+\vdots \\
+\sum_k c_{|(p-1)-k|} e^{2 \pi i j (k-p+1)/p}
+\end{pmatrix} = \begin{pmatrix}
+\sum_k c_{|0-k|} e^{- 2 \pi i j (0-k)/p} \\
+\sum_k c_{|1-k|} e^{- 2 \pi i j (1-k)/p} \\
+\vdots \\
+\sum_k c_{|(p-1)-k|} e^{- 2 \pi i j (p-1+k)/p}
+\end{pmatrix} = \begin{pmatrix}
+\sum_k c_{k} e^{- 2 \pi i j k/p} \\
+\sum_k c_{k} e^{- 2 \pi i j k/p} \\
+\vdots \\
+\sum_k c_{k} e^{- 2 \pi i j k/p}
+\end{pmatrix} = \mathbf{E}^* \mathbf{c}
+\]</span></p>
+<div style="text-align: right">
+<strong>Q.E.D.</strong>
+</div>
+<p>Now we know that every circulant matrix can be applied efficiently thanks to the FFT: <span class="math display">\[\mathbf{C} \mathbf{x} = \underbrace{\mathbf{E} \underbrace{\mathrm{diag}(\mathbf{\underbrace{\mathbf q}_{= \mathrm{FFT}(\mathbf{c})}}) \underbrace{\mathbf{E}^* \mathbf x}_{ = \mathrm{FFT}(\mathbf x)}}_{\text{entry-wise prod of those 2 vectors}}}_{\text{inverse FFT of that product}}\]</span> Hence instead of the <span class="math inline">\(\mathcal{O}(p^2)\)</span> operations needed to calculate <span class="math inline">\(\mathbf{C} \mathbf{x}\)</span> naively, we can calculate it using FFT (twice FFT and once inverse FFT) in just <span class="math inline">\(\mathcal{O}(p \log(p))\)</span> operations.</p>
+</section>
+<section id="kde-viewed-as-a-linear-smoother" class="level2">
+<h2 class="anchored" data-anchor-id="kde-viewed-as-a-linear-smoother">5.2 KDE viewed as a Linear Smoother</h2>
+<p>Why are circulant matrices and FFT interesting to us here? Instead of calculating <span class="math inline">\(\widehat{f}(x)\)</span> by the formula above, i.e., by applying a smoother directly to data <span class="math inline">\(X_1,\ldots,X_n\)</span>, let’s create a histogram first (with a small binwidth) and then smooth the histogram instead of the original values. This is equivalent to rounding the observations <span class="math inline">\(X_1,\ldots,X_n\)</span> to a common grid <span class="math inline">\(t_1,\ldots, t_p \in \mathbb{R}\)</span>, obtaining approximate values <span class="math inline">\(\widetilde{X}_1,\ldots,\widetilde{X}_n\)</span>, and it will allow us to use FFT to reduce the KDE complexity from <span class="math inline">\(\mathcal{O}(n^2)\)</span> to <span class="math inline">\(\mathcal{O}(n \log n)\)</span>. It could actually be even less if we used a larger binwidth for the initial histogram (i.e., rounded to a coarser grid), but that is not what we want.</p>
+<p>Let us denote the vector of counts in the initial histogram by <span class="math inline">\(\mathbf{y} \in \mathbb{R}^p\)</span>, where <span class="math inline">\(p\)</span> is the grid size (the number of bins of the initial histogram). For simplicity, we will assume <span class="math inline">\(p=n\)</span>. It is easy to see that applying KDE to the rounded data <span class="math inline">\(\widetilde{X}_1,\ldots,\widetilde{X}_n\)</span> is equivalent to calculating a linear smoother of the initial histogram: <span class="math display">\[
+\widehat{f}(x) = \frac{1}{n h_n} \sum_{i=1}^n K\left(\frac{\widetilde{X}_i - x}{h_n} \right) =
+\frac{1}{n h_n} \sum_{j=1}^p K\left(\frac{t_j - x}{h_n} \right) y_j
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">3</span>, <span class="fl">1.6</span>, <span class="fl">0.2</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>init_hist <span class="ot">&lt;-</span> <span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks =</span> <span class="dv">256</span>, <span class="at">plot=</span>F)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x_tilde <span class="ot">&lt;-</span> <span class="fu">rep</span>(init_hist<span class="sc">$</span>mids, <span class="at">times=</span>init_hist<span class="sc">$</span>counts) <span class="co"># read \tilde{X} from the initial histogram</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions, <span class="at">breaks =</span> <span class="dv">256</span>, <span class="at">freq=</span>F, <span class="at">plot=</span>T,<span class="at">xlab=</span><span class="st">""</span>,<span class="at">main=</span><span class="st">""</span>) <span class="co"># plot init hist on the density scale</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">density</span>(x_tilde,<span class="at">bw=</span><span class="fl">0.25</span>),<span class="at">col=</span><span class="dv">4</span>,<span class="at">type=</span><span class="st">"l"</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with the default KDE</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(x_tilde,<span class="at">bw=</span><span class="fl">0.25</span>),<span class="at">col=</span><span class="dv">4</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">xlab=</span><span class="st">""</span>,<span class="at">main=</span><span class="st">""</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions,<span class="at">bw=</span><span class="fl">0.25</span>),<span class="at">type=</span><span class="st">"l"</span>,<span class="at">main=</span><span class="st">"KDE"</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="at">legend=</span><span class="fu">c</span>(<span class="st">"original"</span>,<span class="st">"rounded"</span>),<span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>And as we can see from the right-hand plot above, calculating KDE using the rounded data <span class="math inline">\(\widetilde{X}_1,\ldots,\widetilde{X}_n\)</span> is very similar to calculating it using the original data <span class="math inline">\(X_1,\ldots,X_n\)</span>.</p>
+<p>However, the rounding essentially enables us to utilize the algebra above. Say we only want to evaluate <span class="math inline">\(\widehat{f}(x)\)</span> on a grid – for simplicity let us say the same grid, given by <span class="math inline">\(t_1, \ldots, t_p\)</span> – we can write the whole resulting vector as <span class="math display">\[
+\big(\widehat{f}(t_1),\ldots,\widehat{f}(t_p)\big)^\top = \mathbf{S} y
+\]</span> where the entries of <span class="math inline">\(\mathbf{S}\)</span> are given by <span class="math inline">\(s_{ij} = \frac{1}{n h_n} K\left(\frac{t_j - t_i}{h_n} \right)\)</span>.</p>
+<p>Methods that calculate the output as a matrix transformation of the input (like in the previous formula or in linear regression) are called <em>linear smoothers</em>, and their simplicity leads to nice properties. This will be seen in the next section as well as later in the course. For example, questions such as “how would the fit look like if we dropped a single observations” (which is needed e.g.&nbsp;in linear regression for calculating the Cook’s distances) can be answered without refitting for linear smoothers. Adopting linear models terminology, <span class="math inline">\(\mathbf{S}\)</span> is called the <em>hat matrix</em>.</p>
+<p>You can notice that KDE is a linear smoother even without rounding the observations on a grid (simply take <span class="math inline">\(\mathbf{y} \equiv \mathbf{1}\)</span>), but only on an equidistant grid is the hat matrix <span class="math inline">\(\mathbf{S}\)</span> <em>Toeplitz</em> (in this case, it is symmetric, see below).</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="384"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="384"></p>
+</div>
+</div>
+<p>The kernel on the left-hand plot above just shifts (from left to right, visualized in the middle) and its values form the hat matrix on the right-hand side (from bottom to top).</p>
+<p>Any Toeplitz matrix <span class="math inline">\(\mathbf{S}\)</span> of dimensions <span class="math inline">\(n \times n\)</span> can be embedded into a circulant matrix <span class="math inline">\(\mathbf{C}\)</span> of dimensions at most <span class="math inline">\((2n -1) \times (2n-1)\)</span>. The easiest way is to wrap the first row of <span class="math inline">\(\mathbf{S}\)</span>, denoted <span class="math inline">\(\mathbf{s}\)</span>, to form the first row of <span class="math inline">\(\mathbf{C}\)</span> as <span class="math display">\[
+\mathbf{c} = (s_1, s_2, \ldots, s_{n-1}, s_n, s_{n-1},\ldots,s_2)^\top
+\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="384"></p>
+</div>
+</div>
+<p>Then, when we want to apply the Toeplitz matrix <span class="math inline">\(\mathbf{S}\)</span>, i.e., calculate the KDE from the initial histogram as <span class="math inline">\(\mathbf{S} y\)</span>, we can instead apply the wrapped circulant matrix <span class="math inline">\(\mathbf{C}\)</span> on a vector suitably extended with zeros: <span class="math display">\[
+\mathbf{C} \begin{pmatrix}
+\mathbf{y} \\
+\mathbf 0
+\end{pmatrix}
+= \left( \begin{array}{c|c}
+\mathbf{S} &amp; \cdot \\
+\hline
+\cdot &amp; \cdot
+\end{array}\right)
+\left( \begin{array}{c}
+\mathbf{y} \\
+\hline
+\mathbf 0
+\end{array}\right) = \left( \begin{array}{c}
+\mathbf S \mathbf{y} \\
+\hline
+\cdot
+\end{array}\right)
+\]</span> Since this section is a bit longer and we might have lost the thread, let’s summarize what we have done to make KDE calculations efficient:</p>
+<ol type="1">
+<li>Round up the original data to a common equidistant grid – equivalently: calculate the initial histogram</li>
+<li>Following point 1, KDE reduces to a linear smoother with a Toeplitz hat matrix. Embed this into a circulant matrix, and add appropriate number of zeros to the observation vector.</li>
+<li>Use FFT to calculate the KDE.</li>
+</ol>
+</section>
+<section id="kde-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="kde-in-r">5.3 KDE in R</h2>
+<p>While I have been using solely the function <code>density()</code> from the base R distributions, there are in fact dozens of packages in R performing univariate kernel density estimation. An overview is given in <a href="http://vita.had.co.nz/papers/density-estimation.html">Wickham (2011)</a>, including a simulation study concerning the speed and accuracy of some of the available packages. The takeaway message is clear: one should be aware of what software they use. To this point, the <code>density()</code> function uses an FFT algorithm as described above and, while still not being the fastest, it is a well documented and reliable option.</p>
+<p>Secondly, now that we understand that KDE (which is really the standard for density estimation) is basically just a histogram smoother, it is clear why “densigrams” (histograms overlaid with KDEs) are so popular for visualization purposes (like the first plot in Section 5.2 above).</p>
+</section>
+</section>
+<section id="degrees-of-freedom" class="level1">
+<h1>6. Degrees of Freedom</h1>
+<p>I would like to conclude with another reason, why understanding KDEs as linear smoothers is useful, again through the connection with linear regression. In linear models, the (regression, as opposed to residual) <em>degrees of freedom</em> is the dimensionality in which the model (for the mean) is free to vary. If there is no linear dependence between the predictors, then this is simply the number of predictors <span class="math inline">\(p\)</span>. If, on the other hand, there is linear dependence, we can still define the degrees of freedom as <span class="math inline">\(\mathrm{df} := \mathrm{tr}(\mathbf{H})\)</span>, where <span class="math inline">\(\mathrm{tr}(\cdot)\)</span> denotes the trace of the matrix (the sum of the diagonal elements), <span class="math inline">\(\mathbf{H} = \mathbf{X} (\mathbf{X}^\top \mathbf{X})^\dagger \mathbf{X}^\top\)</span> is the hat matrix (and the <span class="math inline">\(\dagger\)</span> superscript denotes the pseudo-inverse). The degrees of freedom defined via the hat matrix still correspond to the model dimension. In KDE (or other non-parametric approaches), the model dimension in infinite. But for all linear smoothers (including KDE) it still makes sense to consider the trace of the hat-matrix as the degrees of freedom in our model: <span class="math display">\[ \mathrm{df} := \mathrm{tr}(\mathbf{S}) \]</span> We can still vaguely think of this <span class="math inline">\(\mathrm{df}\)</span> as the model dimensionality.</p>
+<p>For the global bandwidth choice, the hat matrix <span class="math inline">\(\mathbf{S}\)</span> is constant on the diagonal, equal to <span class="math inline">\(\frac{1}{n h}K(0)\)</span>. Hence we simply have <span class="math inline">\(\mathrm{df} = K(0)/h\)</span>, and so the degrees of freedom are inversely proportional to the bandwidth <span class="math inline">\(h\)</span>, also depending on the kernel <span class="math inline">\(K(\cdot)\)</span>.</p>
+<p>It is important to note that counting degrees of freedom is merely a concept, which often appears in calculations, that can be helpful for comparison purposes, but should not be subject to overinterpretation. For example, looking at the Old Faithful eruptions and some of their smooths above, we might think of fitting a mixture of two Gaussians <span class="math display">\[f(x) = \tau \varphi_{\mu_1,\sigma_1^2}(x) + (1-\tau)\varphi_{\mu_2,\sigma_2^2}(x)\]</span> to the data. This mixture has 5 parameters (two means, two variances, and the mixing proportion), so it has 5 degrees of freedom. Below, we visualize the KDE of the eruptions with bandwidth chosen such that the resulting estimator has also 5 degrees of freedom. We can vaguely think of this smooth as having the same level of complexity as the Gaussian mixture model above (which we will learn to fit later in the semester, but already now we can imagine how the fit would look like – less wiggly).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_bw <span class="ot">&lt;-</span> <span class="fl">0.07977</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">/</span>my_bw</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(faithful<span class="sc">$</span>eruptions,<span class="at">bw=</span>my_bw),<span class="at">main=</span><span class="fu">paste</span>(<span class="st">"bw ="</span>,my_bw,<span class="st">" &amp; "</span>,<span class="st">"df ="</span>,<span class="fu">round</span>(my_df,<span class="dv">5</span>)),<span class="at">xlab=</span><span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="week_03_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="384"></p>
+</div>
+</div>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p><a href="http://vita.had.co.nz/papers/density-estimation.html">H. Wickham’s “KDE in R” paper</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/week_02.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exploring Data with <code>tidyverse</code></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../resources/computing/intro_to_r/index.html" class="pagination-link">
+        <span class="nav-page-text">R</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2023, Charles Dufour</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

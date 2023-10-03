@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../resources/computing/intro_to_r/index.html" rel="next">
+<link href="../notes/week_03.html" rel="next">
 <link href="../projects/project-tips-resources.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -304,6 +304,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Exploring Data with <code>tidyverse</code></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/week_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kernel Density Estimation</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -486,19 +492,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   year month day dep_delay arr_delay carrier origin dest air_time distance
-1: 2014     9   7        -2         0      EV    EWR  MCI      152     1092
-2: 2014     5  17         0       -14      UA    EWR  FLL      157     1065
-3: 2014     1   5        22         4      UA    EWR  TPA      144      997
-4: 2014    10   6        -5       -21      DL    JFK  MSP      143     1029
-5: 2014     4   5         3        40      EV    JFK  IAD       65      228
-6: 2014     7  31        42        46      UA    EWR  PBI      133     1023
+1: 2014     4  11        19        -4      B6    JFK  PHX      300     2153
+2: 2014     4   4        -3       -22      B6    EWR  PBI      132     1023
+3: 2014     8  15        32        15      B6    JFK  DEN      214     1626
+4: 2014     8   5        19        12      UA    EWR  DEN      222     1605
+5: 2014     6  30         0       -23      AA    LGA  DFW      181     1389
+6: 2014     5  27         2        -9      DL    JFK  AUS      202     1521
    hour
 1:   19
-2:   14
-3:    7
-4:    8
-5:   14
-6:   17</code></pre>
+2:   11
+3:   21
+4:   15
+5:   12
+6:    8</code></pre>
 </div>
 </div>
 </section>
@@ -524,12 +530,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   year month day dep_delay arr_delay air_time distance hour
-1: 2014     9   7        -2         0      152     1092   19
-2: 2014     5  17         0       -14      157     1065   14
-3: 2014     1   5        22         4      144      997    7
-4: 2014    10   6        -5       -21      143     1029    8
-5: 2014     4   5         3        40       65      228   14
-6: 2014     7  31        42        46      133     1023   17</code></pre>
+1: 2014     4  11        19        -4      300     2153   19
+2: 2014     4   4        -3       -22      132     1023   11
+3: 2014     8  15        32        15      214     1626   21
+4: 2014     8   5        19        12      222     1605   15
+5: 2014     6  30         0       -23      181     1389   12
+6: 2014     5  27         2        -9      202     1521    8</code></pre>
 </div>
 </div>
 <p>As an example, let us filter flights that departed on the April Fool’s day:</p>
@@ -538,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(fools, <span class="fu">n</span>()) <span class="co"># in our sub-sample, we have 17 flights on April 1st</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  n()
-1  13</code></pre>
+1  17</code></pre>
 </div>
 </div>
 <p>When working with tidyverse, it is customary to use the “pipe” operator <code>%&gt;%</code>. Basically, <code>f(x,y)</code> is equivalent to <code>x %&gt;% f(y)</code>. This is useful when chaining operations (composing functions), e.g.,</p>
@@ -561,12 +567,12 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 # Groups:   month [1]
   month   day `n()`
   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-1     1     1    17
-2     1     2    14
-3     1     3    13
-4     1     4    12
-5     1     5    18
-6     1     6    14</code></pre>
+1     1     1    16
+2     1     2    12
+3     1     3     6
+4     1     4    11
+5     1     5    13
+6     1     6     9</code></pre>
 </div>
 </div>
 <p>The original data set was arranged by <code>month</code>, <code>day</code> and <code>hour</code>, but we have lost this ordering by sub-sampling.</p>
@@ -574,12 +580,12 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   year month day dep_delay arr_delay air_time distance hour
-1: 2014     9   7        -2         0      152     1092   19
-2: 2014     5  17         0       -14      157     1065   14
-3: 2014     1   5        22         4      144      997    7
-4: 2014    10   6        -5       -21      143     1029    8
-5: 2014     4   5         3        40       65      228   14
-6: 2014     7  31        42        46      133     1023   17</code></pre>
+1: 2014     4  11        19        -4      300     2153   19
+2: 2014     4   4        -3       -22      132     1023   11
+3: 2014     8  15        32        15      214     1626   21
+4: 2014     8   5        19        12      222     1605   15
+5: 2014     6  30         0       -23      181     1389   12
+6: 2014     5  27         2        -9      202     1521    8</code></pre>
 </div>
 </div>
 <p>So let’s fix this by <code>arrange()</code>.</p>
@@ -589,12 +595,12 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   year month day dep_delay arr_delay air_time distance hour
-1: 2014     1   1        48        26      335     2454    9
-2: 2014     1   1        -3         2      321     2248   10
-3: 2014     1   1        -9       -32       57      292   10
-4: 2014     1   1         1         6       97      541   10
-5: 2014     1   1         1       -17      349     2454   11
-6: 2014     1   1        -4        -5      167      946   14</code></pre>
+1: 2014     1   1        -7       -20      188     1598    6
+2: 2014     1   1         2       -21      353     2565    6
+3: 2014     1   1        -1        -4      154      997    6
+4: 2014     1   1         9         5      195     1598    9
+5: 2014     1   1        -3       -26      129      764    9
+6: 2014     1   1        -4       -20      346     2475    9</code></pre>
 </div>
 </div>
 <p>Let’s read and sub-sample the data again</p>
@@ -606,16 +612,16 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes 'data.table' and 'data.frame':  5000 obs. of  11 variables:
  $ year     : int  2014 2014 2014 2014 2014 2014 2014 2014 2014 2014 ...
- $ month    : int  2 4 5 2 9 10 6 10 2 5 ...
- $ day      : int  5 3 21 19 24 14 5 30 12 22 ...
- $ dep_delay: int  4 -4 71 -1 0 9 -2 -4 -3 -5 ...
- $ arr_delay: int  32 8 46 -5 -8 -8 20 -10 -23 5 ...
- $ carrier  : chr  "UA" "AA" "B6" "MQ" ...
- $ origin   : chr  "LGA" "JFK" "JFK" "JFK" ...
- $ dest     : chr  "IAH" "LAS" "ROC" "DCA" ...
- $ air_time : int  224 313 51 46 81 320 330 63 294 45 ...
- $ distance : int  1416 2248 264 213 533 2586 2422 419 2133 199 ...
- $ hour     : int  14 6 18 10 8 7 6 17 12 6 ...
+ $ month    : int  5 5 6 2 8 1 5 6 2 3 ...
+ $ day      : int  25 8 21 17 22 25 20 7 12 22 ...
+ $ dep_delay: int  1 -8 -8 57 99 171 -2 -2 0 -4 ...
+ $ arr_delay: int  -29 -10 -41 60 111 183 10 3 4 -15 ...
+ $ carrier  : chr  "WN" "EV" "WN" "UA" ...
+ $ origin   : chr  "LGA" "EWR" "LGA" "EWR" ...
+ $ dest     : chr  "MDW" "IAD" "ATL" "IAH" ...
+ $ air_time : int  104 41 106 196 116 166 124 69 92 74 ...
+ $ distance : int  725 212 762 1400 765 1182 888 427 544 427 ...
+ $ hour     : int  13 5 20 18 18 17 9 14 9 7 ...
  - attr(*, ".internal.selfref")=&lt;externalptr&gt; </code></pre>
 </div>
 </div>
@@ -629,16 +635,16 @@ x %&gt;% f(y) %&gt;% g(z)</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes 'data.table' and 'data.frame':  5000 obs. of  11 variables:
  $ year     : int  2014 2014 2014 2014 2014 2014 2014 2014 2014 2014 ...
- $ month    : int  2 4 5 2 9 10 6 10 2 5 ...
- $ day      : int  5 3 21 19 24 14 5 30 12 22 ...
- $ dep_delay: int  4 -4 71 -1 0 9 -2 -4 -3 -5 ...
- $ arr_delay: int  32 8 46 -5 -8 -8 20 -10 -23 5 ...
- $ carrier  : Factor w/ 14 levels "AA","AS","B6",..: 11 1 3 9 5 4 4 5 11 5 ...
- $ origin   : Factor w/ 3 levels "EWR","JFK","LGA": 3 2 2 2 1 2 2 3 1 1 ...
- $ dest     : Factor w/ 98 levels "ABQ","ACK","ALB",..: 42 46 78 27 26 85 84 22 70 27 ...
- $ air_time : int  224 313 51 46 81 320 330 63 294 45 ...
- $ distance : int  1416 2248 264 213 533 2586 2422 419 2133 199 ...
- $ hour     : int  14 6 18 10 8 7 6 17 12 6 ...
+ $ month    : int  5 5 6 2 8 1 5 6 2 3 ...
+ $ day      : int  25 8 21 17 22 25 20 7 12 22 ...
+ $ dep_delay: int  1 -8 -8 57 99 171 -2 -2 0 -4 ...
+ $ arr_delay: int  -29 -10 -41 60 111 183 10 3 4 -15 ...
+ $ carrier  : Factor w/ 14 levels "AA","AS","B6",..: 14 5 14 11 9 3 9 9 9 3 ...
+ $ origin   : Factor w/ 3 levels "EWR","JFK","LGA": 3 1 3 1 2 2 3 2 3 2 ...
+ $ dest     : Factor w/ 99 levels "ABQ","ACK","ALB",..: 52 41 5 42 11 59 92 75 23 75 ...
+ $ air_time : int  104 41 106 196 116 166 124 69 92 74 ...
+ $ distance : int  725 212 762 1400 765 1182 888 427 544 427 ...
+ $ hour     : int  13 5 20 18 18 17 9 14 9 7 ...
  - attr(*, ".internal.selfref")=&lt;externalptr&gt; </code></pre>
 </div>
 </div>
@@ -1330,8 +1336,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../resources/computing/intro_to_r/index.html" class="pagination-link">
-        <span class="nav-page-text">R</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/week_03.html" class="pagination-link">
+        <span class="nav-page-text">Kernel Density Estimation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
