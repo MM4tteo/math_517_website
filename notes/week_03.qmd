@@ -4,6 +4,8 @@ format:
   html:
     toc: true
     toc-depth: 3
+code-fold: true
+code-summary: "Show the code"
 ---
 
 ```{r setup, include=FALSE}
