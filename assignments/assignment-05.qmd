@@ -4,6 +4,7 @@ subtitle: "TBD"
 date: 10-27-2023
 format: html
 editor: visual
+number-sections: true
 ---
 
 ::: callout-important
@@ -14,4 +15,64 @@ editor: visual
 Use the corresponding invite link in [this google doc](https://docs.google.com/document/d/1XTO7obXEr2Yxllxk48wnZ5e49ptPGMsMyl40KEZDGRg/edit?usp=sharing) (accessible with your EPFL account) to accept the assignment. Then go to the [course GitHub organization](https://github.com/MATH-517) and locate the repo titled `ae-5-YOUR_GITHUB_USERNAME` to get started.
 :::
 
-To be posted soon.
+
+# Task 
+
+Simulate data from the mixture of two Gaussian distributions (see Section 3 in [Assignment 2](https://math-517.github.io/math_517_website/assignments/assignment-02.html)) and implement the EM algorithm from Example 2 in the course (also repeated in @sec-example) . Use absolute change in $\ell_{obs}$ of observed data as a convergence criterion.
+
+The following should naturally be done:
+
+-   Visualize the resulting parametric density estimators
+-   Try running your algorithm from different starting points:
+    -   How sensitive is your algorithm to your choice of starting point?
+    -   Can you find a bad starting point where your algorithm fails?
+
+
+# Mixture distributions {#sec-example}
+
+**Mixture of two Gaussian distributions**:
+
+Let $X^{(1)}, \dots, X^{(N)}$ be i.i.d. random variables each with pdf $$ f_{\boldsymbol{\theta}}(x) = (1-\tau) \ \varphi_{\mu_1, \sigma_1}\left(x \right) + \tau \ \varphi_{\mu_2, \sigma_2}\left(x \right) $$ where $\boldsymbol{\theta} = (\tau, \mu_1,\mu_2,\sigma_1^2, \sigma_2^2)^\top$, with
+
+-   $\varphi_{\mu, \sigma}$ is the pdf of a Gaussian with mean $\mu$ and standard deviation $\sigma$,
+-   $\mu_1, \mu_2$ and $\sigma_1^2, \sigma_2^2$ are the means and variances of the mixture components, and
+-   $\tau \in (0,1)$ is the mixing proportion
+
+
+
+$$
+  \ell_{obs}(\boldsymbol{\theta}) = \sum_{n=1}^N \log \left\lbrace (1-\tau)\, \varphi_{\mu_1, \sigma_1}\left(X_n\right) {\boldsymbol{+}} \tau\, \varphi_{\mu_2, \sigma_2}\left(X_n\right) \right\rbrace
+$$ **Trick**: add latent i.i.d. indicators $Z^{(n)} \sim \operatorname{Bernoulli}(\tau)$ such that $X^{(n)} \mid Z^{(n)} = 0 \sim N(\mu_1, \sigma_1^2)$ and $X^{(n)} \mid Z^{(n)} = 1 \sim N(\mu_2, \sigma_2^2)$.
+
+Given $Z^{(n)} = z^{(n)}$, $n=1, \dots, N$, the joint likelihood can be written as $$
+  L_{comp}(\boldsymbol{\theta}) = (1-\tau)^{N_1} \tau^{N_2} \prod_{n=1}^{N} \varphi_{\mu_1, \sigma_1}\left( X^{(n)}\right)^{(1-Z^{(n)})}  \varphi_{\mu_2, \sigma_2}\left( X^{(n)}\right)^{Z^{(n)}}
+$$ with $N_2 = \sum_{n=1}^{N} Z^{(n)}$ and $N_1 = N - N_2$.
+
+
+-   **E-step**: calculate $\mathbb{E}_{\widehat{\theta}^{(l-1)}}\big[\ell_{comp}(\theta) \big| \mathbf{X} = \mathbf{x} \big] =: Q\big(\theta,\widehat{\theta}^{(l-1)}\big)$
+
+    \begin{align*}
+    \ell_{comp}(\boldsymbol{\theta}) &= \ln L_{comp}(\boldsymbol{\theta}) = 
+    N_1 \ln(1 - \tau) + N_2 \ln(\tau) +\\ 
+    &+ \sum_{n=1}^{N} (1-Z^{(n)}) \ln\varphi_{\mu_1, \sigma_1}\left( X^{(n)} \right) + \sum_{n=1}^{N} Z^{(n)} \ln\varphi_{\mu_2, \sigma_2}\left( X^{(n)} \right)
+    \end{align*} such that, we obtain \begin{align*}
+    \mathbb{E}_{\widehat{\boldsymbol{\theta}}^{(l-1)}}&\big[\ell_{comp}(\boldsymbol{\theta}) \big| \mathbf{X} = \mathbf{x} \big] =
+        \log(1-\tau) (N - \sum_{n=1}^{N} p^{(l-1)}_n) +  
+        \log(\tau) \sum_{n=1}^{N} p^{(l-1)}_n +\\ 
+        &+ \sum_{n=1}^{N} (1-p^{(l-1)}_n) \log\varphi_{\mu_1, \sigma_1}\left( x^{(n)} \right) + 
+        \sum_{n=1}^{N} p^{(l-1)}_n \log\varphi_{\mu_2, \sigma_2}\left(x^{(n)}\right)
+    \end{align*} with $p^{(l-1)}_n = \mathbb{E}_{\widehat{\theta}^{(l-1)}}\big[ Z^{(n)} \big| X^{(n)} = x^{(n)} \big] \overset{Bayes}{=} \frac{\varphi_{\hat{\mu}_2^{(l-1)}, \hat{\sigma}_2^{(l-1)}}\left( x^{(n)}\right) \hat{\tau}^{(l-1)}}{f_{\hat{\boldsymbol{\theta}}^{(l-1)}}(x^{(n)})}.$
+
+
+-   **M-step**: optimize $\mathrm{arg\,max}_{\theta}\; Q\big(\theta,\widehat{\theta}^{(l-1)}\big)$
+
+    Hence, $Q\big(\boldsymbol{\theta},\widehat{\boldsymbol{\theta}}^{(l-1)}\big)$ nicely splits into three parts
+
+    \begin{align*}
+    Q\big(&\boldsymbol{\theta},\widehat{\boldsymbol{\theta}}^{(l-1)}\big) =\\
+        &\mathbf{A:}\quad \log(1-\tau) (N - \sum_{n=1}^{N} p^{(l-1)}_n) +  
+        \log(\tau) \sum_{n=1}^{N} p^{(l-1)}_n +\\ 
+        &\mathbf{B:}\quad + \sum_{n=1}^{N} (1-p^{(l-1)}_n) \log\varphi_{\mu_1, \sigma_1}\left( x^{(n)} \right) +\\ 
+        &\mathbf{C:}\quad + \sum_{n=1}^{N} p^{(l-1)}_n \log\varphi_{\mu_2, \sigma_2}\left( x^{(n)} \right)
+    \end{align*} which can be optimized separately.
+
