@@ -83,7 +83,7 @@ format:
   html:
     theme:
       light: [cosmo, style/sta101.scss]
-    linkcolor: "#798b93"
+    linkcolor: "#36A2E1" #"#798b93"
     toc: true
     code-copy: true
     code-overflow: wrap

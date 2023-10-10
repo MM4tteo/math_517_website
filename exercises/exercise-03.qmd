@@ -1,0 +1,11 @@
+---
+title: "Exercise 3"
+subtitle: "EM for multinomial"
+format: 
+  html:
+    theme: labs.scss
+editor: visual
+date: 10-27-2023
+---
+
+To be posted soon.
