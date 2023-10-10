@@ -1,6 +1,6 @@
 ---
 title: "Assignment 5"
-subtitle: "TBD"
+subtitle: "EM for mixtures of Gaussian distributions"
 date: 10-27-2023
 format: html
 editor: visual
