@@ -96,11 +96,26 @@ The uniform density in the estimator
 $\widehat{f}(x) = \frac{1}{n h_n} \sum_{i=1}^n K\left(\frac{X_i - x}{h_n} \right)$
 can be replaced by some kernel $K(\cdot)$. As long as the kernel satisfies the following assumptions:
 
+:::: {.columns}
+
+::: {.column width="40%"}
 1. $K(x) \geq 0$ for all $x \in \mathbb{R}$
 2. $K(- x) = K(x)$ for all $x \in \mathbb{R}$
 3. $\int_\mathbb{R} K(x) d x = 1$
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+
 4. $\lim_{|x| \to \infty} |x| K(x) = 0$
-5. $\sup_x |K(x)| < \infty$
+5. $\sup_x |K(x)| < \infty.$
+:::
+
+::::
+
 
 and $h_n \to 0$ and $n h_n \to \infty$, we can show consistency and asymptotic normality for any fixed $x$ (in which $f$ is continuous, and moreover non-zero for asymptotic normality), though not as easily done as above for the uniform density kernel.
 
