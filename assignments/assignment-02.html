@@ -545,15 +545,15 @@ Note
 <p>We saw in the lecture that the choice of the bandwidth <span class="math inline">\(h\)</span> is crucial for the performance of the KDE. In this assignment we will explore this in more detail with a simulation study. Specifically:</p>
 <ul>
 <li>repeat the following <span class="math inline">\(200\)</span> times:
-<ul>
-<li>generate <span class="math inline">\(N=100\)</span> samples from the Gaussian mixture (see <a href="#sec-GaussianMixture" class="quarto-xref">Section&nbsp;3</a>) <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<ol type="1">
+<li>generate <span class="math inline">\(N=100\)</span> samples from a Gaussian mixture <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (see <a href="#sec-GaussianMixture" class="quarto-xref">Section&nbsp;3</a>)</li>
 <li>perform density estimation, i.e., obtain <span class="math inline">\(\widehat{f}\)</span>, for
 <ul>
 <li>Gaussian, Epanechnikov, and rectangular kernels</li>
 <li>bandwidth values <span class="math inline">\(h = 0.1,0.15,0.2,0.25,\ldots,0.9\)</span></li>
 </ul></li>
 <li>calculate the error measure <span class="math inline">\(\| f - \widehat{f} \|_2\)</span></li>
-</ul></li>
+</ol></li>
 <li>report your findings as a single (well commented) figure <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
 </ul>
 </section>
@@ -1115,11 +1115,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>We saw in the lecture that the choice of the bandwidth $h$ is crucial for the performance of the KDE. In this assignment we will explore this in more detail with a simulation study. Specifically:</span>
 <span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>repeat the following $200$ times:</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>generate $N=100$ samples from the Gaussian mixture (see @sec-GaussianMixture) <span class="ot">[^1]</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>perform density estimation, i.e., obtain $\widehat{f}$, for</span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Gaussian, Epanechnikov, and rectangular kernels</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>bandwidth values $h = 0.1,0.15,0.2,0.25,\ldots,0.9$</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>calculate the error measure $\| f - \widehat{f} \|_2$</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>generate $N=100$ samples from a Gaussian mixture <span class="ot">[^1]</span> (see @sec-GaussianMixture)</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="ss">  2. </span>perform density estimation, i.e., obtain $\widehat{f}$, for</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>Gaussian, Epanechnikov, and rectangular kernels</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>bandwidth values $h = 0.1,0.15,0.2,0.25,\ldots,0.9$</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="ss">  3. </span>calculate the error measure $\| f - \widehat{f} \|_2$</span>
 <span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>report your findings as a single (well commented) figure <span class="ot">[^2]</span></span>
 <span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
