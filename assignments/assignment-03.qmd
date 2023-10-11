@@ -64,7 +64,7 @@ The goal is to study the (global, asymptotically optimal) bandwidth choice $h_{A
 
 -   covariate $X$ from beta distribution Beta$(\alpha,\beta)$ 
 -   response values $Y = m(X) + \epsilon$ where
-    -   the regression function $m$ is given by $\sin\left(\left(\frac{x}{3+0.1}\right)^{-1}\right)$
+    -   the regression function $m$ is given by $\sin\lbrace\left(\frac{x}{3}+0.1\right)^{-1}\rbrace$
     -   $\epsilon \sim \mathcal{N}(0,\sigma^2)$
 -   fix $\sigma^2$ at some visually appealing value (e.g. $\sigma^2=1$ should be fine)
 -   explore how $h_{AMISE}$ behaves depending on the following parameters (in case of a Shiny App, these will be sliders for the user to tweak):
