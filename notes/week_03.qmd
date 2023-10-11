@@ -1,5 +1,6 @@
 ---
 title: "Kernel Density Estimation"
+description: "Details of lecture week 3"
 format:
   html:
     toc: true

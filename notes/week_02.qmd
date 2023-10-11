@@ -1,5 +1,6 @@
 ---
 title: "Exploring Data with `tidyverse`"
+description: "Data Manipulation and Basic Charts"
 output:
   html_document:
     toc: true
