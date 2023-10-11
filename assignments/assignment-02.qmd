@@ -70,11 +70,11 @@ where the kernels are defined as:
 We saw in the lecture that the choice of the bandwidth $h$ is crucial for the performance of the KDE. In this assignment we will explore this in more detail with a simulation study. Specifically:
 
 * repeat the following $200$ times:
-  - generate $N=100$ samples from the Gaussian mixture (see @sec-GaussianMixture) [^1]
-  - perform density estimation, i.e., obtain $\widehat{f}$, for
-    - Gaussian, Epanechnikov, and rectangular kernels
-    - bandwidth values $h = 0.1,0.15,0.2,0.25,\ldots,0.9$
-  - calculate the error measure $\| f - \widehat{f} \|_2$
+  1. generate $N=100$ samples from a Gaussian mixture [^1] (see @sec-GaussianMixture)
+  2. perform density estimation, i.e., obtain $\widehat{f}$, for
+     - Gaussian, Epanechnikov, and rectangular kernels
+     - bandwidth values $h = 0.1,0.15,0.2,0.25,\ldots,0.9$
+  3. calculate the error measure $\| f - \widehat{f} \|_2$
 * report your findings as a single (well commented) figure [^2]
 
 
