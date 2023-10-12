@@ -24,6 +24,7 @@ For a refresher on `Julia` basics, you can check out one of the following resour
 - [Julia Workshop for Data Science](https://crsl4.github.io/julia-workshop/)
 - [Julia academy](https://juliaacademy.com/courses?preview=logged_out)
 - [Introduction to Scientific Programming and Machine Learning with Julia](https://sylvaticus.github.io/SPMLJ/stable/)
+- [MTH 229 - Calculus Computer Laboratory](https://mth229.github.io/)
 - *and many others*
 
 ::: {#classes}
