@@ -886,7 +886,7 @@
     "href": "resources/computing/intro_to_julia/index.html",
     "title": "Introduction to Julia",
     "section": "",
-    "text": "For a refresher on Julia basics, you can check out one of the following resources:\n\nTutorials from the official documentation\nJulia Workshop for Data Science\nJulia academy\nIntroduction to Scientific Programming and Machine Learning with Julia\nand many others\n\n\n\n\n\n\nSubject\n\n\nDescription\n\n\n\n\n\n\nGood practices in Julia\n\n\nTips and tricks for writing better code\n\n\n\n\n\nNo matching items\n\n\n\nA very useful Julia package is RDatasets.jl, which provides access to many of the datasets available in R packages."
+    "text": "For a refresher on Julia basics, you can check out one of the following resources:\n\nTutorials from the official documentation\nJulia Workshop for Data Science\nJulia academy\nIntroduction to Scientific Programming and Machine Learning with Julia\nMTH 229 - Calculus Computer Laboratory\nand many others\n\n\n\n\n\n\nSubject\n\n\nDescription\n\n\n\n\n\n\nGood practices in Julia\n\n\nTips and tricks for writing better code\n\n\n\n\n\nNo matching items\n\n\n\nA very useful Julia package is RDatasets.jl, which provides access to many of the datasets available in R packages."
   },
   {
     "objectID": "resources/resources.html",
