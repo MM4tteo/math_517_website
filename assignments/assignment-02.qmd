@@ -147,5 +147,5 @@ ggplot() +
 Similar functions will be provided for Python and Julia in the assignment repository.
 
 
-[^1]: The Gaussian mixture parameters can be choosen as you like, but make sure to explore different settings.
+[^1]: The Gaussian mixture parameters can be chosen as you like, but make sure to explore different settings.
 [^2]: Remember the [lecture of week 2](../lectures/02_Exploration.pdf)
