@@ -98,6 +98,9 @@ $$ with $N_2 = \sum_{n=1}^{N} Z^{(n)}$ and $N_1 = N - N_2$.
 
 The two functions below allow for random number generation and density evaluation for the Gaussian mixture distribution 
 
+::: {.callout-note appearance="simple" icon=false collapse=true}
+## R code 
+
 ```{r}
 #| code-fold: show
 
@@ -116,6 +119,50 @@ dmixnorm <- function(x, mu1, mu2, sigma1, sigma2, tau){
   return(y)
 }
 ```
+:::
+
+::: {.callout-note appearance="minimal" icon=false collapse=true}
+## Python code 
+
+```python
+import numpy as np
+from scipy.stats import norm
+
+
+def rmixnorm(N, mu1, mu2, sigma1, sigma2, tau):
+    ind = np.random.rand(N) > tau
+    X = np.zeros(N)
+    X[ind] = np.random.normal(mu1, sigma1, size=np.sum(ind))
+    X[~ind] = np.random.normal(mu2, sigma2, size=np.sum(~ind))
+    return X
+
+
+def dmixnorm(x, mu1, mu2, sigma1, sigma2, tau):
+    y = (1 - tau) * norm.pdf(x, mu1, sigma1) + tau * norm.pdf(x, mu2, sigma2)
+    return y
+```
+:::
+
+::: {.callout-note appearance="simple" icon=false collapse=true}
+## Julia code
+
+```julia
+using Random, Distributions
+
+function rmixnorm(N, mu1, mu2, sigma1, sigma2, tau)
+    ind = rand(N) .> tau
+    X = zeros(N)
+    X[ind] .= rand(Normal(mu1, sigma1), sum(ind))
+    X[.!ind] .= rand(Normal(mu2, sigma2), sum(.!ind))
+    return X
+end
+
+function dmixnorm(x, mu1, mu2, sigma1, sigma2, tau)
+    y = (1 - tau) * pdf.(Normal(mu1, sigma1), x) + tau * pdf.(Normal(mu2, sigma2), x)
+    return y
+end
+```
+:::
 
 A sample call is below.
 
@@ -144,7 +191,9 @@ ggplot() +
     subtitle = "generated from a Gaussian mixture with tau = 0.6")    
 ```
 
-Similar functions will be provided for Python and Julia in the assignment repository.
+Similar functions for Python and Julia are provided below and will be available in the assignment repository.
+
+
 
 
 [^1]: The Gaussian mixture parameters can be chosen as you like, but make sure to explore different settings.
