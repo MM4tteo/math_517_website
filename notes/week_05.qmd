@@ -12,7 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ::: {.content-hidden}
 $ \newcommand{\E}{\mathbb{E}} 
-\newcommand{\R}{\mathbb{R}}$
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\rank}{rank}$
 :::
 
 Cross-validation (CV) is a way to asses the prediction capacity of a model by splitting the data set into several *folds*. It can be naturally used to choose between several candidate models (choosing the one with the best prediction capacity). As such, it is often used to select tuning parameters of a model (e.g. the bandwidth in local regression or the parameter $\lambda$ in ridge regression or lasso).
@@ -27,7 +28,7 @@ Question: How to choose $h$?
 
 We can aim for $h$ which minimizes the (density-weighted) mean integrated squared error (MISE):
 $$
-MISE\big(\widehat{m}_h\big) =  \E \int \big( \widehat{m}_h(x) - m(x) \big)^2 f_X(x) d x,
+MISE\big(\widehat{m}_h\big) =  \E \int \big\lbrace \widehat{m}_h(x) - m(x) \big\rbrace^2 f_X(x) d x,
 $$
 where the expectation is taken over our sample. Of course, the expectation is unknown. Using the plug-in principle, it is tempting to estimate $MISE$ as
 $$
@@ -35,7 +36,7 @@ $$
 $$
 *Note*: If it is unclear why we might want to do this, return here after reading the justification below.
 
-However, the estimator above is overly optimistic since $(X_n,Y_n)^\top$ is used to construct $\widehat{m}_h$. At the same time $\big( Y_n - \widehat{m}_h(X_n) \big)^2 \to 0$ for $h \to 0$, and so opting for $h$ minimizing the estimator above would simply lead to too small bandwidths. The remedy is to estimate $MISE$ instead by
+However, the estimator above is overly optimistic since $(X_n,Y_n)^\top$ is used to construct $\widehat{m}_h$. At the same time $\big\lbrace Y_n - \widehat{m}_h(X_n) \big\rbrace^2 \to 0$ for $h \to 0$, and so opting for $h$ minimizing the estimator above would simply lead to too small bandwidths. The remedy is to estimate $MISE$ instead by
 $$
 CV(h) = \frac{1}{N}\sum_{n=1}^N \big\lbrace Y_n - \widehat{m}^{(-n)}_h(X_n) \big\rbrace^2,
 $$
@@ -65,17 +66,17 @@ $$
 
 Assume now that we have a sample $(x_1,y_1)^\top,\ldots, (x_N,y_N)^\top \in \R^{p+1}$, where $x$'s are either scalars or vectors, and we have a model $\widehat{m}$ (fitted using the data) predicting the value of $y$ by $\widehat{m}(x)$. Of course, our model's predictions are not perfect, and there is a loss associated with making a wrong prediction, which we sometimes directly aim to minimize when fitting the model. The most typical one is the mean squared error
 \begin{equation}
-\E(Y - \widehat{m}(X))^2, \label{eq:loss}\tag{1}
+\E\{Y - \widehat{m}(X)\}^2, \label{eq:loss}\tag{1}
 \end{equation}
 which naturally corresponds to the least squares criterion, $\frac{1}{N}\sum_{n=1}^N \big( y_n - m(x_n) \big)^2$, but other losses can be constructed, e.g. when overshooting $Y$ is more problematic than undershooting $Y$, the 0-1 loss (most notably in logistic regression), etc. 
 
 To know how good the model $\widehat{m}$ is, we would like to estimate the mean prediction error \eqref{eq:loss}. This would be quite simple if we had an additional data set $(x_1^\star,y_1^\star)^\top,\ldots, (x_M^\star,y_M^\star)^\top$ distributed the same an independent of the previous one. Then we could naturally estimate \eqref{eq:loss} as 
-$$\frac{1}{M}\sum_{m=1}^M (y_k^\star - \widehat{m}(x_k^\star))^2.$$
+$$\frac{1}{M}\sum_{m=1}^M \lbrace y_k^\star - \widehat{m}(x_k^\star)\rbrace^2.$$
 The reason why this estimator would work is that the model $\widehat{m}$ was trained on a *training* data set $(x_1,y_1)^\top,\ldots, (x_N,y_N)^\top$ independent of the *test* data set $(x_1^\star,y_1^\star)^\top,\ldots, (x_K^\star,y_K^\star)^\top$ used to evaluate its prediction performance.
 
 In reality, a new *test* data set is seldom available, but we can artificially construct it. By splitting the data set into the *training* part and *test* part, we can estimate both the model and its prediction performance. However, such an approach is statistically wasteful, and this is where CV comes in. We only need for the model to be trained on a different data that, and this can be achieved by estimating the expected loss of a model $m$ \eqref{eq:loss} with
 $$
-CV(\widehat{m}) := \frac{1}{N}\sum_{n=1}^N \big( y_n - \widehat{m}^{(-n)}(x_n) \big)^2,
+CV(\widehat{m}) := \frac{1}{N}\sum_{n=1}^N \big\lbrace y_n - \widehat{m}^{(-n)}(x_n) \big\rbrace^2,
 $$
 where $\widehat{m}^{(-n)}$ is the model fitted without the $n$-th observation. This generally means fitting the model $N$ times, which can be wasteful computationally.
 
@@ -157,7 +158,7 @@ The data set is first randomly split into $K \in \mathbb{N}$ subsets (*folds*) o
 
 The leave-one-out CV criterion for a model $m$ and the least squares loss is then replaced by
 $$
-CV_K(m) = K^{-1} \sum_{k=1}^K |J_k|^{-1} \sum_{n \in J_k} \big\lrbace Y_n - m^{(-J_k)}(X_n) \big\rbrace^2,
+CV_K(m) = K^{-1} \sum_{k=1}^K |J_k|^{-1} \sum_{n \in J_k} \big\lbrace Y_n - m^{(-J_k)}(X_n) \big\rbrace^2,
 $$
 where $m^{(-J_k)}$ is the model fitted without the data in the $k$-th fold $J_k$. The model with smallest $CV_K(m)$ is then chosen.
 
