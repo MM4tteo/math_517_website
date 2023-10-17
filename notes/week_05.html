@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/week_02.html" rel="next">
-<link href="../projects/project-tips-resources.html" rel="prev">
+<link href="../resources/computing/intro_to_r/index.html" rel="next">
+<link href="../notes/week_04.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/05_CV.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/05_CV.html">Cross-Validation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/week_02.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/week_05.html">Cross-Validation</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -274,12 +274,6 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/05_CV.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Cross-Validation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../notes/week_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Data with <code>tidyverse</code></span></a>
   </div>
@@ -294,6 +288,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../notes/week_04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Non-parametric Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/week_05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Cross-Validation</span></a>
   </div>
 </li>
       </ul>
@@ -400,12 +400,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#bandwidth-selection-for-kde" id="toc-bandwidth-selection-for-kde" class="nav-link" data-scroll-target="#bandwidth-selection-for-kde">Bandwidth Selection for KDE</a></li>
   <li><a href="#no.-of-component-selection-for-pca" id="toc-no.-of-component-selection-for-pca" class="nav-link" data-scroll-target="#no.-of-component-selection-for-pca">No.&nbsp;of Component Selection for PCA</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/notes/05_CV.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/notes/week_05.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/05_CV.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/05_CV.html">Cross-Validation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/week_02.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/week_05.html">Cross-Validation</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Cross-Validation</h1>
 </div>
@@ -520,7 +520,7 @@ CV_K(m) = K^{-1} \sum_{k=1}^K |J_k|^{-1} \sum_{n \in J_k} \big\lrbace Y_n - m^{(
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_CV_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="week_05_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -1048,13 +1048,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../projects/project-tips-resources.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tips + resources</span>
+      <a href="../notes/week_04.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Non-parametric Regression</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/week_02.html" class="pagination-link">
-        <span class="nav-page-text">Exploring Data with <code>tidyverse</code></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../resources/computing/intro_to_r/index.html" class="pagination-link">
+        <span class="nav-page-text">R</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
