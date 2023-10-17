@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MATH 517 - Cross-Validation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../notes/week_02.html" rel="next">
+<link href="../projects/project-tips-resources.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="MATH 517 - Cross-Validation">
+<meta property="og:description" content="Homepage for MATH 517- Computational statistics and visualisation at EPFL, Fall 2023.">
+<meta property="og:site_name" content="MATH 517">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/05_CV.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/05_CV.html">Cross-Validation</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">MATH 517</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MATH-517/MATH_517_website" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview/Organisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Help &amp; FAQ</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercise-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercise-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercise-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/project-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Small project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/project-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Main project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/project-tips-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips + resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Supplementary notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/05_CV.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/week_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring Data with <code>tidyverse</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/week_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kernel Density Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/week_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-parametric Regression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">Coding introduction</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/computing/intro_to_r/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/computing/intro_to_python/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/computing/intro_to_julia/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Julia</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/tutorials/github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/tutorials/github_classroom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub classroom</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/tutorials/installing_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing software</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/computing/computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">All resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#bandwidth-selection-for-local-regression" id="toc-bandwidth-selection-for-local-regression" class="nav-link active" data-scroll-target="#bandwidth-selection-for-local-regression">Bandwidth Selection for Local Regression</a>
+  <ul class="collapse">
+  <li><a href="#general-prediction-based-cv" id="toc-general-prediction-based-cv" class="nav-link" data-scroll-target="#general-prediction-based-cv">General Prediction-based CV</a>
+  <ul class="collapse">
+  <li><a href="#computational-shortcut-for-linear-smoothers" id="toc-computational-shortcut-for-linear-smoothers" class="nav-link" data-scroll-target="#computational-shortcut-for-linear-smoothers">Computational Shortcut for Linear Smoothers</a></li>
+  <li><a href="#k-fold-cv" id="toc-k-fold-cv" class="nav-link" data-scroll-target="#k-fold-cv">K-fold CV</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#bandwidth-selection-for-kde" id="toc-bandwidth-selection-for-kde" class="nav-link" data-scroll-target="#bandwidth-selection-for-kde">Bandwidth Selection for KDE</a></li>
+  <li><a href="#no.-of-component-selection-for-pca" id="toc-no.-of-component-selection-for-pca" class="nav-link" data-scroll-target="#no.-of-component-selection-for-pca">No.&nbsp;of Component Selection for PCA</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/MATH-517/MATH_517_website/edit/main/notes/05_CV.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/MATH-517/MATH_517_website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/05_CV.html">Supplementary notes</a></li><li class="breadcrumb-item"><a href="../notes/05_CV.html">Cross-Validation</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Cross-Validation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<p>Cross-validation (CV) is a way to asses the prediction capacity of a model by splitting the data set into several <em>folds</em>. It can be naturally used to choose between several candidate models (choosing the one with the best prediction capacity). As such, it is often used to select tuning parameters of a model (e.g.&nbsp;the bandwidth in local regression or the parameter <span class="math inline">\(\lambda\)</span> in ridge regression or lasso).</p>
+<p>More generally, CV is often hailed as the overarching approach to tuning parameter selection by splitting the data set in a broad range of models/algorithms. However, when the problem is unsupervised (i.e.&nbsp;there is no response) and it is not clear how to use the model for prediction, one has to think carefully about how to devise a CV strategy.</p>
+<section id="bandwidth-selection-for-local-regression" class="level1">
+<h1>Bandwidth Selection for Local Regression</h1>
+<p>Setup: From a sample <span class="math inline">\((x_1,y_1)^\top,\ldots, (x_N,y_N)^\top \in \mathbb{R}^2\)</span> and for a fixed bandwidth <span class="math inline">\(h\)</span>, we are estimating <span class="math inline">\(m(x) = \mathbb{E}[Y|X=x]\)</span> as <span class="math inline">\(\widehat{m}_h(x)\)</span> by e.g.&nbsp;local linear regression.</p>
+<p>Question: How to choose <span class="math inline">\(h\)</span>?</p>
+<p>We can aim for <span class="math inline">\(h\)</span> which minimizes the (density-weighted) mean integrated squared error (MISE): <span class="math display">\[
+MISE\big(\widehat{m}_h\big) =  \mathbb{E}\int \big( \widehat{m}_h(x) - m(x) \big)^2 f_X(x) d x,
+\]</span> where the expectation is taken over our sample. Of course, the expectation is unknown. Using the plug-in principle, it is tempting to estimate <span class="math inline">\(MISE\)</span> as <span class="math display">\[
+\frac{1}{N}\sum_{n=1}^N \big\lbrace Y_n - \widehat{m}_h(X_n) \big\rbrace^2.
+\]</span> <em>Note</em>: If it is unclear why we might want to do this, return here after reading the justification below.</p>
+<p>However, the estimator above is overly optimistic since <span class="math inline">\((X_n,Y_n)^\top\)</span> is used to construct <span class="math inline">\(\widehat{m}_h\)</span>. At the same time <span class="math inline">\(\big( Y_n - \widehat{m}_h(X_n) \big)^2 \to 0\)</span> for <span class="math inline">\(h \to 0\)</span>, and so opting for <span class="math inline">\(h\)</span> minimizing the estimator above would simply lead to too small bandwidths. The remedy is to estimate <span class="math inline">\(MISE\)</span> instead by <span class="math display">\[
+CV(h) = \frac{1}{N}\sum_{n=1}^N \big\lbrace Y_n - \widehat{m}^{(-n)}_h(X_n) \big\rbrace^2,
+\]</span> where <span class="math inline">\(\widehat{m}^{(-n)}_h\)</span> is the local linear estimator constructed without the <span class="math inline">\(n\)</span>-th observation <span class="math inline">\((X_n,Y_n)^\top\)</span>.</p>
+<p><span class="math inline">\(CV\)</span> is a reasonable estimate for <span class="math inline">\(MISE\)</span> since assuming the error model <span class="math inline">\(Y = m(X) + \epsilon\)</span> we have <span class="math display">\[
+\begin{split}
+CV(h) &amp;= \frac{1}{N}\sum_{n=1}^N \big\lbrace Y_n - m(X_n) + m(X_n) - \widehat{m}^{(-n)}_h(X_n) \big
+\rbrace^2 \\
+      &amp;= \frac{1}{N}\sum_{n=1}^N \epsilon_n^2 + \frac{2}{N}\sum_{n=1}^N \epsilon_n \big\lbrace m(X_n) - \widehat{m}^{(-n)}_h(X_n)\big\rbrace + \frac{1}{N}\sum_{n=1}^N \big\lbrace m(X_n) - \widehat{m}^{(-n)}_h(X_n) \big\rbrace^2
+\end{split}
+\]</span> where the first term does not depend on <span class="math inline">\(h\)</span>, the expectation of every summand in the second term is zero, and the final term is just the sample estimator for <span class="math inline">\(MISE\)</span> since <span class="math display">\[
+\mathbb{E}\big[ \frac{1}{N}\sum_{n=1}^N \big\lbrace m(X_n) - \widehat{m}^{(-n)}_h(X_n) \big\rbrace^2 \big] = \mathbb{E}\int \big\lbrace m(x) - \widehat{m}_h(x) \big\rbrace^2 f_X(x) d x.
+\]</span></p>
+<p>Hence the bandwidth <span class="math inline">\(h\)</span> can be chosen from candidate values <span class="math inline">\(h_1,\ldots,h_j\)</span> as <span class="math display">\[
+\widehat{h} = \mathrm{arg \, min}_{h=h_1,\ldots,h_j} CV(h).
+\]</span></p>
+<p><em>Note</em>: To mitigate the boundary issues, we might want to add a (known and fixed) weight function <span class="math inline">\(w(x)\)</span> to both MISE (inside the integral) and its estimate <span class="math inline">\(CV\)</span> (inside the sum).</p>
+<section id="general-prediction-based-cv" class="level2">
+<h2 class="anchored" data-anchor-id="general-prediction-based-cv">General Prediction-based CV</h2>
+<p>Assume now that we have a sample <span class="math inline">\((x_1,y_1)^\top,\ldots, (x_N,y_N)^\top \in \mathbb{R}^{p+1}\)</span>, where <span class="math inline">\(x\)</span>’s are either scalars or vectors, and we have a model <span class="math inline">\(\widehat{m}\)</span> (fitted using the data) predicting the value of <span class="math inline">\(y\)</span> by <span class="math inline">\(\widehat{m}(x)\)</span>. Of course, our model’s predictions are not perfect, and there is a loss associated with making a wrong prediction, which we sometimes directly aim to minimize when fitting the model. The most typical one is the mean squared error <span class="math display">\[\begin{equation}
+\mathbb{E}(Y - \widehat{m}(X))^2, \label{eq:loss}\tag{1}
+\end{equation}\]</span> which naturally corresponds to the least squares criterion, <span class="math inline">\(\frac{1}{N}\sum_{n=1}^N \big( y_n - m(x_n) \big)^2\)</span>, but other losses can be constructed, e.g.&nbsp;when overshooting <span class="math inline">\(Y\)</span> is more problematic than undershooting <span class="math inline">\(Y\)</span>, the 0-1 loss (most notably in logistic regression), etc.</p>
+<p>To know how good the model <span class="math inline">\(\widehat{m}\)</span> is, we would like to estimate the mean prediction error <span class="math inline">\(\eqref{eq:loss}\)</span>. This would be quite simple if we had an additional data set <span class="math inline">\((x_1^\star,y_1^\star)^\top,\ldots, (x_M^\star,y_M^\star)^\top\)</span> distributed the same an independent of the previous one. Then we could naturally estimate <span class="math inline">\(\eqref{eq:loss}\)</span> as <span class="math display">\[\frac{1}{M}\sum_{m=1}^M (y_k^\star - \widehat{m}(x_k^\star))^2.\]</span> The reason why this estimator would work is that the model <span class="math inline">\(\widehat{m}\)</span> was trained on a <em>training</em> data set <span class="math inline">\((x_1,y_1)^\top,\ldots, (x_N,y_N)^\top\)</span> independent of the <em>test</em> data set <span class="math inline">\((x_1^\star,y_1^\star)^\top,\ldots, (x_K^\star,y_K^\star)^\top\)</span> used to evaluate its prediction performance.</p>
+<p>In reality, a new <em>test</em> data set is seldom available, but we can artificially construct it. By splitting the data set into the <em>training</em> part and <em>test</em> part, we can estimate both the model and its prediction performance. However, such an approach is statistically wasteful, and this is where CV comes in. We only need for the model to be trained on a different data that, and this can be achieved by estimating the expected loss of a model <span class="math inline">\(m\)</span> <span class="math inline">\(\eqref{eq:loss}\)</span> with <span class="math display">\[
+CV(\widehat{m}) := \frac{1}{N}\sum_{n=1}^N \big( y_n - \widehat{m}^{(-n)}(x_n) \big)^2,
+\]</span> where <span class="math inline">\(\widehat{m}^{(-n)}\)</span> is the model fitted without the <span class="math inline">\(n\)</span>-th observation. This generally means fitting the model <span class="math inline">\(N\)</span> times, which can be wasteful computationally.</p>
+<p>If there is a finite number of models, <span class="math inline">\(CV(m)\)</span> is evaluated for all of them and the model <span class="math inline">\(m\)</span> with the lowest value of <span class="math inline">\(CV(m)\)</span> is chosen.</p>
+<p>The main reason why we are usually interested in estimating the prediction performance is to select the best model out of several candidates, say <span class="math inline">\(m_1,\ldots, m_j\)</span>. <span class="math inline">\(CV(m)\)</span> is evaluated for <span class="math inline">\(m=m_1,\ldots,m_n\)</span> and the model with the lowest value of <span class="math inline">\(CV(m)\)</span> is chosen.</p>
+<p>The candidate models can be completely different, but often they differ only in a single tuning parameter (as we saw in the previous section). In that case, CV can be used to pick the value of the tuning parameter.</p>
+<p>If the tuning parameter is continuous, one usually chooses a finite grid of values for the parameter, even though one opt to minimize <span class="math inline">\(CV(m)\)</span> as a function of the tuning parameter by some optimization approach.</p>
+<p><strong>Example</strong> <em>(Ridge Regression)</em> The ridge regression estimator, for a fixed tuning parameter <span class="math inline">\(\lambda \geq 0\)</span>, is given as a solution to the following optimization problem: <span class="math display">\[
+\mathrm{arg \, min_\beta} \sum_{n=1}^N \big( y_n - x_n^\top \beta \big)^2 + \lambda \| \beta \|_2^2.
+\]</span> <em>Note</em>: In practice, when the model contains the intercept as the first regressor, it is advisable not to penalize the first regression coefficient like above.</p>
+<p>The reason for adding the penalty term in the formula above (as compared to ordinary least squares, OLS) is to cope with multicollinearity. When the number of regressors (the dimension of <span class="math inline">\(x\)</span>’s) is large, so is <span class="math inline">\(\beta\)</span>, and estimating a lot of parameters (with our finite sample) will lead to large variance in estimation. We know that the OLS estimator (i.e.&nbsp;when <span class="math inline">\(\lambda = 0\)</span>) is the best (lowest-variance) linear unbiased estimator. Taking <span class="math inline">\(\lambda &gt; 0\)</span> introduced some estimation bias, but reduces variance, see the plot below. It can be rigorously shown that there is a whole range of <span class="math inline">\(\lambda\)</span>’s (specifically <span class="math inline">\((0,\lambda_0)\)</span>, where <span class="math inline">\(\lambda_0\)</span> depends on the magnitude of the true <span class="math inline">\(\beta\)</span> and the noise level) for which the mean squared error of the ridge estimator will be better than that for OLS. This may or may not mean also better prediction, but in practice ridge regression performs better than OLS with respect to prediction as well, and a good value of <span class="math inline">\(\lambda\)</span> w.r.t. prediction can be selected by CV.</p>
+<p><em>Note</em>: One should keep in mind that CV as described above is aimed at prediction. It can actually be shown that it is inconsistent for model selection (see <a href="https://www.jstor.org/stable/2290328#metadata_info_tab_contents">here</a>).</p>
+<p><img src="../images/bias_variance.png" class="img-fluid"></p>
+<p>The plot above shows the bias-variance trade-off which is often controlled by the tuning parameter. Think about where OLS is on that plot, and where increasing <span class="math inline">\(\lambda\)</span> in ridge regression takes us. Also think about what is hapening with local regression as the bandwidth increases.</p>
+<section id="computational-shortcut-for-linear-smoothers" class="level3">
+<h3 class="anchored" data-anchor-id="computational-shortcut-for-linear-smoothers">Computational Shortcut for Linear Smoothers</h3>
+<p>Cross-validation, as described above, requires fitting the model for every single observation being left and for every candidate value of the tuning parameter (or more generally for every candidate model). This can be computationally demanding. Luckily, one can sometimes avoid fitting the model for every single left-out observation, and do away with fitting every candidate model only once! This is the case for some <em>linear smoothers</em> and the least squares criterion.</p>
+<p>The model <span class="math inline">\(m\)</span> above is called a <em>linear smoother</em> if its fitted values <span class="math inline">\(\widehat{\mathbf{y}} = (\widehat{y}_1,\ldots, \widehat{y}_N)^\top = \big(\widehat{m}(x_1),\ldots, \widehat{m}(x_N)\big)^\top\)</span> are calculated as a linear transformation of the observed independent variable values <span class="math inline">\(\mathbf{y} = (y_1,\ldots, y_N)^\top\)</span>, i.e., when <span class="math display">\[
+\widehat{\mathbf{y}} = \mathcal{S} \mathbf{y},
+\]</span> where <span class="math inline">\(\mathcal{S} \in \mathbb{R}^{N \times N}\)</span> depends on <span class="math inline">\(x\)</span>’s and perhaps a bandwidh or smoothing parameter.</p>
+<p>The simplest example of a linear smoother is a linear regression model, where the smoothing matrix <span class="math inline">\(\mathcal{S}\)</span> is usually denoted <span class="math inline">\(H\)</span> and called the <em>hat</em> matrix. Other examples include local polynomial regression (as should the name <em>linear smoothers</em> evoke) or ridge regression, but not the <em>lasso</em>.</p>
+<p>Below we will demonstrate on the case of ridge regression how for a single candidate value of the tuning parameter <span class="math inline">\(\lambda\)</span>, only a single full fit needs to be calculated to perform cross-validation.</p>
+<p><strong>Example</strong> <em>(Ridge Regression)</em>: Consider the least squares CV criterion for the ridge regression: <span class="math display">\[\begin{equation}
+CV(\lambda) = \frac{1}{N}\sum_{n=1}^N \big( y_n - \mathbf{x}_n^\top \widehat{\beta}^{(-n)} \big)^2, \label{eq:cv_slow}\tag{2}
+\end{equation}\]</span> where <span class="math inline">\(\widehat{\beta}^{(-n)}\)</span> is the ridge regression estimator (depending on the tuning parameter <span class="math inline">\(\lambda\)</span>) constructed without the <span class="math inline">\(n\)</span>-th observation. The goal is to show that <span class="math inline">\(\eqref{eq:cv_slow}\)</span> can be calculated by fitting only the ridge full ridge regression model.</p>
+<p>Firstly, notice that <span class="math inline">\(\widehat{\beta}^{(-n)} = (\mathbf{X}^\top\mathbf{X} + \lambda I - \mathbf{x}_n \mathbf{x}_n^\top)^{-1}(\mathbf{X}^\top \mathbf{y} - \mathbf{x}_n y_n)\)</span>. Using the <a href="https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula">Sherman-Morrison formula</a>, denoting <span class="math inline">\(\mathbf{A} := \mathbf{X}^\top\mathbf{X} + \lambda I\)</span> for the formula (and also denoting <span class="math inline">\(\alpha_n := 1 - \mathbf{x}_n^\top \mathbf{A}^{-1} \mathbf{x}_n\)</span> in the formula’s denominator for short), we have <span class="math display">\[
+\begin{split}
+\widehat{\beta}^{(-n)} &amp;= \left( \mathbf{A}^{-1} - \frac{\mathbf{A}^{-1} \mathbf{x}_n \mathbf{x}_n^\top \mathbf{A}^{-1}}{1 - \mathbf{x}_n^\top \mathbf{A}^{-1} \mathbf{x}_n} \right) (X^\top \mathbf{y} - \mathbf{x}_n y_n) \\
+&amp;= \widehat{\beta} - \frac{1}{\alpha_n} \mathbf{A}^{-1} \mathbf{x}_n \mathbf{x}_n^\top \mathbf{A}^{-1} \mathbf{X}^\top y + \underbrace{\frac{1}{\alpha_n}\mathbf{A}^{-1} \mathbf{x}_n \mathbf{x}_n^\top \mathbf{A}^{-1} \mathbf{x}_n y_n - \mathbf{A}^{-1} \mathbf{x}_n y_n}_{= \frac{1}{\alpha_n} \mathbf{A}^{-1} \mathbf{x}_n y_n} \\
+&amp;= \widehat{\beta} - \frac{1}{\alpha_n} (\mathbf{A}^{-1} \mathbf{x}_n \mathbf{x}_n^\top \widehat{\beta} - \mathbf{A}^{-1} \mathbf{x}_n y_n).
+\end{split}
+\]</span></p>
+<p>Now, plugging the above expression back to <span class="math inline">\(\eqref{eq:cv_slow}\)</span> we obtain <span class="math display">\[
+CV(\lambda) = \frac{1}{N}\sum_{n=1}^N \bigg\lbrace (y_n - \mathbf{x}_n^\top \widehat{\beta}) + \frac{\mathbf{x}_n^\top \mathbf{A}^{-1} \mathbf{x}_n (\mathbf{x}_n^\top \widehat{\beta}-y_n)}{\alpha_n} \bigg\rbrace^2 =  \frac{1}{N}\sum_{n=1}^N \left( \frac{y_n - \mathbf{x}_n^\top \widehat{\beta}}{\alpha_n} \right)^2.
+\]</span></p>
+<p>Note that <span class="math inline">\(\alpha_n = 1 - \mathcal{S}_{nn}\)</span>. In fact, the following computationally advantageous formula holds not only for the case of ridge regression, but also for other linear smoothers, as long as the least square loss is used: <span class="math display">\[
+CV = \frac{1}{N}\sum_{n=1}^N \bigg\lbrace \frac{y_n - \widehat{m}(x_n)}{1 - \mathcal{S}_{nn}} \bigg\rbrace^2. \label{eq:cv_fast}\tag{3}
+\]</span></p>
+<p><em>Note:</em> I am actually not sure whether there are linear smoothers for which leave-one-out CV needs to be calculated naively, i.e.&nbsp;for which formula <span class="math inline">\(\eqref{eq:cv_fast}\)</span> does not hold. The computational savings shown above for ridge regression only can also be shown for standard regression or local constant regression, but they are shown using a specific form of the fitted model. As such, they cannot be easily generalized to all linear smoothers, but maybe similar tricks can be done for all linear smoothers? Or maybe not, and the fact that CV is efficient for local constant regression but not e.g.&nbsp;for local linear regression is the reason why local constant regression is often used in software in places where local linear regression should be used instead? Similarly I am not entirely sure about KDE – for sure it can be done for the naive KDE (histogram). Answering these questions would make for a nice project.</p>
+<p><em>Note (generalized CV)</em>: One can sometimes encounter the generalized CV (GCV), which replaces the leverages <span class="math inline">\(\mathcal{S}_{nn}\)</span> in the denominator in <span class="math inline">\(\eqref{eq:cv_fast}\)</span> by their average <span class="math inline">\(N^{-1} \mathrm{tr}(\mathcal{S})\)</span>. There had been some computational reasons for this in the past. Now, GCV is still sometimes used because it can sometimes work better (it has different properties than CV).</p>
+</section>
+<section id="k-fold-cv" class="level3">
+<h3 class="anchored" data-anchor-id="k-fold-cv">K-fold CV</h3>
+<p>When the computational shortcut for the leave-one-out CV cannot be used, which is the case when e.g.</p>
+<ul>
+<li>different loss than least squares is of interest, such as the 0-1 loss for logistic regression (or other classification methods), or</li>
+<li>there is no closed-form solution for the model as in the case of lasso or generalized linear models,</li>
+</ul>
+<p>approximate criteria are typically used to achieve computational efficiency. An universal approach is the K-fold CV.</p>
+<p>The data set is first randomly split into <span class="math inline">\(K \in \mathbb{N}\)</span> subsets (<em>folds</em>) of approximately equal size. That is <span class="math inline">\(J_k \subset \{ 1,\ldots,N \}\)</span> for <span class="math inline">\(k = 1,\ldots,K\)</span> such that <span class="math inline">\(J_k \cap J_{k'} = \emptyset\)</span> for <span class="math inline">\(k \neq k'\)</span> and <span class="math inline">\(\bigcup_{k=1}^K J_k = \{ 1,\ldots,n \}\)</span> are created by dividing a random permutation of the data indices <span class="math inline">\(\{ 1,\ldots,n \}\)</span>.</p>
+<p>The leave-one-out CV criterion for a model <span class="math inline">\(m\)</span> and the least squares loss is then replaced by <span class="math display">\[
+CV_K(m) = K^{-1} \sum_{k=1}^K |J_k|^{-1} \sum_{n \in J_k} \big\lrbace Y_n - m^{(-J_k)}(X_n) \big\rbrace^2,
+\]</span> where <span class="math inline">\(m^{(-J_k)}\)</span> is the model fitted without the data in the <span class="math inline">\(k\)</span>-th fold <span class="math inline">\(J_k\)</span>. The model with smallest <span class="math inline">\(CV_K(m)\)</span> is then chosen.</p>
+<p>Computationally, <span class="math inline">\(K\)</span>-fold CV requires every candidate model to be fit <span class="math inline">\(K\)</span>-times. Since <span class="math inline">\(K\)</span> is usually taken small, such as <span class="math inline">\(K=10\)</span>, this mostly poses no issues. But if it is possible to fit a model only once, such as in the case of the linear smoothers above or using other approximate criteria, one should opt to save calculations. From the statistical perspective, it is difficult to compare <span class="math inline">\(K\)</span>-fold CV against leave-one-out CV. Bias is usually higher for <span class="math inline">\(K\)</span>-fold CV, while the case of variance is not clear.</p>
+<p><em>Note</em>: The results here are not deterministic due to the random splitting, so don’t forget to set the seed when using <span class="math inline">\(K\)</span>-fold CV.</p>
+<p><strong>Example</strong> <em>(Lasso)</em>: For <span class="math inline">\((x_1,y_1)^\top,\ldots, (x_N,y_N)^\top \in \mathbb{R}^{p+1}\)</span> and a fixed tuning parameter <span class="math inline">\(\lambda \geq 0\)</span>, the lasso (i.e., the <span class="math inline">\(\ell_1\)</span>-penalized least-squares regression estimator) is given as a solution to <span class="math display">\[
+\widehat{\beta}_\lambda := \mathrm{arg \, min_\beta} \sum_{n=1}^N \big( y_n - x_n^\top \beta \big)^2 + \lambda \| \beta \|_1.
+\]</span> Unlike ridge regression, the lasso estimator does not have a closed-form solution (unless the data matrix is orthogonal). However, the estimator is unique (unless there is perfect linear dependence among predictors and there is some bad luck) and the optimization problem is convex, so there are plenty of optimization algorithms (of different computational costs!) that provide us with the lasso estimator for a fixed <span class="math inline">\(\lambda\)</span>.</p>
+<p>To choose a good value of <span class="math inline">\(\lambda\)</span>, we first choose candidate values for it, say <span class="math inline">\(\lambda_1,\ldots,\lambda_j\)</span> and then use <span class="math inline">\(K\)</span>-fold CV to choose the best of the candidate values.</p>
+<p>The candidate values are typically dictated by some practical considerations (e.g.&nbsp;in the case of lasso one tries for which values of <span class="math inline">\(\lambda\)</span> there is a reasonable sparsity level), but very generally one can take an equispaced grid <span class="math inline">\(t_1,\ldots,t_j\)</span> on <span class="math inline">\((0,1)\)</span> and transform it to the range of the parameter, in the case of <span class="math inline">\(\lambda \in (0, \infty)\)</span>, e.g., by taking <span class="math inline">\(\lambda_i = 1/(1-t_i)\)</span> for <span class="math inline">\(i=1,\ldots,j\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05_CV_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Then <span class="math inline">\(CV(\lambda)\)</span> is calculated for every <span class="math inline">\(\lambda = \lambda_1,\ldots,\lambda_j\)</span> and the <span class="math inline">\(\lambda\)</span> with the smallest value of <span class="math inline">\(CV(\lambda)\)</span> is chosen.</p>
+</section>
+</section>
+</section>
+<section id="bandwidth-selection-for-kde" class="level1">
+<h1>Bandwidth Selection for KDE</h1>
+<p>Kernel density estimation is an unsupervised problem, and hence CV in the form described above cannot be used. But still, the bandwidth <span class="math inline">\(h\)</span> influences the KDE in somehow similar way to how it influences kernel regression: a small bandwidth means a small bias but high variance, while large bandwidth means a large bias but a small variance. A good trade-off needs to be found.</p>
+<p>Like in the case of kernel regression, we begin with the mean integrated squared error <span class="math display">\[
+MISE(\widehat{f}_h) = \mathbb{E}\int \big\lbrace \widehat{f}_h(x) - f(x) \big\rbrace^2 d x = \mathbb{E}\int \big\lbrace \widehat{f}_h(x) \big\rbrace^2 d x - 2 \mathbb{E}\int \widehat{f}_h(x) f(x) d x + \int \big\lbrace f(x) \big\rbrace^2 d x.
+\]</span> The last term does not depend on <span class="math inline">\(h\)</span> and the first term can be naturally estimated by dropping the expectation, so we only need to find a way to estimate the cross-term in the middle, which can be done in an unbiased way by <span class="math inline">\(N^{-1} \sum_{n=1}^N \widehat{f}^{(-n)}_h(X_n)\)</span>, since <span class="math display">\[
+\begin{split}
+\mathbb{E}\lbrace \widehat{f}^{(-n)}_h(X_n)\rbrace &amp;= \mathbb{E}\frac{1}{(n-1)h} \sum_{j \neq n} K\left(\frac{X_n - X_j}{h} \right) = \mathbb{E}\frac{1}{h} K\left(\frac{X_1 - X_2}{h} \right) \\
+&amp;= \int \underbrace{\int \frac{1}{h} K \left( \frac{x-y}{h} \right) f(y) d y}_{\mathbb{E}\lbrace \widehat{f}_h(x)\rbrace} f(x) d x = \mathbb{E}\int \widehat{f}_h(x) f(x) d x.
+\end{split}
+\]</span> Hence it is reasonable to define <span class="math display">\[
+CV(h) = \int \big\lbrace \widehat{f}_h(x) \big\rbrace^2 d x - \frac{2}{N} \sum_{n=1}^N \widehat{f}^{(-n)}_h(X_n)
+\]</span></p>
+<p>Again, the computational shortcut above can be used to evaluate the CV criterion without the need to re-calculate the estimator <span class="math inline">\(n\)</span>-times, as long as we are working on an equidistant grid (see section 1.5.2 of the KDE handout).</p>
+<p>The basic idea of the above approach to CV for KDE can be also used for some other unsupervised problems, as we will see below.</p>
+</section>
+<section id="no.-of-component-selection-for-pca" class="level1">
+<h1>No.&nbsp;of Component Selection for PCA</h1>
+<p>Assume we a <strong>centered</strong> have multivariate data set <span class="math inline">\(\mathbf x_1,\ldots,\mathbf x_N \in \mathbb{R}^p\)</span>. There are several equivalent views of PCA:</p>
+<ol type="1">
+<li>Principal components (PCs) are given successively as the (mutually orthogonal) directions along which the variance in the data is maximized. Since variance in the data is captured by the empirical covariance <span class="math inline">\(\widehat{\Sigma} = N^{-1}\sum_{n=1}^N \mathbf x_n \mathbf x_n^\top\)</span>, the PCs can be found as solutions to successive optimization problems: <span class="math display">\[
+\begin{split}
+v_1 &amp;= \underset{\| v \|=1}{\mathrm{arg\,min}} v^\top \widehat{\boldsymbol{\Sigma}} v \\
+v_2 &amp;= \underset{\| v \|=1, v^\top v_1 = 0}{\mathrm{arg\,min}} v^\top \widehat{\boldsymbol{\Sigma}} v \\
+&amp;\;\;\vdots
+\end{split}
+\]</span> The plot below (source: wiki) visualizes this for <span class="math inline">\(p=2\)</span>.</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/PCA1.png" class="img-fluid figure-img" style="width:30.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>The first <span class="math inline">\(r\)</span> principal components also provide the minimum-error projection of the <span class="math inline">\(p\)</span>-dimensional data points onto a space of dimension <span class="math inline">\(r\)</span>: <span class="math display">\[
+\displaystyle \underset{V \in \mathbb{R}^{p \times r}, V^\top V = I}{\mathrm{arg\,min}} \sum_{i=1}^n \| x_i - \mathbf V \mathbf V^\top x_i \|_2^2
+\]</span> The plot below visualizes the errors when <span class="math inline">\((p=3)\)</span>-dimensional data set is projected onto <span class="math inline">\((r=2)\)</span>-dimensional subspace.</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/PCA2.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Finally, if the data set is centered (i.e., <span class="math inline">\(\bar{\mathbf x}_N = N^{-1} \sum_{n=1}^N \mathbf{x}_n = 0\)</span>), this is also equivalent to finding the best low-rank approximation of the data matrix: <span class="math display">\[
+\underset{\rank(\mathbf L) = r}{\mathrm{arg\,min}} \|\mathbf X -\mathbf L \|_2^2
+\]</span> Any rank-<span class="math inline">\(r\)</span> matrix <span class="math inline">\(\mathbf L \in \mathbb{R}^{n \times p}\)</span> can be thought of as a product of <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times r}\)</span> and <span class="math inline">\(\mathbf{V} \in \mathbb{R}^{p \times r}\)</span> in the sense of matrix product <span class="math inline">\(\mathbf{L} = \mathbf{A} \mathbf{V}^\top\)</span>. Visually, we think of this as a product of a long matrix <span class="math inline">\(\mathbf{A}\)</span> and a wide matrix <span class="math inline">\(\mathbf{V}\)</span>, which should approximate well the original data matrix <span class="math inline">\(\mathbf X\)</span>, as visualized on the plot below (where <span class="math inline">\(\mathbf{X} \approx \mathbf{A} \mathbf{U}^\top\)</span>).</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/PCA3.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In all three cases, principal components are found by <em>truncating</em> the SVD of the data matrix <span class="math inline">\(\mathbf{X} = \mathbf{U} \mathbf{D} \mathbf{V}^\top\)</span>. We understand SVD in its <em>economic</em> form. For <span class="math inline">\(n &gt; p\)</span>, this means</p>
+<ul>
+<li><span class="math inline">\(\mathbf{U} \in \mathbb{R}^{n \times p}\)</span> has orthogonal columns</li>
+<li><span class="math inline">\(\mathbf{D} \in \mathbb{R}^{p \times p}\)</span> is diagonal with positive non-increasing diagonal</li>
+<li><span class="math inline">\(\mathbf{V} \in \mathbb{R}^{p \times p}\)</span> is a basis of <span class="math inline">\(\mathbb{R}^p\)</span></li>
+</ul>
+<p>By <em>truncating</em> the SVD at rank <span class="math inline">\(r\)</span>, we mean replacing the diagonal of <span class="math inline">\(\mathbf{D}\)</span>, denoted by <span class="math inline">\(\mathbf{d}\)</span>, by <span class="math inline">\(\widetilde{\mathbf{d}} = (d_1,\ldots,d_r,0,0,\ldots,0)^\top \in \mathbb{R}^p\)</span>, leading to <span class="math inline">\(\widetilde{\mathbf{D}}\)</span>. Then, <span class="math inline">\(\mathbf{U} \widetilde{\mathbf{D}} \mathbf{V}^\top\)</span> is the best <span class="math inline">\(r\)</span>-rank approximation of <span class="math inline">\(\mathbf{X}\)</span> given as the solution to the optimization problem in point 3. above. Now, in the product <span class="math inline">\(\mathbf{U} \widetilde{\mathbf{D}} \mathbf{V}^\top\)</span>, many columns of <span class="math inline">\(\mathbf{U}\)</span> and <span class="math inline">\(\mathbf{V}\)</span> are useless, because they get multiplied only by zeros in the product; only the first <span class="math inline">\(r\)</span> columns matter. So let us rewrite <span class="math inline">\(\widetilde{\mathbf{U}} \widetilde{\mathbf{D}} \widetilde{\mathbf{V}}^\top\)</span> for <span class="math inline">\(\widetilde{\mathbf{U}} \in \mathbb{R}^{n \times r}\)</span> and <span class="math inline">\(\widetilde{\mathbf{V}} \in \mathbb{R}^{p \times r}\)</span>. Now, this <span class="math inline">\(\widetilde{\mathbf{V}}\)</span> is the solution to the optimization problem in point 2. above. As for point 1. above, <span class="math inline">\(v_1\)</span> is the first column of <span class="math inline">\(\widetilde{\mathbf{V}}\)</span>, <span class="math inline">\(v_2\)</span> is the second column of <span class="math inline">\(\widetilde{\mathbf{V}}\)</span>, and so on.</p>
+<p>PCA is the workhorse of data analysis, since it offers the optimal data-driven basis in which the data can be optimally represented. As such, PCA finds it usage in virtually all areas of statistics, machine learning, data science, etc.</p>
+<p><em>Note</em>: PCA is often used for regression (or classification), i.e., when there is a response variable <span class="math inline">\(Y\)</span>. In that case, it is easy to devise a CV scheme, since we are in the supervised case. But, on the other hand, PCA is also often used in the unsupervised case as an explanatory technique or for factor analysis. Moreover the partial least squares (PLS) commonly outperform PCA in the supervised case, which is why we focus here on the unsupervised case.</p>
+<p>Due to the immense popularity of PCA, there exist many ways of choosing the tuning parameter <span class="math inline">\(r\)</span>, i.e.&nbsp;the number of PCs to retain. Those include</p>
+<ul>
+<li>rule-of-thumb methods such as percentage of variance explained</li>
+<li>non-automated methods such as the scree-plot (the elbow plot)</li>
+<li>cross-validation</li>
+</ul>
+<p>But how to do CV, when we are in an unsupervised case? Many people try the following CV scheme:</p>
+<ul>
+<li>split data into <span class="math inline">\(K\)</span> folds <span class="math inline">\(J_1,\ldots,J_K\)</span></li>
+<li><strong>for</strong> <span class="math inline">\(k=1,\ldots,K\)</span>
+<ul>
+<li>solve <span class="math inline">\(\widehat{\mathbf L} = \underset{\mathrm{rank}(\mathbf L) = r}{\mathrm{arg\,min}} \|\mathbf X[J_k^c,] -\mathbf L \|_2^2\)</span></li>
+<li>calculate <span class="math inline">\(Err_k(r) = \sum_{j \in J_k} \| x_j - P_{\widehat{L}} x_j \|_2^2\)</span></li>
+</ul></li>
+<li><strong>end for</strong></li>
+<li>choose <span class="math inline">\(\widehat{r} = \underset{r}{\mathrm{arg\,min}} \sum_{k=1}^K Err_k(r)\)</span></li>
+</ul>
+<p>but that just doesn’t work, because a bigger sub-space will always fit a data point better (there is no trade-off here). In other words, as <span class="math inline">\(r\nearrow\)</span> we have <span class="math inline">\(\| x_j - P_{\widehat{L}} x_j \| \searrow\)</span>, so <span class="math inline">\(r\)</span> is overestimated.</p>
+<p>In the PCA bible (Jolliffe, 2002), there are two other ways how to do CV for PCA, but one of them is outdated and the second just plain wrong (as shown <a href="https://www.researchgate.net/publication/5638191_Cross-validation_of_component_models_A_critical_look_at_current_methods">here</a>).</p>
+<p>There are several ways how to do CV for PCA properly:</p>
+<ol type="1">
+<li><p>Artificially turn the unsupervised problem into a supervised one:</p>
+<p>This is just modifying the wrong approach above. The problem in the approach above has a poor choice of <span class="math inline">\(Err_k(r)\)</span>. If we replace this for something sensible, which will actually capture some bias-variance trade-off, it may work. Assume that the rows <span class="math inline">\(\mathbf{x}_n \in \mathbb{R}^p\)</span>, <span class="math inline">\(n=1,\ldots,N\)</span>, of the data matrix <span class="math inline">\(\mathbf{X} = (x_{n,j})_{n,j=1}^{N,p}\)</span> are i.i.d. realizations of a Gaussian random variable <span class="math inline">\(X\)</span>. That is, the rows have with a mean <span class="math inline">\(\mu \in \mathbb{R}^p\)</span> and a covariance <span class="math inline">\(\Sigma \in \mathbb{R}^{p \times p}\)</span>. We will assume that <span class="math inline">\(\mathrm{rank}(\Sigma) = r\)</span>. We proceed as in the wrong approach above, with the body of the for-loop replaced by:</p>
+<ul>
+<li>Estimate <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\Sigma\)</span> (the empirical estimator truncated to rank <span class="math inline">\(r\)</span>) using data that are not in <span class="math inline">\(J_k\)</span>. When the data are centered, this is equivalent to solving the optimization problem for <span class="math inline">\(\mathbf L\)</span> due to the equivalence between different formulations of PCA, but here we remove the assumption that the data is centered.</li>
+<li>Split every data point <span class="math inline">\(\mathbf{x}\)</span> belonging to <span class="math inline">\(J_k\)</span> into a “missing” part <span class="math inline">\(\mathbf{x}^{miss}\)</span> that will be used for validation and an “observed” part <span class="math inline">\(\mathbf{x}^{obs}\)</span>.</li>
+<li>predict the missing part from the observed part using the estimators of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\Sigma\)</span>
+<ul>
+<li>For <span class="math inline">\(X \sim \mathcal{N}(\mu,\Sigma)\)</span>, split into <span class="math inline">\(X = (X_1,X_2)^\top\)</span> and <span class="math inline">\(\mu=(\mu_1,\mu_2)^\top\)</span> and <span class="math inline">\(\Sigma = \big(\Sigma_{ij}\big)_{i,j=1}^2 \in \mathbb{R}^{p \times p}\)</span>, the conditional expectation of <span class="math inline">\(X_1\)</span> given <span class="math inline">\(X_2\)</span> is given by <span class="math display">\[
+\mathbb{E}_{\mu,\Sigma}\big[ X_1 \big| X_2=\mathbf x_2\big] = \mu_1 + \Sigma_{12} \Sigma_{22}^{\dagger} (\mathbf x_2-\mu_2),
+\]</span> where <span class="math inline">\(\Sigma_{22}^{\dagger}\)</span> denotes the <a href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">pseudoinverse</a> of <span class="math inline">\(\Sigma_{22}\)</span>.</li>
+<li>plug in the estimators of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\Sigma\)</span> in the previous formula to obtain <span class="math inline">\(\widehat{\mathbf{x}}_{miss}\)</span></li>
+</ul></li>
+<li>Define <span class="math display">\[
+Err_k(r) = \sum_{n \in J_k} \| \mathbf (\widehat{\mathbf x}_n^{obs},\widehat{\mathbf x}_n^{miss})^\top - (\widehat{\mathbf x}_n^{obs},\widehat{\mathbf x}_n^{miss})^\top \|_2^2
+\]</span></li>
+</ul>
+<p>Now, there is a bias-variance trade-off, hidden basically in how well <span class="math inline">\(\Sigma\)</span> is approximated by a low-rank matrix. When <span class="math inline">\(r\)</span> is too small, there are some discarded dependencies and prediction suffers. When <span class="math inline">\(r\)</span> is too big, the estimator of <span class="math inline">\(\Sigma\)</span> is too variable and prediction suffers again.</p></li>
+<li><p>Missing data approach:</p>
+<p>This approach is basically the same as above, only the estimators of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\Sigma\)</span> are calculated from all available data points. For completeness, I describe it below (and I apologize for slightly different notation).</p>
+<p>Here it is assumed that the rows <span class="math inline">\(\mathbf{x}^{(n)} \in \mathbb{R}^p\)</span>, <span class="math inline">\(n=1,\ldots,N\)</span>, of the data matrix <span class="math inline">\(\mathbf{X} = (x_{n,j})_{n,j=1}^{N,p}\)</span> are i.i.d. realizations of a Gaussian random variable <span class="math inline">\(X\)</span>. That is, the rows have with a mean <span class="math inline">\(\mu \in \mathbb{R}^p\)</span> and a covariance <span class="math inline">\(\Sigma \in \mathbb{R}^{p \times p}\)</span>. We will assume that <span class="math inline">\(\mathrm{rank}(\Sigma) = r\)</span> for <span class="math inline">\(r=1,\ldots,R\)</span>, and compare how well diferent values of <span class="math inline">\(r\)</span> fit the data as follows.</p>
+<p>We split the bivariate index set <span class="math display">\[
+J := \{ (n,j) \,|\, n=1,\ldots,N, j=1,\ldots,p \}
+\]</span> randomly into <span class="math inline">\(K\)</span> folds, denoted <span class="math inline">\(J_1,\ldots,J_K\)</span>, and for every single fold <span class="math inline">\(J_k\)</span> we perform the following:</p>
+<ul>
+<li>Estimate the mean <span class="math inline">\(\mu\)</span> and the covariance <span class="math inline">\(\Sigma\)</span> using only entries <span class="math inline">\(x_{n,j}\)</span> such that <span class="math inline">\((n,j) \notin J_k\)</span>. This can be done using the EM algorithm, which we will learn about next week. Denote the estimates <span class="math inline">\(\widehat{\mu}\)</span> and <span class="math inline">\(\widehat{\Sigma}\)</span>.</li>
+<li>Perform spectral truncation to have <span class="math inline">\(\widehat{\Sigma}\)</span> of rank <span class="math inline">\(r\)</span>. That is, calculate the eigendecomposition <span class="math inline">\(\widehat{\Sigma} = U \Lambda U^\top\)</span> with <span class="math inline">\(\Lambda = \mathrm{diag}(\lambda_1,\ldots,\lambda_p)\)</span>, set <span class="math inline">\(\widetilde{\Lambda} := \mathrm{diag}(\lambda_1,\ldots,\lambda_r,0,\ldots,0)\)</span>, and update <span class="math inline">\(\widehat{\Sigma} := U \widetilde{\Lambda} U^\top\)</span></li>
+<li>Predict entries <span class="math inline">\(x_{n,j}\)</span> such that <span class="math inline">\((n,j) \in J_k\)</span> as the conditional expectation of the unobserved entries in every row given the observed entries in that row, i.e.&nbsp;<span class="math inline">\(\widehat{\mathbf{x}}^{(n)}_{miss} := \mathbb{E}_{\widehat{\mu}, \widehat{\Sigma}}\big[ \mathbf{x}^{(n)}_{miss} \big| \mathbf{x}^{(n)}_{obs} \big]\)</span> for <span class="math inline">\(n=1,\ldots,N\)</span>. Assuming w.l.o.g. that <span class="math display">\[
+\mathbf{x}^{(n)} = \begin{pmatrix}\mathbf{x}^{(n)}_{miss} \\ \mathbf{x}^{(n)}_{obs} \end{pmatrix},
+\qquad \widehat \mu = \begin{pmatrix}\widehat \mu_{miss}  \\ \widehat \mu_{obs} \end{pmatrix}, \qquad
+\widehat \Sigma = \begin{pmatrix} \widehat \Sigma_{miss} &amp; \widehat \Sigma_{12} \\ \widehat \Sigma_{12} &amp; \widehat \Sigma_{obs} \end{pmatrix}
+\]</span> i.e., assuming that all the unobserved entries come before all the observed entries (which can be achieved by permuting the columns and permuting accordingly <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\Sigma\)</span> and their estimates), the predictions are given by <span class="math display">\[
+\widehat{\mathbf{x}}^{(n)}_{miss} := \widehat \mu_{miss} + \widehat \Sigma_{12} \widehat \Sigma_{obs}^{\dagger} (\mathbf{x}^{(n)}_{obs} - \widehat{\mu}_{obs}),
+\]</span> where <span class="math inline">\(\widehat \Sigma_{obs}^{\dagger}\)</span> denotes the <a href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">pseudoinverse</a> of <span class="math inline">\(\widehat \Sigma_{obs}\)</span>.</li>
+</ul>
+<p>Finally, compare the predictions with the observations. That is, calculate <span class="math display">\[
+CV(r) = \sum_{k=1}^K \frac{1}{|J_k|} \sum_{(n,j) \in J_k} \Big( x_{n,j} - \widehat{x}_{n,j} \Big)^2.
+\]</span></p></li>
+<li><p>Modify the KDE approach:</p>
+<p>The KDE approach can be read as follows: <span class="math display">\[
+MISE(\widehat{f}_h) = \underbrace{\mathbb{E}\int \big\lbrace \widehat{f}_h(x) - f(x) \big\rbrace^2 d x}_{\mathbb{E}\| \widehat{f}_h - f \|_2^2} =     \underbrace{\mathbb{E}\int \big\lbrace \widehat{f}_h(x) \big\rbrace^2 d x}_{\mathbb{E}\| \widehat{f}_h\|_2^2} - 2 \underbrace{\mathbb{E}\int \widehat{f}_h(x)     f(x) d x}_{\mathbb{E}\langle \widehat{f}_h, f \rangle} + \underbrace{\int \big\lbrace f(x) \big\rbrace^2}_{\| f \|_2^2} d x.
+\]</span> In case of covariance estimation, we are interested in minimizing <span class="math display">\[
+\mathbb{E}\| \widehat{C}_R - C \|_2^2 = \mathbb{E}\| \widehat{C}_R \| - 2 \mathbb{E}\langle \widehat{C}_R, C \rangle + \| C \|_2^2
+\]</span> over <span class="math inline">\(R\)</span>, where <span class="math inline">\(\widehat{C}_R\)</span> is the estimator truncated to have rank <span class="math inline">\(R\)</span>, i.e., truncated to the first <span class="math inline">\(R\)</span> principal components.</p>
+<p>Again, similarly to what we did in KDE, we notice that (assuming for simplicity that the mean is zero) <span class="math display">\[
+\mathbb{E}\langle \widehat{C}_R^{(-n)}, X_n X_n^\top \rangle = \langle \underbrace{\mathbb{E}\widehat{C}_R^{(-n)}}_{\approx \mathbb{E}\widehat{C}_R}, \underbrace{\mathbb{E}X_n X_n^\top}_{ = C} \rangle \approx \mathbb{E}\langle \widehat{C}_R , X_n X_n^\top \rangle
+\]</span></p>
+<p>So, unlike in the KDE case, since the truncated covariance estimator is not linear, we do not have equality above, but the “approximately” sign. But it is still a valid strategy to choose the rank to minimize the approximate CV criterion. Also, when the mean is not zero, there are more approximations.</p></li>
+<li><p>Matrix Completion, a.k.a. PCA with missing data (beyond the scope of this course).</p>
+<p>It is entirely possible to do PCA with missing data assuming only a finite rank of the matrix, and not any probabilistic model. Assume that <span class="math inline">\(\Omega \in \{ 0,1 \}^{N \times p}\)</span> is a bivariate index set providing information about which entries of <span class="math inline">\(X \in \mathbb{R}^{N \times p}\)</span> are considered observed (in the current step of cross-validation). The following optimization problem <span class="math display">\[
+\mathrm{arg \, min}_{\mathbf{M}=(M_{ij})_{i,j=1}^{N \times p}} \sum_{(i,j) \in \Omega} (X_{ij} - M_{ij})^2 \quad \mathrm{s.t.} \quad \mathrm{rank}(\mathbf M)=R
+\]</span> provides the best rank-<span class="math inline">\(R\)</span> least squares fit to the partially observed data matrix. While the optimization problem is NP-hard, a local optimum can be obtained via the following <em>iterative hard-thresholding</em> algorithm:</p>
+<p>Start from some <span class="math inline">\(\mathbf{M}^{(0)}\)</span> (here we have the luxury of choosing <span class="math inline">\(\mathbf M = \mathbf X\)</span>, i.e., as the fully observed matrix) and for <span class="math inline">\(l=1,2,\ldots\)</span> iterate the following steps until convergence:</p>
+<ul>
+<li>calculate <span class="math inline">\(\widetilde{\mathbf M}\)</span> to be the rank-<span class="math inline">\(R\)</span> projection of <span class="math inline">\(\mathbf{M}^{(l)}\)</span>, that is
+<ul>
+<li>let <span class="math inline">\(\mathbf{M}^{(l)} = UDV^\top\)</span> be the SVD of <span class="math inline">\(\mathbf{M}^{(l)}\)</span></li>
+<li>let <span class="math inline">\(\widetilde{D} = \mathrm{diag}(\widetilde{d})\)</span>, where <span class="math inline">\(\widetilde{d} \in \mathbb{R}^{\mathrm{min}(N,p)}\)</span> is equal to <span class="math inline">\(D_{ii}\)</span> for <span class="math inline">\(i \leq R\)</span> and 0 othervise</li>
+<li>set <span class="math inline">\(\widetilde{\mathbf M} = U\widetilde{D}V^\top\)</span></li>
+</ul></li>
+<li>set <span class="math display">\[
+   \mathbf{M}^{(l)} = \begin{cases} X_{ij} \quad \text{for } (i,j) \in \Omega \\
+                               \widetilde{M}_{i,j} \quad \text{for } (i,j) \notin \Omega \end{cases}
+   \]</span></li>
+</ul>
+<p>The algorithm above will provide us with a fitted entries <span class="math inline">\(X_{ij}\)</span> for <span class="math inline">\((i,j) \notin \Omega\)</span> for a given rank <span class="math inline">\(R\)</span>. These fitted entries can again be compared to the entries actually observed, and <span class="math inline">\(R\)</span> leading to the smallest error is chosen.</p></li>
+</ol>
+<!-- # Assignment -->
+<!-- CV for degree of polynomial in linear regression, like in 5.3.2 of Hastie Tibshirani (2014) -->
+<!-- Write (prediction-based) K-fold (with $K=10$) CV for variable selection (comparing linear regressions with different number of predictors) and show that while CV does a good job with respect to prediction, it tends to include too many variables and hence it is not selection consistent. Design a simulation study to demonstrate this fact. -->
+<!-- Bandwidth selection for local linear regression via K-fold CV - own implementation compared to what is in R. -->
+<!-- Compare K-fold and leave-one-out CV schemes for something specific. -->
+<!-- Project: CV for PCA, compare via simulations option 1,2,3 above and also matrix completion option. -->
+<!-- Project: One of the notes above: which linear smoothers are amendable to computational savings? -->
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../projects/project-tips-resources.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tips + resources</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../notes/week_02.html" class="pagination-link">
+        <span class="nav-page-text">Exploring Data with <code>tidyverse</code></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2023, Charles Dufour</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
