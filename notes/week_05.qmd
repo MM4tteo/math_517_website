@@ -293,7 +293,7 @@ There are several ways how to do CV for PCA properly:
       - plug in the estimators of $\mu$ and $\Sigma$ in the previous formula to obtain $\widehat{\mathbf{x}}_{miss}$
     * Define
     $$
-    Err_k(r) = \sum_{n \in J_k} \| \mathbf (\widehat{\mathbf x}_n^{obs},\widehat{\mathbf x}_n^{miss})^\top - (\widehat{\mathbf x}_n^{obs},\widehat{\mathbf x}_n^{miss})^\top \|_2^2
+    Err_k(r) = \sum_{n \in J_k} \| \mathbf (\mathbf x_n^{obs},\mathbf x_n^{miss})^\top - (\mathbf x_n^{obs},\widehat{\mathbf x}_n^{miss})^\top \|_2^2
     $$
     
     Now, there is a bias-variance trade-off, hidden basically in how well $\Sigma$ is approximated by a low-rank matrix. When $r$ is too small, there are some discarded dependencies and prediction suffers. When $r$ is too big, the estimator of $\Sigma$ is too variable and prediction suffers again. 
