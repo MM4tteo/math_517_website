@@ -1,15 +1,5 @@
 [
   {
-    "listing": "/resources/tips/reproducible_research.html",
-    "items": []
-  },
-  {
-    "listing": "/resources/computing/intro_to_python/index.html",
-    "items": [
-      "/resources/computing/intro_to_python/good_practice_python.html"
-    ]
-  },
-  {
     "listing": "/resources/computing/intro_to_r/index.html",
     "items": [
       "/resources/computing/intro_to_r/1_functions_and_objects.html",
@@ -20,10 +10,20 @@
     ]
   },
   {
+    "listing": "/resources/computing/intro_to_python/index.html",
+    "items": [
+      "/resources/computing/intro_to_python/good_practice_python.html"
+    ]
+  },
+  {
     "listing": "/resources/computing/intro_to_julia/index.html",
     "items": [
       "/resources/computing/intro_to_julia/good_practice_julia.html"
     ]
+  },
+  {
+    "listing": "/resources/tips/reproducible_research.html",
+    "items": []
   },
   {
     "listing": "/resources/resources.html",
