@@ -637,7 +637,7 @@ v_2 &amp;= \underset{\| v \|=1, v^\top v_1 = 0}{\mathrm{arg\,min}} v^\top \wideh
 <li>plug in the estimators of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\Sigma\)</span> in the previous formula to obtain <span class="math inline">\(\widehat{\mathbf{x}}_{miss}\)</span></li>
 </ul></li>
 <li>Define <span class="math display">\[
-Err_k(r) = \sum_{n \in J_k} \| \mathbf (\widehat{\mathbf x}_n^{obs},\widehat{\mathbf x}_n^{miss})^\top - (\widehat{\mathbf x}_n^{obs},\widehat{\mathbf x}_n^{miss})^\top \|_2^2
+Err_k(r) = \sum_{n \in J_k} \| \mathbf (\mathbf x_n^{obs},\mathbf x_n^{miss})^\top - (\mathbf x_n^{obs},\widehat{\mathbf x}_n^{miss})^\top \|_2^2
 \]</span></li>
 </ul>
 <p>Now, there is a bias-variance trade-off, hidden basically in how well <span class="math inline">\(\Sigma\)</span> is approximated by a low-rank matrix. When <span class="math inline">\(r\)</span> is too small, there are some discarded dependencies and prediction suffers. When <span class="math inline">\(r\)</span> is too big, the estimator of <span class="math inline">\(\Sigma\)</span> is too variable and prediction suffers again.</p></li>
